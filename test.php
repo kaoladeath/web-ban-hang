@@ -5,10 +5,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-/**
- * Bề mặt để nói chuyện với những lớp khác
- * Những lớp kết nối cơ sở dữ liệu phải implement lớp này
- */
-interface IDataBase{
-    
-}
+
+include "setup.php";
+use Model\KhachhangQuery;
+$khachHangQuery = new KhachhangQuery();
+$khachHang = $khachHangQuery->findPk(1);
+echo $khachHang->getTenkh();
+echo $khachHang->getEmail();

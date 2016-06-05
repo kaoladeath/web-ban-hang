@@ -3,5 +3,8 @@
     "require":{
         "propel/propel":"~2.0@dev",
         "monolog/monolog": "^1.19"
+    },
+    "autoload":{
+        "classmap": ["WebModel/generated-classes/"]
     }
 }

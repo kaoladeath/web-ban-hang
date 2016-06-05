@@ -81,12 +81,51 @@ class ComposerStaticInit3df796d9e864b74790b63958f15ab702
         ),
     );
 
+    public static $classMap = array (
+        'Model\\Base\\Ctpdh' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Base/Ctpdh.php',
+        'Model\\Base\\CtpdhQuery' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Base/CtpdhQuery.php',
+        'Model\\Base\\Khachhang' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Base/Khachhang.php',
+        'Model\\Base\\KhachhangQuery' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Base/KhachhangQuery.php',
+        'Model\\Base\\Loaiquangcao' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Base/Loaiquangcao.php',
+        'Model\\Base\\LoaiquangcaoQuery' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Base/LoaiquangcaoQuery.php',
+        'Model\\Base\\Loaisp' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Base/Loaisp.php',
+        'Model\\Base\\LoaispQuery' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Base/LoaispQuery.php',
+        'Model\\Base\\Phieudathang' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Base/Phieudathang.php',
+        'Model\\Base\\PhieudathangQuery' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Base/PhieudathangQuery.php',
+        'Model\\Base\\Quangcao' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Base/Quangcao.php',
+        'Model\\Base\\QuangcaoQuery' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Base/QuangcaoQuery.php',
+        'Model\\Base\\Sanpham' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Base/Sanpham.php',
+        'Model\\Base\\SanphamQuery' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Base/SanphamQuery.php',
+        'Model\\Ctpdh' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Ctpdh.php',
+        'Model\\CtpdhQuery' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/CtpdhQuery.php',
+        'Model\\Khachhang' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Khachhang.php',
+        'Model\\KhachhangQuery' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/KhachhangQuery.php',
+        'Model\\Loaiquangcao' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Loaiquangcao.php',
+        'Model\\LoaiquangcaoQuery' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/LoaiquangcaoQuery.php',
+        'Model\\Loaisp' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Loaisp.php',
+        'Model\\LoaispQuery' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/LoaispQuery.php',
+        'Model\\Map\\CtpdhTableMap' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Map/CtpdhTableMap.php',
+        'Model\\Map\\KhachhangTableMap' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Map/KhachhangTableMap.php',
+        'Model\\Map\\LoaiquangcaoTableMap' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Map/LoaiquangcaoTableMap.php',
+        'Model\\Map\\LoaispTableMap' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Map/LoaispTableMap.php',
+        'Model\\Map\\PhieudathangTableMap' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Map/PhieudathangTableMap.php',
+        'Model\\Map\\QuangcaoTableMap' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Map/QuangcaoTableMap.php',
+        'Model\\Map\\SanphamTableMap' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Map/SanphamTableMap.php',
+        'Model\\Phieudathang' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Phieudathang.php',
+        'Model\\PhieudathangQuery' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/PhieudathangQuery.php',
+        'Model\\Quangcao' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Quangcao.php',
+        'Model\\QuangcaoQuery' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/QuangcaoQuery.php',
+        'Model\\Sanpham' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/Sanpham.php',
+        'Model\\SanphamQuery' => __DIR__ . '/../..' . '/WebModel/generated-classes/Model/SanphamQuery.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit3df796d9e864b74790b63958f15ab702::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit3df796d9e864b74790b63958f15ab702::$prefixDirsPsr4;
             $loader->prefixesPsr0 = ComposerStaticInit3df796d9e864b74790b63958f15ab702::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit3df796d9e864b74790b63958f15ab702::$classMap;
 
         }, null, ClassLoader::class);
     }

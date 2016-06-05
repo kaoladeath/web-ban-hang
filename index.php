@@ -10,8 +10,8 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <?php
-        // put your code here
-        ?>
+        <form action="test.php" method="get">
+            <button type="submit">Get</button>
+        </form>
     </body>
 </html>
