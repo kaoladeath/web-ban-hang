@@ -1,0 +1,28 @@
+## YAML Template.
+---
+propel:
+    path:
+        phpDir: "Model/"
+        
+    database:
+        connections:
+            quanlybanhang:
+                adapter: mysql
+                settings:
+                    charset: utf8
+                    queries:
+                        utf8: "SET NAMES utf8mb4 COLLATE utf8mb4_unicode_ci, COLLATION_CONNECTION = utf8mb4_unicode_ci, COLLATION_DATABASE = utf8mb4_unicode_ci, COLLATION_SERVER = utf8mb4_unicode_ci"
+                classname: Propel\Runtime\Connection\ConnectionWrapper
+                dsn: "mysql:host=127.0.0.1;port=3306;dbname=QuanLyBanHang"
+                user: root
+                password:
+                    
+    runtime:
+        defaultConnection: quanlybanhang
+        connections: 
+            - quanlybanhang
+            
+    generator:
+        defaultConnection: quanlybanhang
+        connections:
+            - quanlybanhang
