@@ -5,6 +5,11 @@
         <group>
             <file>file:/home/duc/NetBeansProjects/WebsiteBanHang/composer.json</file>
             <file>file:/home/duc/NetBeansProjects/WebsiteBanHang/WebModel/propel.yml</file>
+            <file>file:/home/duc/NetBeansProjects/WebsiteBanHang/Controller/ActionController.php</file>
+            <file>file:/home/duc/NetBeansProjects/WebsiteBanHang/setup.php</file>
+            <file>file:/home/duc/NetBeansProjects/WebsiteBanHang/test.php</file>
+            <file>file:/home/duc/NetBeansProjects/WebsiteBanHang/ModelUtil/ModelUtil.php</file>
+            <file>file:/home/duc/NetBeansProjects/WebsiteBanHang/index.php</file>
         </group>
     </open-files>
 </project-private>

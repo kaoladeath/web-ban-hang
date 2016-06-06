@@ -1,7 +1,8 @@
 <?php
 include 'ModelUtil/ModelUtil.php';
 class ActionController {
-
+    //$baitren_mottrang = 9;
+    
     function __construct() {
         
     }
