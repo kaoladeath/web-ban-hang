@@ -3,13 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/duc/NetBeansProjects/WebsiteBanHang/composer.json</file>
-            <file>file:/home/duc/NetBeansProjects/WebsiteBanHang/WebModel/propel.yml</file>
-            <file>file:/home/duc/NetBeansProjects/WebsiteBanHang/Controller/ActionController.php</file>
             <file>file:/home/duc/NetBeansProjects/WebsiteBanHang/setup.php</file>
+            <file>file:/home/duc/NetBeansProjects/WebsiteBanHang/Controller/HomeController.php</file>
             <file>file:/home/duc/NetBeansProjects/WebsiteBanHang/test.php</file>
-            <file>file:/home/duc/NetBeansProjects/WebsiteBanHang/ModelUtil/ModelUtil.php</file>
             <file>file:/home/duc/NetBeansProjects/WebsiteBanHang/index.php</file>
+            <file>file:/home/duc/NetBeansProjects/WebsiteBanHang/View/HomeView/index.php</file>
         </group>
     </open-files>
 </project-private>
