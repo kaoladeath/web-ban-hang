@@ -64,12 +64,12 @@ class QuangcaoTableMap extends TableMap
     /**
      * The number of lazy-loaded columns
      */
-    const NUM_LAZY_LOAD_COLUMNS = 1;
+    const NUM_LAZY_LOAD_COLUMNS = 0;
 
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    const NUM_HYDRATE_COLUMNS = 5;
+    const NUM_HYDRATE_COLUMNS = 6;
 
     /**
      * the column name for the MaQuangCao field
@@ -92,9 +92,9 @@ class QuangcaoTableMap extends TableMap
     const COL_LINK = 'QuangCao.Link';
 
     /**
-     * the column name for the HInhAnh field
+     * the column name for the HinhAnh field
      */
-    const COL_HINHANH = 'QuangCao.HInhAnh';
+    const COL_HINHANH = 'QuangCao.HinhAnh';
 
     /**
      * the column name for the LoaiQuangCao_MaLoaiQuangCao field
@@ -116,7 +116,7 @@ class QuangcaoTableMap extends TableMap
         self::TYPE_PHPNAME       => array('Maquangcao', 'Noidung', 'Ngaydang', 'Link', 'Hinhanh', 'LoaiquangcaoMaloaiquangcao', ),
         self::TYPE_CAMELNAME     => array('maquangcao', 'noidung', 'ngaydang', 'link', 'hinhanh', 'loaiquangcaoMaloaiquangcao', ),
         self::TYPE_COLNAME       => array(QuangcaoTableMap::COL_MAQUANGCAO, QuangcaoTableMap::COL_NOIDUNG, QuangcaoTableMap::COL_NGAYDANG, QuangcaoTableMap::COL_LINK, QuangcaoTableMap::COL_HINHANH, QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO, ),
-        self::TYPE_FIELDNAME     => array('MaQuangCao', 'NoiDung', 'NgayDang', 'Link', 'HInhAnh', 'LoaiQuangCao_MaLoaiQuangCao', ),
+        self::TYPE_FIELDNAME     => array('MaQuangCao', 'NoiDung', 'NgayDang', 'Link', 'HinhAnh', 'LoaiQuangCao_MaLoaiQuangCao', ),
         self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, )
     );
 
@@ -130,7 +130,7 @@ class QuangcaoTableMap extends TableMap
         self::TYPE_PHPNAME       => array('Maquangcao' => 0, 'Noidung' => 1, 'Ngaydang' => 2, 'Link' => 3, 'Hinhanh' => 4, 'LoaiquangcaoMaloaiquangcao' => 5, ),
         self::TYPE_CAMELNAME     => array('maquangcao' => 0, 'noidung' => 1, 'ngaydang' => 2, 'link' => 3, 'hinhanh' => 4, 'loaiquangcaoMaloaiquangcao' => 5, ),
         self::TYPE_COLNAME       => array(QuangcaoTableMap::COL_MAQUANGCAO => 0, QuangcaoTableMap::COL_NOIDUNG => 1, QuangcaoTableMap::COL_NGAYDANG => 2, QuangcaoTableMap::COL_LINK => 3, QuangcaoTableMap::COL_HINHANH => 4, QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO => 5, ),
-        self::TYPE_FIELDNAME     => array('MaQuangCao' => 0, 'NoiDung' => 1, 'NgayDang' => 2, 'Link' => 3, 'HInhAnh' => 4, 'LoaiQuangCao_MaLoaiQuangCao' => 5, ),
+        self::TYPE_FIELDNAME     => array('MaQuangCao' => 0, 'NoiDung' => 1, 'NgayDang' => 2, 'Link' => 3, 'HinhAnh' => 4, 'LoaiQuangCao_MaLoaiQuangCao' => 5, ),
         self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, )
     );
 
@@ -155,7 +155,7 @@ class QuangcaoTableMap extends TableMap
         $this->addColumn('NoiDung', 'Noidung', 'LONGVARCHAR', true, null, null);
         $this->addColumn('NgayDang', 'Ngaydang', 'TIMESTAMP', true, null, null);
         $this->addColumn('Link', 'Link', 'VARCHAR', true, 30, null);
-        $this->addColumn('HInhAnh', 'Hinhanh', 'BLOB', false, null, null);
+        $this->addColumn('HinhAnh', 'Hinhanh', 'VARCHAR', false, 50, null);
         $this->addForeignPrimaryKey('LoaiQuangCao_MaLoaiQuangCao', 'LoaiquangcaoMaloaiquangcao', 'INTEGER' , 'LoaiQuangCao', 'MaLoaiQuangCao', true, null, null);
     } // initialize()
 
@@ -242,11 +242,11 @@ class QuangcaoTableMap extends TableMap
     public static function getPrimaryKeyHashFromRow($row, $offset = 0, $indexType = TableMap::TYPE_NUM)
     {
         // If the PK cannot be derived from the row, return NULL.
-        if ($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maquangcao', TableMap::TYPE_PHPNAME, $indexType)] === null && $row[TableMap::TYPE_NUM == $indexType ? 4 + $offset : static::translateFieldName('LoaiquangcaoMaloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)] === null) {
+        if ($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maquangcao', TableMap::TYPE_PHPNAME, $indexType)] === null && $row[TableMap::TYPE_NUM == $indexType ? 5 + $offset : static::translateFieldName('LoaiquangcaoMaloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)] === null) {
             return null;
         }
 
-        return serialize([(null === $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maquangcao', TableMap::TYPE_PHPNAME, $indexType)] || is_scalar($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maquangcao', TableMap::TYPE_PHPNAME, $indexType)]) || is_callable([$row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maquangcao', TableMap::TYPE_PHPNAME, $indexType)], '__toString']) ? (string) $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maquangcao', TableMap::TYPE_PHPNAME, $indexType)] : $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maquangcao', TableMap::TYPE_PHPNAME, $indexType)]), (null === $row[TableMap::TYPE_NUM == $indexType ? 4 + $offset : static::translateFieldName('LoaiquangcaoMaloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)] || is_scalar($row[TableMap::TYPE_NUM == $indexType ? 4 + $offset : static::translateFieldName('LoaiquangcaoMaloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)]) || is_callable([$row[TableMap::TYPE_NUM == $indexType ? 4 + $offset : static::translateFieldName('LoaiquangcaoMaloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)], '__toString']) ? (string) $row[TableMap::TYPE_NUM == $indexType ? 4 + $offset : static::translateFieldName('LoaiquangcaoMaloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)] : $row[TableMap::TYPE_NUM == $indexType ? 4 + $offset : static::translateFieldName('LoaiquangcaoMaloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)])]);
+        return serialize([(null === $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maquangcao', TableMap::TYPE_PHPNAME, $indexType)] || is_scalar($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maquangcao', TableMap::TYPE_PHPNAME, $indexType)]) || is_callable([$row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maquangcao', TableMap::TYPE_PHPNAME, $indexType)], '__toString']) ? (string) $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maquangcao', TableMap::TYPE_PHPNAME, $indexType)] : $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maquangcao', TableMap::TYPE_PHPNAME, $indexType)]), (null === $row[TableMap::TYPE_NUM == $indexType ? 5 + $offset : static::translateFieldName('LoaiquangcaoMaloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)] || is_scalar($row[TableMap::TYPE_NUM == $indexType ? 5 + $offset : static::translateFieldName('LoaiquangcaoMaloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)]) || is_callable([$row[TableMap::TYPE_NUM == $indexType ? 5 + $offset : static::translateFieldName('LoaiquangcaoMaloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)], '__toString']) ? (string) $row[TableMap::TYPE_NUM == $indexType ? 5 + $offset : static::translateFieldName('LoaiquangcaoMaloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)] : $row[TableMap::TYPE_NUM == $indexType ? 5 + $offset : static::translateFieldName('LoaiquangcaoMaloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)])]);
     }
 
     /**
@@ -272,7 +272,7 @@ class QuangcaoTableMap extends TableMap
         ];
         $pks[] = (int) $row[
             $indexType == TableMap::TYPE_NUM
-                ? 4 + $offset
+                ? 5 + $offset
                 : self::translateFieldName('LoaiquangcaoMaloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)
         ];
 
@@ -380,12 +380,14 @@ class QuangcaoTableMap extends TableMap
             $criteria->addSelectColumn(QuangcaoTableMap::COL_NOIDUNG);
             $criteria->addSelectColumn(QuangcaoTableMap::COL_NGAYDANG);
             $criteria->addSelectColumn(QuangcaoTableMap::COL_LINK);
+            $criteria->addSelectColumn(QuangcaoTableMap::COL_HINHANH);
             $criteria->addSelectColumn(QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO);
         } else {
             $criteria->addSelectColumn($alias . '.MaQuangCao');
             $criteria->addSelectColumn($alias . '.NoiDung');
             $criteria->addSelectColumn($alias . '.NgayDang');
             $criteria->addSelectColumn($alias . '.Link');
+            $criteria->addSelectColumn($alias . '.HinhAnh');
             $criteria->addSelectColumn($alias . '.LoaiQuangCao_MaLoaiQuangCao');
         }
     }

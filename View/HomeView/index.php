@@ -31,6 +31,7 @@
 
 
 
+
     </head>
 
     <body class="cms-index-index">
@@ -250,6 +251,7 @@
 
 
                         </ul>
+                        <!--Shopping Cart-->
                         <div class="top-cart-contain">
                             <div class="mini-cart">
                                 <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle">
@@ -278,6 +280,7 @@
                                 <input class="title_shopping_cart" value="Go to shopping cart" type="hidden">
                             </div>
                         </div>
+                        <!--End Shopping Cart-->
                     </div>
                 </div>
             </nav>
@@ -322,97 +325,35 @@
 
                     <div class="col-md-3">
                         <p class="lead">Safety</p>
-                        <?php
-                            foreach($loaiSp as $loai){
-                                echo '<div class="list-group">
-                                <a href="#" class="list-group-item">'.$loai->getTenloaisp().'</a></div>';
+                        <div class="list-group">
+                            <?php
+                            foreach ($loaiSp as $loai) {
+                                echo '<a href="#" class="list-group-item">' . $loai->getTenloaisp() . '</a>';
                             }
-                            
-                        ?>
+                            ?>
+                        </div>
                     </div>
 
                     <div class="col-md-9">
 
                         <div class="row">
 
-                            <div class="col-sm-4 col-lg-4 col-md-4">
+                            <?php
+                            foreach ($trang_sanpham[$trang_hien_tai] as $sanpham) {
+                                echo '<div class="col-sm-4 col-lg-4 col-md-4">
                                 <div class="thumbnail">
-                                    <img src="http://placehold.it/800x600" alt="">
-                                    <div class="caption">
-                                        <h4 class="pull-right">$24.99</h4>
-                                        <h4><a href="#">First Product</a>
-                                        </h4>
-                                        <p>day la san pham asdkljasldjasldkjaldjalk sdghrs</p>
-                                        <p><a href="" class="btn btn-info" style="visibility:hidden;"></a> <a href="#" class="btn btn-info btn-xs pull-right" role="button">Vao gio</a></p>
+                                        <img src="http://placehold.it/800x600" alt="">
+                                        <div class="caption">
+                                            <h4 class="pull-right">'.$sanpham->getGiasp().' VND</h4>
+                                            <h4><a href="#">' . $sanpham->getTensanpham() . '</a>
+                                            </h4>
+                                            <p>' . $sanpham->getThongtin() . '</p>
+                                            <p><a href="" class="btn btn-info" style="visibility:hidden;"></a> <a href="#" class="btn btn-info btn-xs pull-right" role="button">Vao gio</a></p>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4 col-lg-4 col-md-4">
-                                <div class="thumbnail">
-                                    <img src="http://placehold.it/800x600" alt="">
-                                    <div class="caption">
-                                        <h4 class="pull-right">$64.99</h4>
-                                        <h4><a href="#">Second Product</a>
-                                        </h4>
-                                        <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        <p><a href="" class="btn btn-info" style="visibility:hidden;"></a> <a href="#" class="btn btn-info btn-xs pull-right" role="button">Vao gio</a></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4 col-lg-4 col-md-4">
-                                <div class="thumbnail">
-                                    <img src="http://placehold.it/800x600" alt="">
-                                    <div class="caption">
-                                        <h4 class="pull-right">$74.99</h4>
-                                        <h4><a href="#">Third Product</a>
-                                        </h4>
-                                        <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        <p><a href="" class="btn btn-info" style="visibility:hidden;"></a> <a href="#" class="btn btn-info btn-xs pull-right" role="button">Vao gio</a></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4 col-lg-4 col-md-4">
-                                <div class="thumbnail">
-                                    <img src="http://placehold.it/800x600" alt="">
-                                    <div class="caption">
-                                        <h4 class="pull-right">$84.99</h4>
-                                        <h4><a href="#">Fourth Product</a>
-                                        </h4>
-                                        <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        <p><a href="" class="btn btn-info" style="visibility:hidden;"></a> <a href="#" class="btn btn-info btn-xs pull-right" role="button">Vao gio</a></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4 col-lg-4 col-md-4">
-                                <div class="thumbnail">
-                                    <img src="http://placehold.it/800x600" alt="">
-                                    <div class="caption">
-                                        <h4 class="pull-right">$94.99</h4>
-                                        <h4><a href="#">Fifth Product</a>
-                                        </h4>
-                                        <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        <p><a href="" class="btn btn-info" style="visibility:hidden;"></a> <a href="#" class="btn btn-info btn-xs pull-right" role="button">Vao gio</a></p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4 col-lg-4 col-md-4">
-                                <div class="thumbnail">
-                                    <img src="http://placehold.it/800x600" alt="">
-                                    <div class="caption">
-                                        <h4 class="pull-right">$94.99</h4>
-                                        <h4><a href="#">Fifth Product</a>
-                                        </h4>
-                                        <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                                        <p><a href="" class="btn btn-info" style="visibility:hidden;"></a> <a href="#" class="btn btn-info btn-xs pull-right" role="button">Vao gio</a></p>
-                                    </div>
-                                </div>
-                            </div>
-
+                                </div>';
+                            }
+                            ?>
                         </div>
 
                     </div>
@@ -422,10 +363,12 @@
                 <!--Pagination-->
                 <div class="text-center">
                     <ul class="pagination">
-                        <li><a href="#" class="active">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
+                        <?php
+                        for ($i = 1; $i <= $sotrang; $i++) {
+                            echo '<li><a href=' . $_SERVER['PHP_SELF'] . '?page=' . $i . '>' . $i . '</a></li>';
+                        }
+                        
+                        ?>
                     </ul>
                 </div>
                 <!--End Pagination-->

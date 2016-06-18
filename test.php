@@ -6,9 +6,8 @@
  * and open the template in the editor.
  */
 
-include "setup.php";
-use Model\KhachhangQuery;
-$khachHangQuery = new KhachhangQuery();
-$khachHang = $khachHangQuery->findPk(1);
-echo $khachHang->getTenkh();
-echo $khachHang->getEmail();
+include_once 'setup.php';
+use Model\SanphamQuery;
+$dssanpham = SanphamQuery::create()->find()->getArrayCopy();
+$dssanpham_2 = array_slice($dssanpham, 0,6);
+echo $dssanpham_2[0]->getTensanpham();

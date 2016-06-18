@@ -91,18 +91,18 @@ Bizweb.money_format = "${{amount}}", Bizweb.onError = function (XMLHttpRequest, 
     }
 }, Bizweb.addItem = function (t, r, e) {
     var r = r || 1,
-        o = {
-            type: "POST",
-            url: "/cart/add.js",
-            data: "quantity=" + r + "&VariantId=" + t,
-            dataType: "json",
-            success: function (t) {
-                "function" == typeof e ? e(t) : Bizweb.onItemAdded(t)
-            },
-            error: function (t, r) {
-                Bizweb.onError(t, r)
-            }
-        };
+            o = {
+                type: "POST",
+                url: "/cart/add.js",
+                data: "quantity=" + r + "&VariantId=" + t,
+                dataType: "json",
+                success: function (t) {
+                    "function" == typeof e ? e(t) : Bizweb.onItemAdded(t)
+                },
+                error: function (t, r) {
+                    Bizweb.onError(t, r)
+                }
+            };
     jQuery.ajax(o)
 }, Bizweb.addItemFromForm = function (t, r) {
     var e = {
@@ -243,14 +243,16 @@ Bizweb.money_format = "${{amount}}", Bizweb.onError = function (XMLHttpRequest, 
     jQuery.ajax(e)
 }, jQuery.fn.jquery >= "1.4" ? Bizweb.param = jQuery.param : (Bizweb.param = function (t) {
     var r = [],
-        e = function (t, e) {
-            e = jQuery.isFunction(e) ? e() : e, r[r.length] = encodeURIComponent(t) + "=" + encodeURIComponent(e)
-        };
-    if (jQuery.isArray(t) || t.jquery) jQuery.each(t, function () {
-        e(this.name, this.value)
-    });
+            e = function (t, e) {
+                e = jQuery.isFunction(e) ? e() : e, r[r.length] = encodeURIComponent(t) + "=" + encodeURIComponent(e)
+            };
+    if (jQuery.isArray(t) || t.jquery)
+        jQuery.each(t, function () {
+            e(this.name, this.value)
+        });
     else
-        for (var o in t) Bizweb.buildParams(o, t[o], e);
+        for (var o in t)
+            Bizweb.buildParams(o, t[o], e);
     return r.join("&").replace(/%20/g, "+")
 }, Bizweb.buildParams = function (t, r, e) {
     jQuery.isArray(r) && r.length ? jQuery.each(r, function (r, o) {
@@ -259,6 +261,7 @@ Bizweb.money_format = "${{amount}}", Bizweb.onError = function (XMLHttpRequest, 
         Bizweb.buildParams(t + "[" + r + "]", o, e)
     }) : e(t, r)
 }, Bizweb.isEmptyObject = function (t) {
-    for (var r in t) return !1;
+    for (var r in t)
+        return !1;
     return !0
 });

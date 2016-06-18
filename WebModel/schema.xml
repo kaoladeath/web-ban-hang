@@ -98,7 +98,7 @@
     <column name="NoiDung" phpName="Noidung" type="LONGVARCHAR" required="true"/>
     <column name="NgayDang" phpName="Ngaydang" type="TIMESTAMP" required="true"/>
     <column name="Link" phpName="Link" type="VARCHAR" size="30" required="true"/>
-    <column name="HInhAnh" phpName="Hinhanh" lazyLoad="true" type="BLOB"/>
+    <column name="HinhAnh" phpName="Hinhanh" type="VARCHAR" size="50"/>
     <column name="LoaiQuangCao_MaLoaiQuangCao" phpName="LoaiquangcaoMaloaiquangcao" type="INTEGER" primaryKey="true" required="true"/>
     
     <foreign-key foreignTable="LoaiQuangCao" name="fk_QuangCao_LoaiQuangCao1">
@@ -119,7 +119,7 @@
       
     <column name="MaSanpham" phpName="Masanpham" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="TenSanpham" phpName="Tensanpham" type="VARCHAR" size="20" required="true"/>
-    <column name="HInhAnh" phpName="Hinhanh" lazyLoad="true" type="BLOB"/>
+    <column name="HinhAnh" phpName="Hinhanh" type="VARCHAR" size="50"/>
     <column name="GiaSP" phpName="Giasp" type="DECIMAL" size="15" scale="4" required="true"/>
     <column name="DonViTinh" phpName="Donvitinh" type="CHAR" size="5" required="true"/>
     <column name="ThongTin" phpName="Thongtin" type="LONGVARCHAR"/>

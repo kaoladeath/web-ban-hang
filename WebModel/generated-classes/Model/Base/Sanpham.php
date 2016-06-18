@@ -83,16 +83,9 @@ abstract class Sanpham implements ActiveRecordInterface
     /**
      * The value for the hinhanh field.
      *
-     * @var        resource
+     * @var        string
      */
     protected $hinhanh;
-
-    /**
-     * Whether the lazy-loaded $hinhanh value has been loaded from database.
-     * This is necessary to avoid repeated lookups if $hinhanh column is NULL in the db.
-     * @var boolean
-     */
-    protected $hinhanh_isLoaded = false;
 
     /**
      * The value for the giasp field.
@@ -395,52 +388,13 @@ abstract class Sanpham implements ActiveRecordInterface
     /**
      * Get the [hinhanh] column value.
      *
-     * @param      ConnectionInterface $con An optional ConnectionInterface connection to use for fetching this lazy-loaded column.
-     * @return resource
+     * @return string
      */
-    public function getHinhanh(ConnectionInterface $con = null)
+    public function getHinhanh()
     {
-        if (!$this->hinhanh_isLoaded && $this->hinhanh === null && !$this->isNew()) {
-            $this->loadHinhanh($con);
-        }
-
         return $this->hinhanh;
     }
 
-    /**
-     * Load the value for the lazy-loaded [hinhanh] column.
-     *
-     * This method performs an additional query to return the value for
-     * the [hinhanh] column, since it is not populated by
-     * the hydrate() method.
-     *
-     * @param      $con ConnectionInterface (optional) The ConnectionInterface connection to use.
-     * @return void
-     * @throws PropelException - any underlying error will be wrapped and re-thrown.
-     */
-    protected function loadHinhanh(ConnectionInterface $con = null)
-    {
-        $c = $this->buildPkeyCriteria();
-        $c->addSelectColumn(SanphamTableMap::COL_HINHANH);
-        try {
-            $dataFetcher = ChildSanphamQuery::create(null, $c)->setFormatter(ModelCriteria::FORMAT_STATEMENT)->find($con);
-            $row = $dataFetcher->fetch();
-            $dataFetcher->close();
-
-        $firstColumn = $row ? current($row) : null;
-
-            if ($firstColumn !== null) {
-                $this->hinhanh = fopen('php://memory', 'r+');
-                fwrite($this->hinhanh, $firstColumn);
-                rewind($this->hinhanh);
-            } else {
-                $this->hinhanh = null;
-            }
-            $this->hinhanh_isLoaded = true;
-        } catch (Exception $e) {
-            throw new PropelException("Error loading value for [hinhanh] column on demand.", 0, $e);
-        }
-    }
     /**
      * Get the [giasp] column value.
      *
@@ -524,28 +478,19 @@ abstract class Sanpham implements ActiveRecordInterface
     /**
      * Set the value of [hinhanh] column.
      *
-     * @param resource $v new value
+     * @param string $v new value
      * @return $this|\Model\Sanpham The current object (for fluent API support)
      */
     public function setHinhanh($v)
     {
-        // explicitly set the is-loaded flag to true for this lazy load col;
-        // it doesn't matter if the value is actually set or not (logic below) as
-        // any attempt to set the value means that no db lookup should be performed
-        // when the getHinhanh() method is called.
-        $this->hinhanh_isLoaded = true;
-
-        // Because BLOB columns are streams in PDO we have to assume that they are
-        // always modified when a new value is passed in.  For example, the contents
-        // of the stream itself may have changed externally.
-        if (!is_resource($v) && $v !== null) {
-            $this->hinhanh = fopen('php://memory', 'r+');
-            fwrite($this->hinhanh, $v);
-            rewind($this->hinhanh);
-        } else { // it's already a stream
-            $this->hinhanh = $v;
+        if ($v !== null) {
+            $v = (string) $v;
         }
-        $this->modifiedColumns[SanphamTableMap::COL_HINHANH] = true;
+
+        if ($this->hinhanh !== $v) {
+            $this->hinhanh = $v;
+            $this->modifiedColumns[SanphamTableMap::COL_HINHANH] = true;
+        }
 
         return $this;
     } // setHinhanh()
@@ -676,16 +621,19 @@ abstract class Sanpham implements ActiveRecordInterface
             $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : SanphamTableMap::translateFieldName('Tensanpham', TableMap::TYPE_PHPNAME, $indexType)];
             $this->tensanpham = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : SanphamTableMap::translateFieldName('Giasp', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : SanphamTableMap::translateFieldName('Hinhanh', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->hinhanh = (null !== $col) ? (string) $col : null;
+
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : SanphamTableMap::translateFieldName('Giasp', TableMap::TYPE_PHPNAME, $indexType)];
             $this->giasp = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : SanphamTableMap::translateFieldName('Donvitinh', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : SanphamTableMap::translateFieldName('Donvitinh', TableMap::TYPE_PHPNAME, $indexType)];
             $this->donvitinh = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : SanphamTableMap::translateFieldName('Thongtin', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : SanphamTableMap::translateFieldName('Thongtin', TableMap::TYPE_PHPNAME, $indexType)];
             $this->thongtin = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : SanphamTableMap::translateFieldName('LoaispMaloaisp', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 6 + $startcol : SanphamTableMap::translateFieldName('LoaispMaloaisp', TableMap::TYPE_PHPNAME, $indexType)];
             $this->loaisp_maloaisp = (null !== $col) ? (int) $col : null;
             $this->resetModified();
 
@@ -695,7 +643,7 @@ abstract class Sanpham implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 6; // 6 = SanphamTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 7; // 7 = SanphamTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\Model\\Sanpham'), 0, $e);
@@ -756,10 +704,6 @@ abstract class Sanpham implements ActiveRecordInterface
             throw new PropelException('Cannot find matching row in the database to reload object values.');
         }
         $this->hydrate($row, 0, true, $dataFetcher->getIndexType()); // rehydrate
-
-        // Reset the hinhanh lazy-load column
-        $this->hinhanh = null;
-        $this->hinhanh_isLoaded = false;
 
         if ($deep) {  // also de-associate any related objects?
 
@@ -885,11 +829,6 @@ abstract class Sanpham implements ActiveRecordInterface
                 } else {
                     $affectedRows += $this->doUpdate($con);
                 }
-                // Rewind the hinhanh LOB column, since PDO does not rewind after inserting value.
-                if ($this->hinhanh !== null && is_resource($this->hinhanh)) {
-                    rewind($this->hinhanh);
-                }
-
                 $this->resetModified();
             }
 
@@ -943,7 +882,7 @@ abstract class Sanpham implements ActiveRecordInterface
             $modifiedColumns[':p' . $index++]  = 'TenSanpham';
         }
         if ($this->isColumnModified(SanphamTableMap::COL_HINHANH)) {
-            $modifiedColumns[':p' . $index++]  = 'HInhAnh';
+            $modifiedColumns[':p' . $index++]  = 'HinhAnh';
         }
         if ($this->isColumnModified(SanphamTableMap::COL_GIASP)) {
             $modifiedColumns[':p' . $index++]  = 'GiaSP';
@@ -974,11 +913,8 @@ abstract class Sanpham implements ActiveRecordInterface
                     case 'TenSanpham':
                         $stmt->bindValue($identifier, $this->tensanpham, PDO::PARAM_STR);
                         break;
-                    case 'HInhAnh':
-                        if (is_resource($this->hinhanh)) {
-                            rewind($this->hinhanh);
-                        }
-                        $stmt->bindValue($identifier, $this->hinhanh, PDO::PARAM_LOB);
+                    case 'HinhAnh':
+                        $stmt->bindValue($identifier, $this->hinhanh, PDO::PARAM_STR);
                         break;
                     case 'GiaSP':
                         $stmt->bindValue($identifier, $this->giasp, PDO::PARAM_STR);
@@ -1107,7 +1043,7 @@ abstract class Sanpham implements ActiveRecordInterface
         $result = array(
             $keys[0] => $this->getMasanpham(),
             $keys[1] => $this->getTensanpham(),
-            $keys[2] => ($includeLazyLoadColumns) ? $this->getHinhanh() : null,
+            $keys[2] => $this->getHinhanh(),
             $keys[3] => $this->getGiasp(),
             $keys[4] => $this->getDonvitinh(),
             $keys[5] => $this->getThongtin(),
@@ -1780,7 +1716,6 @@ abstract class Sanpham implements ActiveRecordInterface
         $this->masanpham = null;
         $this->tensanpham = null;
         $this->hinhanh = null;
-        $this->hinhanh_isLoaded = false;
         $this->giasp = null;
         $this->donvitinh = null;
         $this->thongtin = null;

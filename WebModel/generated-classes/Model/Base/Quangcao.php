@@ -94,16 +94,9 @@ abstract class Quangcao implements ActiveRecordInterface
     /**
      * The value for the hinhanh field.
      *
-     * @var        resource
+     * @var        string
      */
     protected $hinhanh;
-
-    /**
-     * Whether the lazy-loaded $hinhanh value has been loaded from database.
-     * This is necessary to avoid repeated lookups if $hinhanh column is NULL in the db.
-     * @var boolean
-     */
-    protected $hinhanh_isLoaded = false;
 
     /**
      * The value for the loaiquangcao_maloaiquangcao field.
@@ -403,52 +396,13 @@ abstract class Quangcao implements ActiveRecordInterface
     /**
      * Get the [hinhanh] column value.
      *
-     * @param      ConnectionInterface $con An optional ConnectionInterface connection to use for fetching this lazy-loaded column.
-     * @return resource
+     * @return string
      */
-    public function getHinhanh(ConnectionInterface $con = null)
+    public function getHinhanh()
     {
-        if (!$this->hinhanh_isLoaded && $this->hinhanh === null && !$this->isNew()) {
-            $this->loadHinhanh($con);
-        }
-
         return $this->hinhanh;
     }
 
-    /**
-     * Load the value for the lazy-loaded [hinhanh] column.
-     *
-     * This method performs an additional query to return the value for
-     * the [hinhanh] column, since it is not populated by
-     * the hydrate() method.
-     *
-     * @param      $con ConnectionInterface (optional) The ConnectionInterface connection to use.
-     * @return void
-     * @throws PropelException - any underlying error will be wrapped and re-thrown.
-     */
-    protected function loadHinhanh(ConnectionInterface $con = null)
-    {
-        $c = $this->buildPkeyCriteria();
-        $c->addSelectColumn(QuangcaoTableMap::COL_HINHANH);
-        try {
-            $dataFetcher = ChildQuangcaoQuery::create(null, $c)->setFormatter(ModelCriteria::FORMAT_STATEMENT)->find($con);
-            $row = $dataFetcher->fetch();
-            $dataFetcher->close();
-
-        $firstColumn = $row ? current($row) : null;
-
-            if ($firstColumn !== null) {
-                $this->hinhanh = fopen('php://memory', 'r+');
-                fwrite($this->hinhanh, $firstColumn);
-                rewind($this->hinhanh);
-            } else {
-                $this->hinhanh = null;
-            }
-            $this->hinhanh_isLoaded = true;
-        } catch (Exception $e) {
-            throw new PropelException("Error loading value for [hinhanh] column on demand.", 0, $e);
-        }
-    }
     /**
      * Get the [loaiquangcao_maloaiquangcao] column value.
      *
@@ -542,28 +496,19 @@ abstract class Quangcao implements ActiveRecordInterface
     /**
      * Set the value of [hinhanh] column.
      *
-     * @param resource $v new value
+     * @param string $v new value
      * @return $this|\Model\Quangcao The current object (for fluent API support)
      */
     public function setHinhanh($v)
     {
-        // explicitly set the is-loaded flag to true for this lazy load col;
-        // it doesn't matter if the value is actually set or not (logic below) as
-        // any attempt to set the value means that no db lookup should be performed
-        // when the getHinhanh() method is called.
-        $this->hinhanh_isLoaded = true;
-
-        // Because BLOB columns are streams in PDO we have to assume that they are
-        // always modified when a new value is passed in.  For example, the contents
-        // of the stream itself may have changed externally.
-        if (!is_resource($v) && $v !== null) {
-            $this->hinhanh = fopen('php://memory', 'r+');
-            fwrite($this->hinhanh, $v);
-            rewind($this->hinhanh);
-        } else { // it's already a stream
-            $this->hinhanh = $v;
+        if ($v !== null) {
+            $v = (string) $v;
         }
-        $this->modifiedColumns[QuangcaoTableMap::COL_HINHANH] = true;
+
+        if ($this->hinhanh !== $v) {
+            $this->hinhanh = $v;
+            $this->modifiedColumns[QuangcaoTableMap::COL_HINHANH] = true;
+        }
 
         return $this;
     } // setHinhanh()
@@ -643,7 +588,10 @@ abstract class Quangcao implements ActiveRecordInterface
             $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : QuangcaoTableMap::translateFieldName('Link', TableMap::TYPE_PHPNAME, $indexType)];
             $this->link = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : QuangcaoTableMap::translateFieldName('LoaiquangcaoMaloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : QuangcaoTableMap::translateFieldName('Hinhanh', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->hinhanh = (null !== $col) ? (string) $col : null;
+
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : QuangcaoTableMap::translateFieldName('LoaiquangcaoMaloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)];
             $this->loaiquangcao_maloaiquangcao = (null !== $col) ? (int) $col : null;
             $this->resetModified();
 
@@ -653,7 +601,7 @@ abstract class Quangcao implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 5; // 5 = QuangcaoTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 6; // 6 = QuangcaoTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\Model\\Quangcao'), 0, $e);
@@ -714,10 +662,6 @@ abstract class Quangcao implements ActiveRecordInterface
             throw new PropelException('Cannot find matching row in the database to reload object values.');
         }
         $this->hydrate($row, 0, true, $dataFetcher->getIndexType()); // rehydrate
-
-        // Reset the hinhanh lazy-load column
-        $this->hinhanh = null;
-        $this->hinhanh_isLoaded = false;
 
         if ($deep) {  // also de-associate any related objects?
 
@@ -841,11 +785,6 @@ abstract class Quangcao implements ActiveRecordInterface
                 } else {
                     $affectedRows += $this->doUpdate($con);
                 }
-                // Rewind the hinhanh LOB column, since PDO does not rewind after inserting value.
-                if ($this->hinhanh !== null && is_resource($this->hinhanh)) {
-                    rewind($this->hinhanh);
-                }
-
                 $this->resetModified();
             }
 
@@ -888,7 +827,7 @@ abstract class Quangcao implements ActiveRecordInterface
             $modifiedColumns[':p' . $index++]  = 'Link';
         }
         if ($this->isColumnModified(QuangcaoTableMap::COL_HINHANH)) {
-            $modifiedColumns[':p' . $index++]  = 'HInhAnh';
+            $modifiedColumns[':p' . $index++]  = 'HinhAnh';
         }
         if ($this->isColumnModified(QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO)) {
             $modifiedColumns[':p' . $index++]  = 'LoaiQuangCao_MaLoaiQuangCao';
@@ -916,11 +855,8 @@ abstract class Quangcao implements ActiveRecordInterface
                     case 'Link':
                         $stmt->bindValue($identifier, $this->link, PDO::PARAM_STR);
                         break;
-                    case 'HInhAnh':
-                        if (is_resource($this->hinhanh)) {
-                            rewind($this->hinhanh);
-                        }
-                        $stmt->bindValue($identifier, $this->hinhanh, PDO::PARAM_LOB);
+                    case 'HinhAnh':
+                        $stmt->bindValue($identifier, $this->hinhanh, PDO::PARAM_STR);
                         break;
                     case 'LoaiQuangCao_MaLoaiQuangCao':
                         $stmt->bindValue($identifier, $this->loaiquangcao_maloaiquangcao, PDO::PARAM_INT);
@@ -1039,7 +975,7 @@ abstract class Quangcao implements ActiveRecordInterface
             $keys[1] => $this->getNoidung(),
             $keys[2] => $this->getNgaydang(),
             $keys[3] => $this->getLink(),
-            $keys[4] => ($includeLazyLoadColumns) ? $this->getHinhanh() : null,
+            $keys[4] => $this->getHinhanh(),
             $keys[5] => $this->getLoaiquangcaoMaloaiquangcao(),
         );
         if ($result[$keys[2]] instanceof \DateTime) {
@@ -1422,7 +1358,6 @@ abstract class Quangcao implements ActiveRecordInterface
         $this->ngaydang = null;
         $this->link = null;
         $this->hinhanh = null;
-        $this->hinhanh_isLoaded = false;
         $this->loaiquangcao_maloaiquangcao = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
