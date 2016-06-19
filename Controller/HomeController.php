@@ -26,7 +26,7 @@ class HomeController {
         session_start();
         if (!isset($_SESSION['loaded'])) {
             //lấy danh sách loại sản phẩm
-            $loaiSp = LoaispQuery::create()->find();
+            $_SESSION['loai_sp'] = LoaispQuery::create()->find();
             //lấy danh sách sản phẩm
             $dssanpham = SanphamQuery::create()->find();
             $sotrang = self::so_trang($dssanpham->count(), self::SO_SP_1_TRANG);
@@ -34,12 +34,12 @@ class HomeController {
             $trang_sanpham = self::Tao_sanpham_theo_trang($sotrang, $dssanpham->getArrayCopy());
             //lưu các giá trị đã tính vào session
             $_SESSION['loaded'] = true;
-            $_SESSION['loai_sp'] = $loaiSp;
+            //$_SESSION['loai_sp'] = $loaiSp;
             $_SESSION['trang_sanpham'] = $trang_sanpham;
             $_SESSION['so_trang'] = $sotrang;
             $_SESSION['dssanpham'] = $dssanpham;
         } else {
-            $loaiSp = $_SESSION['loai_sp'];
+            //$loaiSp = $_SESSION['loai_sp'];
             $trang_sanpham = $_SESSION['trang_sanpham'];
             $sotrang = $_SESSION['so_trang'];
             if (isset($_GET['page'])) {
@@ -76,6 +76,11 @@ class HomeController {
         }
 
         return $trang_sanpham;
+    }
+    
+    public static function showSanpham($masp){
+        $sp = SanphamQuery::create()->findPk($masp);
+        include_once 'View/HomeView/Sanpham.php';
     }
 
 }

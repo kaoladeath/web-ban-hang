@@ -33,16 +33,7 @@
 
                 <div class="row">
 
-                    <div class="col-md-3">
-                        <p class="lead">Safety</p>
-                        <div class="list-group">
-                            <?php
-                            foreach ($loaiSp as $loai) {
-                                echo '<a href="#" class="list-group-item">' . $loai->getTenloaisp() . '</a>';
-                            }
-                            ?>
-                        </div>
-                    </div>
+                    <?php include_once 'View/Layout/nav_loaisp.php'; ?>
 
                     <div class="col-md-9">
 
@@ -56,7 +47,7 @@
                                         <img src="http://placehold.it/800x600" alt="">
                                         <div class="caption">
                                             <h4 class="pull-right"><?php echo $sanpham->getGiasp(); ?> VND</h4>
-                                            <h4><a href="#"><?php echo $sanpham->getTensanpham(); ?></a>
+                                            <h4><a href="<?php echo $_SERVER['PHP_SELF']; ?>?id=<?php echo $sanpham->getMasanpham(); ?>"><?php echo $sanpham->getTensanpham(); ?></a>
                                             </h4>
                                             <p><?php echo $sanpham->getThongtin(); ?></p>
                                             <p><a href="" class="btn btn-info" style="visibility:hidden;"></a> <a href="javascript:;" onclick="cartAction('add', '<?php echo $sanpham->getMasanpham(); ?>')" class="btn btn-info btn-xs pull-right" role="button">Vao gio</a></p>
@@ -87,10 +78,8 @@
             </div>
             <!--End body page-->
         </div>
-        <script>
-            $(document).ready(function () {
-                cartAction('', '');
-            });
-        </script>
+        
+        <?php include_once 'View/Layout/footer.php'; ?>
+        
     </body>
 </html>

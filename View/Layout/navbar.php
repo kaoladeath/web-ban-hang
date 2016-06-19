@@ -164,7 +164,12 @@
                 <div class="mini-cart">
                     <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle">
                         <a href="#">
-                            <div class="cart-box"><span><strong id="cart-total">0</strong>SẢN PHẨM</span></div>
+                            <div class="cart-box"><span><strong id="cart-total"></strong>SẢN PHẨM</span></div>
+                            <script>
+                                $(document).ready(function () {
+                                    cartAction('', '');
+                                });
+                            </script>
                         </a>
                     </div>
                     <div>
