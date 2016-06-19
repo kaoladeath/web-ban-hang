@@ -28,7 +28,7 @@
         <script src='View/js/owl-carousel.js' type='text/javascript'></script>
         <script src='View/js/jquery-fancybox.js' type='text/javascript'></script>
         <script src='View/js/api-jquery.js' type='text/javascript'></script>
-
+        <script src="View/js/my-script.js" type="text/javascript"></script>
 
 
 
@@ -43,7 +43,7 @@
                         <div class="row">
                             <!-- Header Language -->
                             <div class="col-xs-6">
-                                <div class="welcome-msg hidden-xs">Chào mừng bạn đã đến với website Accent</div>
+                                <div class="welcome-msg hidden-xs">Chào mừng bạn đã đến với website Safety</div>
                             </div>
                             <div class="col-xs-6">
                                 <!-- Header Top Links -->
@@ -62,7 +62,7 @@
                     <div class="row">
                         <div class="col-lg-2 col-sm-3 col-md-2 col-xs-12">
                             <!-- Header Logo -->
-                            <a class="logo" title="Công nghệ số Accent" href="/"><img alt="Công nghệ số Accent" src="View/images/logo1.png"></a>
+                            <a class="logo" title="Safety" href="/"><img alt="Safety" src="View/images/logo1.png"></a>
                             <!-- End Header Logo -->
                         </div>
                         <div class="col-lg-6 col-sm-5 col-md-6 col-xs-12">
@@ -256,7 +256,7 @@
                             <div class="mini-cart">
                                 <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle">
                                     <a href="#">
-                                        <div class="cart-box"><span id="cart-total"><strong>0</strong> sản phẩm </span></div>
+                                        <div class="cart-box"><span><strong id="cart-total">0</strong>SẢN PHẨM</span></div>
                                     </a>
                                 </div>
                                 <div>
@@ -340,18 +340,20 @@
 
                             <?php
                             foreach ($trang_sanpham[$trang_hien_tai] as $sanpham) {
-                                echo '<div class="col-sm-4 col-lg-4 col-md-4">
-                                <div class="thumbnail">
+                                ?>
+                                <div class="col-sm-4 col-lg-4 col-md-4">
+                                    <div class="thumbnail">
                                         <img src="http://placehold.it/800x600" alt="">
                                         <div class="caption">
-                                            <h4 class="pull-right">'.$sanpham->getGiasp().' VND</h4>
-                                            <h4><a href="#">' . $sanpham->getTensanpham() . '</a>
+                                            <h4 class="pull-right"><?php echo $sanpham->getGiasp(); ?> VND</h4>
+                                            <h4><a href="#"><?php echo $sanpham->getTensanpham(); ?></a>
                                             </h4>
-                                            <p>' . $sanpham->getThongtin() . '</p>
-                                            <p><a href="" class="btn btn-info" style="visibility:hidden;"></a> <a href="#" class="btn btn-info btn-xs pull-right" role="button">Vao gio</a></p>
+                                            <p><?php echo $sanpham->getThongtin(); ?></p>
+                                            <p><a href="" class="btn btn-info" style="visibility:hidden;"></a> <a href="javascript:;" onclick="cartAction('add','<?php echo $sanpham->getMasanpham(); ?>')" class="btn btn-info btn-xs pull-right" role="button">Vao gio</a></p>
                                         </div>
                                     </div>
-                                </div>';
+                                </div>
+                                <?php
                             }
                             ?>
                         </div>
@@ -367,7 +369,6 @@
                         for ($i = 1; $i <= $sotrang; $i++) {
                             echo '<li><a href=' . $_SERVER['PHP_SELF'] . '?page=' . $i . '>' . $i . '</a></li>';
                         }
-                        
                         ?>
                     </ul>
                 </div>
@@ -376,5 +377,10 @@
             </div>
             <!--End body page-->
         </div>
+        <script>
+            $(document).ready(function(){
+               cartAction('','') ;
+            });
+        </script>
     </body>
 </html>

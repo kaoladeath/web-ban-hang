@@ -8,6 +8,10 @@
 
 include_once 'setup.php';
 use Model\SanphamQuery;
-$dssanpham = SanphamQuery::create()->find()->getArrayCopy();
-$dssanpham_2 = array_slice($dssanpham, 0,6);
-echo $dssanpham_2[0]->getTensanpham();
+$dssanpham = SanphamQuery::create()->find();
+$sanphamById = $dssanpham->getArrayCopy('Masanpham');
+$sanpham = $sanphamById[2];
+$array[] = 1;
+$array[] = 2;
+$array[] = 3;
+echo \count($array);
