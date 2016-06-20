@@ -1,26 +1,25 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+include_once $_SERVER['DOCUMENT_ROOT'] . '/WebsiteBanHang/setup.php';
 use Model\LoaispQuery;
 use Model\SanphamQuery;
 
 /**
  * Home Controller cho Home View
  */
-class HomeController {
+class HomeController extends BaseController {
 
     //số sản phẩm dành cho 1 trang
     const SO_SP_1_TRANG = 6;
+    
+    public function __construct($action, $urlvalues) {
+        parent::__construct($action, $urlvalues);
+    }
 
     /**
      * Tạo trang HomeView/index.php
      */
-    static function invoke() {
+    protected function index() {
         $trang_hien_tai = 0;
         
         session_start();
@@ -29,17 +28,15 @@ class HomeController {
             $_SESSION['loai_sp'] = LoaispQuery::create()->find();
             //lấy danh sách sản phẩm
             $dssanpham = SanphamQuery::create()->find();
-            $sotrang = self::so_trang($dssanpham->count(), self::SO_SP_1_TRANG);
+            $sotrang = $this->so_trang($dssanpham->count(), self::SO_SP_1_TRANG);
             //tạo 1 mảng chứa các mảng sản phẩm
-            $trang_sanpham = self::Tao_sanpham_theo_trang($sotrang, $dssanpham->getArrayCopy());
+            $trang_sanpham = $this->Tao_sanpham_theo_trang($sotrang, $dssanpham->getArrayCopy());
             //lưu các giá trị đã tính vào session
             $_SESSION['loaded'] = true;
-            //$_SESSION['loai_sp'] = $loaiSp;
             $_SESSION['trang_sanpham'] = $trang_sanpham;
             $_SESSION['so_trang'] = $sotrang;
             $_SESSION['dssanpham'] = $dssanpham;
         } else {
-            //$loaiSp = $_SESSION['loai_sp'];
             $trang_sanpham = $_SESSION['trang_sanpham'];
             $sotrang = $_SESSION['so_trang'];
             if (isset($_GET['page'])) {
@@ -48,7 +45,7 @@ class HomeController {
         }
         
         //tao view
-        include_once 'View/HomeView/index.php';
+        include_once 'views/Home/index.php';
     }
 
     /**
@@ -57,7 +54,7 @@ class HomeController {
      * @sanpham_1_trang Số sản phẩm cho 1 trang
      * @return Số trang
      */
-    private static function so_trang($so_sanpham, $sanpham_1_trang) {
+    private function so_trang($so_sanpham, $sanpham_1_trang) {
         return ceil($so_sanpham / $sanpham_1_trang);
     }
 
@@ -67,7 +64,7 @@ class HomeController {
      * @dssanpham Danh sách sản phẩm
      * @return array chứa array sản phẩm
      */
-    private static function Tao_sanpham_theo_trang($sotrang, $dssanpham) {
+    private function Tao_sanpham_theo_trang($sotrang, $dssanpham) {
         $trang_sanpham = [];
         $offset = 0;
         for ($i = 1; $i <= $sotrang; $i++) {
