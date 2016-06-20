@@ -5,22 +5,22 @@
 <meta name='revisit-after' content='1 days' />
 <title>Safety</title>
 <!-- CSS Style -->
-<link href='views/css/bootstrap.min.css' rel='stylesheet' type='text/css' />
-<link href='views/css/fancybox.css' rel='stylesheet' type='text/css' />
-<link href='views/css/style.css' rel='stylesheet' type='text/css' />
-<link href='views/css/owl.css' rel='stylesheet' type='text/css' />
-<link href='views/css/owl-theme.css' rel='stylesheet' type='text/css' />
-<link rel="stylesheet" href="views/css/font-awesome.css">
-<link rel="stylesheet" type="text/css" href="views/css/flexslider.css">
-<link href="views/css/bootstrap-table.min.css" rel="stylesheet" type="text/css"/>
+<link href='/WebsiteBanHang/views/css/bootstrap.min.css' rel='stylesheet' type='text/css' />
+<link href='/WebsiteBanHang/views/css/fancybox.css' rel='stylesheet' type='text/css' />
+<link href='/WebsiteBanHang/views/css/style.css' rel='stylesheet' type='text/css' />
+<link href='/WebsiteBanHang/views/css/owl.css' rel='stylesheet' type='text/css' />
+<link href='/WebsiteBanHang/views/css/owl-theme.css' rel='stylesheet' type='text/css' />
+<link rel="stylesheet" href="/WebsiteBanHang/views/css/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="/WebsiteBanHang/views/css/flexslider.css">
+<link href="/WebsiteBanHang/views/css/bootstrap-table.min.css" rel="stylesheet" type="text/css"/>
 <!-- JavaScript -->
-<script src='views/js/jquery-1.11.0.min.js' type='text/javascript'></script>
-<script src='views/js/bootstrap.min.js' type='text/javascript'></script>
-<script src='views/js/parallax.js' type='text/javascript'></script>
-<script src='views/js/common.js' type='text/javascript'></script>
-<script src='views/js/owl-carousel.js' type='text/javascript'></script>
-<script src='views/js/jquery-fancybox.js' type='text/javascript'></script>
-<script src='views/js/api-jquery.js' type='text/javascript'></script>
-<script src="views/js/my-script.js" type="text/javascript"></script>
-<script src="views/js/bootstrap-table.min.js" type="text/javascript"></script>
-<script src="views/js/bootstrap-table-locale-all.min.js" type="text/javascript"></script>
+<script src='/WebsiteBanHang/views/js/jquery-1.11.0.min.js' type='text/javascript'></script>
+<script src='/WebsiteBanHang/views/js/bootstrap.min.js' type='text/javascript'></script>
+<script src='/WebsiteBanHang/views/js/parallax.js' type='text/javascript'></script>
+<script src='/WebsiteBanHang/views/js/common.js' type='text/javascript'></script>
+<script src='/WebsiteBanHang/views/js/owl-carousel.js' type='text/javascript'></script>
+<script src='/WebsiteBanHang/views/js/jquery-fancybox.js' type='text/javascript'></script>
+<script src='/WebsiteBanHang/views/js/api-jquery.js' type='text/javascript'></script>
+<script src="/WebsiteBanHang/views/js/my-script.js" type="text/javascript"></script>
+<script src="/WebsiteBanHang/views/js/bootstrap-table.min.js" type="text/javascript"></script>
+<script src="/WebsiteBanHang/views/js/bootstrap-table-locale-all.min.js" type="text/javascript"></script>

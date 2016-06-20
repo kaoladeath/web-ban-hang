@@ -39,8 +39,8 @@ class HomeController extends BaseController {
         } else {
             $trang_sanpham = $_SESSION['trang_sanpham'];
             $sotrang = $_SESSION['so_trang'];
-            if (isset($_GET['page'])) {
-                $trang_hien_tai = empty($_GET['page']) ? 0 : filter_input(INPUT_GET, 'page') - 1;
+            if (isset($this->urlvalues['id'])) {
+                $trang_hien_tai = empty($this->urlvalues['id']) ? 0 : $this->urlvalues['id'] - 1;
             }
         }
         
@@ -75,9 +75,9 @@ class HomeController extends BaseController {
         return $trang_sanpham;
     }
     
-    public static function showSanpham($masp){
-        $sp = SanphamQuery::create()->findPk($masp);
-        include_once 'View/HomeView/Sanpham.php';
+    public function sanpham(){
+        $sp = SanphamQuery::create()->findPk($this->urlvalues['id']);
+        include_once 'views/Home/Sanpham.php';
     }
 
 }

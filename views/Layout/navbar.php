@@ -85,7 +85,7 @@
                 <!--navmenu-->
             </div>
             <!--End mobile-menu -->
-            <a class="logo-small" title="Công nghệ số Accent" href="/"><img alt="Công nghệ số Accent" src="View/images/logo1.png"></a>
+            <a class="logo-small" title="Công nghệ số Accent" href="/"><img alt="Công nghệ số Accent" src="/WebsiteBanHang/views/images/logo1.png"></a>
             <ul id="nav" class="hidden-xs">
 
 

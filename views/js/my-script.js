@@ -13,7 +13,7 @@ function cartAction(action, sanpham_id) {
         }
     }
     $.ajax({
-        url: "Controller/cart_action.php",
+        url: "/WebsiteBanHang/controllers/cart_action.php",
         data: queryString,
         dataType: 'json',
         type: "POST",

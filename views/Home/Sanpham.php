@@ -4,29 +4,29 @@
 
 <head>
 
-    <?php include_once 'View/Layout/head.php'; ?>
+    <?php include_once 'views/Layout/head.php'; ?>
 
 </head>
 
 <body>
     <!--Header-->
     
-    <?php include_once 'View/Layout/header.php'; ?>
+    <?php include_once 'views/Layout/header.php'; ?>
     
     <!-- Navigation -->
     
-    <?php include_once 'View/Layout/navbar.php';?>
+    <?php include_once 'views/Layout/navbar.php';?>
     
     <!--Slider-->
     
-    <?php include_once 'View/Layout/banner.php'; ?>
+    <?php include_once 'views/Layout/banner.php'; ?>
 
     <!-- Page Content -->
     <div class="container">
 
         <div class="row">
 
-            <?php include_once 'View/Layout/nav_loaisp.php'; ?>
+            <?php include_once 'views/Layout/nav_loaisp.php'; ?>
 
             <div class="col-md-9">
 
