@@ -164,7 +164,7 @@
                 <div class="mini-cart">
                     <div data-toggle="dropdown" data-hover="dropdown" class="basket dropdown-toggle">
                         <a href="#">
-                            <div class="cart-box"><span><strong id="cart-total"></strong>SẢN PHẨM</span></div>
+                            <div class="cart-box"><span><strong id="cart-total">0</strong>SẢN PHẨM</span></div>
                             <script>
                                 $(document).ready(function () {
                                     cartAction('', '');
@@ -174,10 +174,7 @@
                     </div>
                     <div>
                         <div class="top-cart-content arrow_box">
-                            <div class="block-subtitle">Các sản phẩm đã được mua</div>
-                            <ul id="cart-sidebar" class="mini-products-list">
-                            </ul>
-                            <div class="top-subtotal">Tổng tiền: <span class="price"></span></div>
+                            <div class="top-subtotal">Tổng tiền: <span id="price">0</span> VND</div>
                             <div class="actions">
                                 <a class="btn-checkout" href="/checkout"><span>Thanh toán</span></a>
                                 <a class="view-cart" href="/cart"><span>Giỏ hàng</span></a>

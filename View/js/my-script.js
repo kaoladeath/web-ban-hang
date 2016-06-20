@@ -15,9 +15,11 @@ function cartAction(action, sanpham_id) {
     $.ajax({
         url: "Controller/cart_action.php",
         data: queryString,
+        dataType: 'json',
         type: "POST",
         success: function (data) {
-            $("#cart-total").html(data);
+            $("#cart-total").html(data.tong_so_luong);
+            $('#price').html(data.tong_tien);
             if (action === "add") {
                 alert("Đã thêm hàng vào giỏ");
             }
