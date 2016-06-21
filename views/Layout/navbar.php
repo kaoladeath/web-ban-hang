@@ -15,7 +15,7 @@
 
 
                                     <li class="level0 level-top parent">
-                                        <a href="/" class="level-top"> <span>Trang chủ</span> </a>
+                                        <a href="/WebsiteBanHang/Home/" class="level-top"> <span>Trang chủ</span> </a>
                                     </li>
 
 
@@ -89,7 +89,7 @@
             <ul id="nav" class="hidden-xs">
 
 
-                <li class="level0"><a href="/"><span>Trang chủ</span> </a>
+                <li class="level0"><a href="/WebsiteBanHang/Home/"><span>Trang chủ</span> </a>
 
 
 

@@ -23,9 +23,21 @@ function cartAction(action, sanpham_id) {
             if (action === "add") {
                 alert("Đã thêm hàng vào giỏ");
             }
+            if(action === "remove"){
+                deleteRow(data.rowid);
+            }
+            if(action === "empty"){
+                $("#tbody").html("");
+            }
+            
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert("Xay ra loi " + jqXHR.status() + " " + textStatus);
         }
     });
+}
+
+function deleteRow(rowid){
+    var row = document.getElementById(rowid);
+    row.parentNode.removeChild(row);
 }

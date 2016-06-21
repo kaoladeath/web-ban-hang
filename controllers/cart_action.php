@@ -4,14 +4,16 @@
 //include_once 'classes/setup.php';
 require $_SERVER['DOCUMENT_ROOT'] . '/WebsiteBanHang/classes/setup.php';
 header('Content-Type: application/json');
+
 use Model\SanphamQuery;
+
 \session_start();
 if (!empty($_POST['action'])) {
     switch (filter_input(INPUT_POST, 'action')) {
         case "add":
-            if(empty($_SESSION['dssanpham'])){
+            if (empty($_SESSION['dssanpham'])) {
                 $dssanpham = SanphamQuery::create()->find();
-            }else{
+            } else {
                 $dssanpham = $_SESSION['dssanpham'];
             }
             $sanphamById = $dssanpham->getArrayCopy("Masanpham");
@@ -29,6 +31,12 @@ if (!empty($_POST['action'])) {
                 }
             }
             break;
+        case "remove":
+            unset($_SESSION['cart-items'][$_POST['id']]);
+            break;
+        case "empty":
+            unset($_SESSION['cart-items']);
+            break;
     }
 }
 
@@ -37,8 +45,8 @@ $tong_tien = 0;
 if (!empty($_SESSION['cart-items'])) {
     foreach ($_SESSION['cart-items'] as $sp) {
         $tong_so_luong += $sp->getSoluong();
-        $tong_tien += ($sp->getSoluong()*$sp->getGiasp());
+        $tong_tien += ($sp->getSoluong() * $sp->getGiasp());
     }
 }
 
-echo '{"tong_so_luong":"'.$tong_so_luong.'","tong_tien":"'.$tong_tien.'"}';
+echo '{"tong_so_luong":"' . $tong_so_luong . '","tong_tien":"' . $tong_tien . '","rowid":"sp_' . filter_input(INPUT_POST, "id") . '"}';
