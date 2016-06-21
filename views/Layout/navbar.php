@@ -85,7 +85,7 @@
                 <!--navmenu-->
             </div>
             <!--End mobile-menu -->
-            <a class="logo-small" title="Công nghệ số Accent" href="/"><img alt="Công nghệ số Accent" src="/WebsiteBanHang/views/images/logo1.png"></a>
+            <a class="logo-small" title="Công nghệ số Accent" href="/"><img alt="Công nghệ số Accent" src="/WebsiteBanHang/views/Contents/images/logo1.png"></a>
             <ul id="nav" class="hidden-xs">
 
 
@@ -177,7 +177,7 @@
                             <div class="top-subtotal">Tổng tiền: <span id="price">0</span> VND</div>
                             <div class="actions">
                                 <a class="btn-checkout" href="/checkout"><span>Thanh toán</span></a>
-                                <a class="view-cart" href="/cart"><span>Giỏ hàng</span></a>
+                                <a class="view-cart" href="/WebsiteBanHang/Cart"><span>Giỏ hàng</span></a>
                             </div>
                         </div>
                     </div>

@@ -17,6 +17,8 @@ use Model\Base\Sanpham as BaseSanpham;
 class Sanpham extends BaseSanpham
 {
     private $soluong;
+    private $thanhtien;
+    
     
     function __construct() {
         parent::__construct();
@@ -30,5 +32,9 @@ class Sanpham extends BaseSanpham
     
     public function setSoluong($soluong){
         $this->soluong = $soluong;
+    }
+    
+    public function getThanhtien(){
+        return $this->getGiasp() * $this->getSoluong();
     }
 }

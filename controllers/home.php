@@ -1,6 +1,8 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT'] . '/WebsiteBanHang/setup.php';
+//include_once $_SERVER['DOCUMENT_ROOT'] . '/WebsiteBanHang/setup.php';
+//include_once 'classes/setup.php';
+require 'classes/setup.php';
 use Model\LoaispQuery;
 use Model\SanphamQuery;
 
@@ -45,7 +47,7 @@ class HomeController extends BaseController {
         }
         
         //tao view
-        include_once 'views/Home/index.php';
+        include 'views/Home/index.php';
     }
 
     /**
@@ -77,7 +79,7 @@ class HomeController extends BaseController {
     
     public function sanpham(){
         $sp = SanphamQuery::create()->findPk($this->urlvalues['id']);
-        include_once 'views/Home/Sanpham.php';
+        include 'views/Home/Sanpham.php';
     }
 
 }

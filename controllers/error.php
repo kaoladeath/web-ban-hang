@@ -12,7 +12,7 @@ class ErrorController extends BaseController {
     }
 
     protected function badurl() {
-        include_once 'views/Error/badurl.php';
+        include 'views/Error/badurl.php';
     }
 
 }

@@ -1,6 +1,8 @@
 <?php
 
-include_once $_SERVER['DOCUMENT_ROOT'] . '/WebsiteBanHang/setup.php';
+//include_once $_SERVER['DOCUMENT_ROOT'] . '/WebsiteBanHang/classes/setup.php';
+//include_once 'classes/setup.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/WebsiteBanHang/classes/setup.php';
 header('Content-Type: application/json');
 use Model\SanphamQuery;
 \session_start();

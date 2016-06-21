@@ -5,6 +5,6 @@
         "monolog/monolog": "^1.19"
     },
     "autoload":{
-        "classmap": ["WebModel/generated-classes/"]
+        "classmap": ["webmodel/generated-classes/"]
     }
 }

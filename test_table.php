@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         
-        <?php include_once 'View/Layout/head.php'; ?>
+        <?php include 'views/Layout/head.php'; ?>
         
     </head>
 
@@ -15,13 +15,13 @@ and open the template in the editor.
         <div class="page">
             <!-- Header -->
 
-            <?php include_once 'View/Layout/header.php'; ?>
+            <?php include 'views/Layout/header.php'; ?>
 
             <!-- end header -->
 
             <!-- Navbar -->
 
-            <?php include_once 'View/Layout/navbar.php'; ?>
+            <?php include 'views/Layout/navbar.php'; ?>
 
             <!-- end nav -->
 
@@ -63,7 +63,7 @@ and open the template in the editor.
             <!--End body page-->
         </div>
 
-        <?php include_once 'View/Layout/footer.php'; ?>
+        <?php include 'views/Layout/footer.php'; ?>
 
     </body>
 </html>

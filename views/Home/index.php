@@ -4,27 +4,27 @@
 
     <head>
 
-        <?php include_once 'views/Layout/head.php'; ?>
+        <?php include 'views/Layout/head.php'; ?>
 
     </head>
 
-    <body class="cms-index-index">
+    <body>
         <div class="page">
             <!-- Header -->
 
-            <?php include_once 'views/Layout/header.php'; ?>
+            <?php include 'views/Layout/header.php'; ?>
 
             <!-- end header -->
 
             <!-- Navbar -->
 
-            <?php include_once 'views/Layout/navbar.php'; ?>
+            <?php include 'views/Layout/navbar.php'; ?>
 
             <!-- end nav -->
 
             <!--Silder-->
 
-            <?php include_once 'views/Layout/banner.php'; ?>
+            <?php include 'views/Layout/banner.php'; ?>
 
             <!--End Silder-->
 
@@ -33,7 +33,7 @@
 
                 <div class="row">
 
-                    <?php include_once 'views/Layout/nav_loaisp.php'; ?>
+                    <?php include 'views/Layout/nav_loaisp.php'; ?>
 
                     <div class="col-md-9">
 
@@ -79,7 +79,7 @@
             <!--End body page-->
         </div>
 
-        <?php include_once 'views/Layout/footer.php'; ?>
+        <?php include 'views/Layout/footer.php'; ?>
 
     </body>
 </html>
