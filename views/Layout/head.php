@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="/WebsiteBanHang/views/Contents/css/font-awesome.css">
 <link rel="stylesheet" type="text/css" href="/WebsiteBanHang/views/Contents/css/flexslider.css">
 <link href="/WebsiteBanHang/views/Contents/css/bootstrap-table.min.css" rel="stylesheet" type="text/css"/>
+<link href="/WebsiteBanHang/views/Contents/css/mystyle.css" rel="stylesheet" type="text/css"/>
+<link href="/WebsiteBanHang/views/Contents/css/sweetalert.css" rel="stylesheet" type="text/css"/>
 <!-- JavaScript -->
 <script src='/WebsiteBanHang/views/Contents/js/jquery-1.11.0.min.js' type='text/javascript'></script>
 <script src='/WebsiteBanHang/views/Contents/js/bootstrap.min.js' type='text/javascript'></script>
@@ -24,3 +26,4 @@
 <script src="/WebsiteBanHang/views/Contents/js/my-script.js" type="text/javascript"></script>
 <script src="/WebsiteBanHang/views/Contents/js/bootstrap-table.min.js" type="text/javascript"></script>
 <script src="/WebsiteBanHang/views/Contents/js/bootstrap-table-locale-all.min.js" type="text/javascript"></script>
+<script src="/WebsiteBanHang/views/Contents/js/sweetalert.min.js" type="text/javascript"></script>

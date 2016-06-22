@@ -23,13 +23,13 @@ function cartAction(action, sanpham_id) {
             if (action === "add") {
                 alert("Đã thêm hàng vào giỏ");
             }
-            if(action === "remove"){
+            if (action === "remove") {
                 deleteRow(data.rowid);
             }
-            if(action === "empty"){
+            if (action === "empty") {
                 $("#tbody").html("");
             }
-            
+
         },
         error: function (jqXHR, textStatus, errorThrown) {
             alert("Xay ra loi " + jqXHR.status() + " " + textStatus);
@@ -37,7 +37,27 @@ function cartAction(action, sanpham_id) {
     });
 }
 
-function deleteRow(rowid){
+function deleteRow(rowid) {
     var row = document.getElementById(rowid);
     row.parentNode.removeChild(row);
+}
+
+function showAlert(action) {
+    if (action !== "") {
+        switch (action) {
+            case "thanhtoan":
+                swal({
+                    title: "Bạn muốn thanh toán ?",
+                    type: "info",
+                    showCancelButton: true,
+                    confirmButtonClass: "btn-primary",
+                    confirmButtonText: "Thanh toán",
+                    closeOnConfirm: false
+                },
+                function(){
+                    swal("Đã thanh toán!","Cửa hàng sẽ email phiếu giao hàng cho bạn trong vòng 24h nếu qua 24h mà vẫn không thấy email xin hãy report lại với cửa hàng","success");
+                });
+                break;
+        }
+    }
 }

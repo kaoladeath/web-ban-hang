@@ -32,7 +32,7 @@ and open the template in the editor.
                 <div class="row">
                     <br/>
                     <p style="font-size: 160%"><strong>GIỎ HÀNG</strong></p>
-                    <button style="float: right" class="btn btn-danger" onclick="cartAction('empty','')"><span class="glyphicon glyphicon-shopping-cart"></span> Empty</button>
+                    <button style="float: right" class="btn btn-danger" onclick="cartAction('empty', '')"><span class="glyphicon glyphicon-shopping-cart white"></span><strong> Empty</strong></button>
                     <br/>
                     <br/>
                     <br/>
@@ -47,9 +47,10 @@ and open the template in the editor.
                                 <th>Xóa khỏi giỏ</th>
                             </tr>
                         </thead>
-                        <?php if (isset($sanpham)) { ?>
-                            <tbody id="tbody">
-                                <?php
+
+                        <tbody id="tbody">
+                            <?php
+                            if (isset($sanpham)) {
                                 foreach ($sanpham as $sp) {
                                     ?>
                                     <tr id="sp_<?php echo $sp->getMasanpham(); ?>">
@@ -58,12 +59,22 @@ and open the template in the editor.
                                         <td><?php echo $sp->getSoluong(); ?></td>
                                         <td><?php echo $sp->getGiasp(); ?></td>
                                         <td><?php echo $sp->getThanhtien(); ?></td>
-                                        <td><button class="btn btn-danger" onclick="cartAction('remove', '<?php echo $sp->getMasanpham(); ?>')"><span class="glyphicon glyphicon-trash"></span> Remove</button></td>
+                                        <td><button class="btn btn-danger" onclick="cartAction('remove', '<?php echo $sp->getMasanpham(); ?>')"><span class="glyphicon glyphicon-trash"></span><strong> Remove</strong></button></td>
                                     </tr>
-                                <?php } ?>
-                            </tbody>
-                        <?php } ?>
+                                    <?php
+                                }
+                            }else{
+                                echo '<tr></tr>';
+                            }
+                            ?>
+
+                        </tbody>
+
                     </table>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <button style="float: right" class="btn btn-primary" onclick="showAlert('thanhtoan')"><span class="glyphicon glyphicon-ok"></span><strong> Thanh toán</strong></button>
                 </div>
 
             </div>

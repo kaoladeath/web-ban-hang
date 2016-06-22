@@ -2,14 +2,16 @@
 
 //include_once $_SERVER['DOCUMENT_ROOT'] . '/WebsiteBanHang/classes/setup.php';
 //include_once 'classes/setup.php';
-require $_SERVER['DOCUMENT_ROOT'] . '/WebsiteBanHang/classes/setup.php';
+require filter_input(INPUT_SERVER, 'DOCUMENT_ROOT') . '/WebsiteBanHang/classes/setup.php';
 header('Content-Type: application/json');
 
 use Model\SanphamQuery;
 
 \session_start();
-if (!empty($_POST['action'])) {
-    switch (filter_input(INPUT_POST, 'action')) {
+$post = filter_input(INPUT_POST, 'action');
+if ($post) {
+    $id = filter_input(INPUT_POST, 'id');
+    switch ($post) {
         case "add":
             if (empty($_SESSION['dssanpham'])) {
                 $dssanpham = SanphamQuery::create()->find();
@@ -17,7 +19,7 @@ if (!empty($_POST['action'])) {
                 $dssanpham = $_SESSION['dssanpham'];
             }
             $sanphamById = $dssanpham->getArrayCopy("Masanpham");
-            $sanpham = $sanphamById[$_POST['id']];
+            $sanpham = $sanphamById[$id];
             $sanpham->setSoluong(1);
             if (empty($_SESSION['cart-items'])) {
                 $array[$sanpham->getMasanpham()] = $sanpham;
@@ -32,7 +34,7 @@ if (!empty($_POST['action'])) {
             }
             break;
         case "remove":
-            unset($_SESSION['cart-items'][$_POST['id']]);
+            unset($_SESSION['cart-items'][$id]);
             break;
         case "empty":
             unset($_SESSION['cart-items']);
