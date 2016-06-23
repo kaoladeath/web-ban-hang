@@ -121,6 +121,20 @@ abstract class Khachhang implements ActiveRecordInterface
     protected $phuong_xa;
 
     /**
+     * The value for the username field.
+     *
+     * @var        string
+     */
+    protected $username;
+
+    /**
+     * The value for the password field.
+     *
+     * @var        string
+     */
+    protected $password;
+
+    /**
      * @var        ObjectCollection|ChildPhieudathang[] Collection to store aggregation of ChildPhieudathang objects.
      */
     protected $collPhieudathangs;
@@ -446,6 +460,26 @@ abstract class Khachhang implements ActiveRecordInterface
     }
 
     /**
+     * Get the [username] column value.
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Get the [password] column value.
+     *
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
      * Set the value of [makh] column.
      *
      * @param int $v new value
@@ -606,6 +640,46 @@ abstract class Khachhang implements ActiveRecordInterface
     } // setPhuongXa()
 
     /**
+     * Set the value of [username] column.
+     *
+     * @param string $v new value
+     * @return $this|\Model\Khachhang The current object (for fluent API support)
+     */
+    public function setUsername($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->username !== $v) {
+            $this->username = $v;
+            $this->modifiedColumns[KhachhangTableMap::COL_USERNAME] = true;
+        }
+
+        return $this;
+    } // setUsername()
+
+    /**
+     * Set the value of [password] column.
+     *
+     * @param string $v new value
+     * @return $this|\Model\Khachhang The current object (for fluent API support)
+     */
+    public function setPassword($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->password !== $v) {
+            $this->password = $v;
+            $this->modifiedColumns[KhachhangTableMap::COL_PASSWORD] = true;
+        }
+
+        return $this;
+    } // setPassword()
+
+    /**
      * Indicates whether the columns in this object are only set to default values.
      *
      * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -664,6 +738,12 @@ abstract class Khachhang implements ActiveRecordInterface
 
             $col = $row[TableMap::TYPE_NUM == $indexType ? 7 + $startcol : KhachhangTableMap::translateFieldName('PhuongXa', TableMap::TYPE_PHPNAME, $indexType)];
             $this->phuong_xa = (null !== $col) ? (string) $col : null;
+
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 8 + $startcol : KhachhangTableMap::translateFieldName('Username', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->username = (null !== $col) ? (string) $col : null;
+
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 9 + $startcol : KhachhangTableMap::translateFieldName('Password', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->password = (null !== $col) ? (string) $col : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -672,7 +752,7 @@ abstract class Khachhang implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 8; // 8 = KhachhangTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 10; // 10 = KhachhangTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\Model\\Khachhang'), 0, $e);
@@ -912,6 +992,12 @@ abstract class Khachhang implements ActiveRecordInterface
         if ($this->isColumnModified(KhachhangTableMap::COL_PHUONG_XA)) {
             $modifiedColumns[':p' . $index++]  = 'Phuong_Xa';
         }
+        if ($this->isColumnModified(KhachhangTableMap::COL_USERNAME)) {
+            $modifiedColumns[':p' . $index++]  = 'UserName';
+        }
+        if ($this->isColumnModified(KhachhangTableMap::COL_PASSWORD)) {
+            $modifiedColumns[':p' . $index++]  = 'Password';
+        }
 
         $sql = sprintf(
             'INSERT INTO KhachHang (%s) VALUES (%s)',
@@ -946,6 +1032,12 @@ abstract class Khachhang implements ActiveRecordInterface
                         break;
                     case 'Phuong_Xa':
                         $stmt->bindValue($identifier, $this->phuong_xa, PDO::PARAM_STR);
+                        break;
+                    case 'UserName':
+                        $stmt->bindValue($identifier, $this->username, PDO::PARAM_STR);
+                        break;
+                    case 'Password':
+                        $stmt->bindValue($identifier, $this->password, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -1033,6 +1125,12 @@ abstract class Khachhang implements ActiveRecordInterface
             case 7:
                 return $this->getPhuongXa();
                 break;
+            case 8:
+                return $this->getUsername();
+                break;
+            case 9:
+                return $this->getPassword();
+                break;
             default:
                 return null;
                 break;
@@ -1071,6 +1169,8 @@ abstract class Khachhang implements ActiveRecordInterface
             $keys[5] => $this->getThanhpho(),
             $keys[6] => $this->getQuanHuyen(),
             $keys[7] => $this->getPhuongXa(),
+            $keys[8] => $this->getUsername(),
+            $keys[9] => $this->getPassword(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -1151,6 +1251,12 @@ abstract class Khachhang implements ActiveRecordInterface
             case 7:
                 $this->setPhuongXa($value);
                 break;
+            case 8:
+                $this->setUsername($value);
+                break;
+            case 9:
+                $this->setPassword($value);
+                break;
         } // switch()
 
         return $this;
@@ -1200,6 +1306,12 @@ abstract class Khachhang implements ActiveRecordInterface
         }
         if (array_key_exists($keys[7], $arr)) {
             $this->setPhuongXa($arr[$keys[7]]);
+        }
+        if (array_key_exists($keys[8], $arr)) {
+            $this->setUsername($arr[$keys[8]]);
+        }
+        if (array_key_exists($keys[9], $arr)) {
+            $this->setPassword($arr[$keys[9]]);
         }
     }
 
@@ -1265,6 +1377,12 @@ abstract class Khachhang implements ActiveRecordInterface
         }
         if ($this->isColumnModified(KhachhangTableMap::COL_PHUONG_XA)) {
             $criteria->add(KhachhangTableMap::COL_PHUONG_XA, $this->phuong_xa);
+        }
+        if ($this->isColumnModified(KhachhangTableMap::COL_USERNAME)) {
+            $criteria->add(KhachhangTableMap::COL_USERNAME, $this->username);
+        }
+        if ($this->isColumnModified(KhachhangTableMap::COL_PASSWORD)) {
+            $criteria->add(KhachhangTableMap::COL_PASSWORD, $this->password);
         }
 
         return $criteria;
@@ -1359,6 +1477,8 @@ abstract class Khachhang implements ActiveRecordInterface
         $copyObj->setThanhpho($this->getThanhpho());
         $copyObj->setQuanHuyen($this->getQuanHuyen());
         $copyObj->setPhuongXa($this->getPhuongXa());
+        $copyObj->setUsername($this->getUsername());
+        $copyObj->setPassword($this->getPassword());
 
         if ($deepCopy) {
             // important: temporarily setNew(false) because this affects the behavior of
@@ -1657,6 +1777,8 @@ abstract class Khachhang implements ActiveRecordInterface
         $this->thanhpho = null;
         $this->quan_huyen = null;
         $this->phuong_xa = null;
+        $this->username = null;
+        $this->password = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->resetModified();

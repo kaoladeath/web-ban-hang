@@ -85,13 +85,6 @@ abstract class Ctpdh implements ActiveRecordInterface
     protected $soluong;
 
     /**
-     * The value for the thanhtien field.
-     *
-     * @var        string
-     */
-    protected $thanhtien;
-
-    /**
      * @var        ChildPhieudathang
      */
     protected $aPhieudathang;
@@ -365,16 +358,6 @@ abstract class Ctpdh implements ActiveRecordInterface
     }
 
     /**
-     * Get the [thanhtien] column value.
-     *
-     * @return string
-     */
-    public function getThanhtien()
-    {
-        return $this->thanhtien;
-    }
-
-    /**
      * Set the value of [sanpham_masanpham] column.
      *
      * @param int $v new value
@@ -443,26 +426,6 @@ abstract class Ctpdh implements ActiveRecordInterface
     } // setSoluong()
 
     /**
-     * Set the value of [thanhtien] column.
-     *
-     * @param string $v new value
-     * @return $this|\Model\Ctpdh The current object (for fluent API support)
-     */
-    public function setThanhtien($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->thanhtien !== $v) {
-            $this->thanhtien = $v;
-            $this->modifiedColumns[CtpdhTableMap::COL_THANHTIEN] = true;
-        }
-
-        return $this;
-    } // setThanhtien()
-
-    /**
      * Indicates whether the columns in this object are only set to default values.
      *
      * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -506,9 +469,6 @@ abstract class Ctpdh implements ActiveRecordInterface
 
             $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : CtpdhTableMap::translateFieldName('Soluong', TableMap::TYPE_PHPNAME, $indexType)];
             $this->soluong = (null !== $col) ? (int) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : CtpdhTableMap::translateFieldName('Thanhtien', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->thanhtien = (null !== $col) ? (string) $col : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -517,7 +477,7 @@ abstract class Ctpdh implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 4; // 4 = CtpdhTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 3; // 3 = CtpdhTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\Model\\Ctpdh'), 0, $e);
@@ -746,9 +706,6 @@ abstract class Ctpdh implements ActiveRecordInterface
         if ($this->isColumnModified(CtpdhTableMap::COL_SOLUONG)) {
             $modifiedColumns[':p' . $index++]  = 'SoLuong';
         }
-        if ($this->isColumnModified(CtpdhTableMap::COL_THANHTIEN)) {
-            $modifiedColumns[':p' . $index++]  = 'ThanhTien';
-        }
 
         $sql = sprintf(
             'INSERT INTO CTPDH (%s) VALUES (%s)',
@@ -768,9 +725,6 @@ abstract class Ctpdh implements ActiveRecordInterface
                         break;
                     case 'SoLuong':
                         $stmt->bindValue($identifier, $this->soluong, PDO::PARAM_INT);
-                        break;
-                    case 'ThanhTien':
-                        $stmt->bindValue($identifier, $this->thanhtien, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -836,9 +790,6 @@ abstract class Ctpdh implements ActiveRecordInterface
             case 2:
                 return $this->getSoluong();
                 break;
-            case 3:
-                return $this->getThanhtien();
-                break;
             default:
                 return null;
                 break;
@@ -872,7 +823,6 @@ abstract class Ctpdh implements ActiveRecordInterface
             $keys[0] => $this->getSanphamMasanpham(),
             $keys[1] => $this->getPhieudathangSophieu(),
             $keys[2] => $this->getSoluong(),
-            $keys[3] => $this->getThanhtien(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -953,9 +903,6 @@ abstract class Ctpdh implements ActiveRecordInterface
             case 2:
                 $this->setSoluong($value);
                 break;
-            case 3:
-                $this->setThanhtien($value);
-                break;
         } // switch()
 
         return $this;
@@ -990,9 +937,6 @@ abstract class Ctpdh implements ActiveRecordInterface
         }
         if (array_key_exists($keys[2], $arr)) {
             $this->setSoluong($arr[$keys[2]]);
-        }
-        if (array_key_exists($keys[3], $arr)) {
-            $this->setThanhtien($arr[$keys[3]]);
         }
     }
 
@@ -1043,9 +987,6 @@ abstract class Ctpdh implements ActiveRecordInterface
         }
         if ($this->isColumnModified(CtpdhTableMap::COL_SOLUONG)) {
             $criteria->add(CtpdhTableMap::COL_SOLUONG, $this->soluong);
-        }
-        if ($this->isColumnModified(CtpdhTableMap::COL_THANHTIEN)) {
-            $criteria->add(CtpdhTableMap::COL_THANHTIEN, $this->thanhtien);
         }
 
         return $criteria;
@@ -1158,7 +1099,6 @@ abstract class Ctpdh implements ActiveRecordInterface
         $copyObj->setSanphamMasanpham($this->getSanphamMasanpham());
         $copyObj->setPhieudathangSophieu($this->getPhieudathangSophieu());
         $copyObj->setSoluong($this->getSoluong());
-        $copyObj->setThanhtien($this->getThanhtien());
         if ($makeNew) {
             $copyObj->setNew(true);
         }
@@ -1304,7 +1244,6 @@ abstract class Ctpdh implements ActiveRecordInterface
         $this->sanpham_masanpham = null;
         $this->phieudathang_sophieu = null;
         $this->soluong = null;
-        $this->thanhtien = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->resetModified();

@@ -59,7 +59,7 @@ class PhieudathangTableMap extends TableMap
     /**
      * The total number of columns
      */
-    const NUM_COLUMNS = 9;
+    const NUM_COLUMNS = 11;
 
     /**
      * The number of lazy-loaded columns
@@ -69,7 +69,7 @@ class PhieudathangTableMap extends TableMap
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    const NUM_HYDRATE_COLUMNS = 9;
+    const NUM_HYDRATE_COLUMNS = 11;
 
     /**
      * the column name for the SoPhieu field
@@ -117,6 +117,16 @@ class PhieudathangTableMap extends TableMap
     const COL_KHACHHANG_MAKH = 'PhieuDatHang.KhachHang_MaKH';
 
     /**
+     * the column name for the TongTien field
+     */
+    const COL_TONGTIEN = 'PhieuDatHang.TongTien';
+
+    /**
+     * the column name for the NgayGiao field
+     */
+    const COL_NGAYGIAO = 'PhieuDatHang.NgayGiao';
+
+    /**
      * The default string format for model objects of the related table
      */
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -128,11 +138,11 @@ class PhieudathangTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('Sophieu', 'Ngaylap', 'Tennguoinhan', 'Diachi', 'Thanhpho', 'QuanHuyen', 'PhuongXa', 'Chiphi', 'KhachhangMakh', ),
-        self::TYPE_CAMELNAME     => array('sophieu', 'ngaylap', 'tennguoinhan', 'diachi', 'thanhpho', 'quanHuyen', 'phuongXa', 'chiphi', 'khachhangMakh', ),
-        self::TYPE_COLNAME       => array(PhieudathangTableMap::COL_SOPHIEU, PhieudathangTableMap::COL_NGAYLAP, PhieudathangTableMap::COL_TENNGUOINHAN, PhieudathangTableMap::COL_DIACHI, PhieudathangTableMap::COL_THANHPHO, PhieudathangTableMap::COL_QUAN_HUYEN, PhieudathangTableMap::COL_PHUONG_XA, PhieudathangTableMap::COL_CHIPHI, PhieudathangTableMap::COL_KHACHHANG_MAKH, ),
-        self::TYPE_FIELDNAME     => array('SoPhieu', 'NgayLap', 'TenNguoiNhan', 'DiaChi', 'ThanhPho', 'Quan_Huyen', 'Phuong_Xa', 'ChiPhi', 'KhachHang_MaKH', ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, )
+        self::TYPE_PHPNAME       => array('Sophieu', 'Ngaylap', 'Tennguoinhan', 'Diachi', 'Thanhpho', 'QuanHuyen', 'PhuongXa', 'Chiphi', 'KhachhangMakh', 'Tongtien', 'Ngaygiao', ),
+        self::TYPE_CAMELNAME     => array('sophieu', 'ngaylap', 'tennguoinhan', 'diachi', 'thanhpho', 'quanHuyen', 'phuongXa', 'chiphi', 'khachhangMakh', 'tongtien', 'ngaygiao', ),
+        self::TYPE_COLNAME       => array(PhieudathangTableMap::COL_SOPHIEU, PhieudathangTableMap::COL_NGAYLAP, PhieudathangTableMap::COL_TENNGUOINHAN, PhieudathangTableMap::COL_DIACHI, PhieudathangTableMap::COL_THANHPHO, PhieudathangTableMap::COL_QUAN_HUYEN, PhieudathangTableMap::COL_PHUONG_XA, PhieudathangTableMap::COL_CHIPHI, PhieudathangTableMap::COL_KHACHHANG_MAKH, PhieudathangTableMap::COL_TONGTIEN, PhieudathangTableMap::COL_NGAYGIAO, ),
+        self::TYPE_FIELDNAME     => array('SoPhieu', 'NgayLap', 'TenNguoiNhan', 'DiaChi', 'ThanhPho', 'Quan_Huyen', 'Phuong_Xa', 'ChiPhi', 'KhachHang_MaKH', 'TongTien', 'NgayGiao', ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
     );
 
     /**
@@ -142,11 +152,11 @@ class PhieudathangTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('Sophieu' => 0, 'Ngaylap' => 1, 'Tennguoinhan' => 2, 'Diachi' => 3, 'Thanhpho' => 4, 'QuanHuyen' => 5, 'PhuongXa' => 6, 'Chiphi' => 7, 'KhachhangMakh' => 8, ),
-        self::TYPE_CAMELNAME     => array('sophieu' => 0, 'ngaylap' => 1, 'tennguoinhan' => 2, 'diachi' => 3, 'thanhpho' => 4, 'quanHuyen' => 5, 'phuongXa' => 6, 'chiphi' => 7, 'khachhangMakh' => 8, ),
-        self::TYPE_COLNAME       => array(PhieudathangTableMap::COL_SOPHIEU => 0, PhieudathangTableMap::COL_NGAYLAP => 1, PhieudathangTableMap::COL_TENNGUOINHAN => 2, PhieudathangTableMap::COL_DIACHI => 3, PhieudathangTableMap::COL_THANHPHO => 4, PhieudathangTableMap::COL_QUAN_HUYEN => 5, PhieudathangTableMap::COL_PHUONG_XA => 6, PhieudathangTableMap::COL_CHIPHI => 7, PhieudathangTableMap::COL_KHACHHANG_MAKH => 8, ),
-        self::TYPE_FIELDNAME     => array('SoPhieu' => 0, 'NgayLap' => 1, 'TenNguoiNhan' => 2, 'DiaChi' => 3, 'ThanhPho' => 4, 'Quan_Huyen' => 5, 'Phuong_Xa' => 6, 'ChiPhi' => 7, 'KhachHang_MaKH' => 8, ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, )
+        self::TYPE_PHPNAME       => array('Sophieu' => 0, 'Ngaylap' => 1, 'Tennguoinhan' => 2, 'Diachi' => 3, 'Thanhpho' => 4, 'QuanHuyen' => 5, 'PhuongXa' => 6, 'Chiphi' => 7, 'KhachhangMakh' => 8, 'Tongtien' => 9, 'Ngaygiao' => 10, ),
+        self::TYPE_CAMELNAME     => array('sophieu' => 0, 'ngaylap' => 1, 'tennguoinhan' => 2, 'diachi' => 3, 'thanhpho' => 4, 'quanHuyen' => 5, 'phuongXa' => 6, 'chiphi' => 7, 'khachhangMakh' => 8, 'tongtien' => 9, 'ngaygiao' => 10, ),
+        self::TYPE_COLNAME       => array(PhieudathangTableMap::COL_SOPHIEU => 0, PhieudathangTableMap::COL_NGAYLAP => 1, PhieudathangTableMap::COL_TENNGUOINHAN => 2, PhieudathangTableMap::COL_DIACHI => 3, PhieudathangTableMap::COL_THANHPHO => 4, PhieudathangTableMap::COL_QUAN_HUYEN => 5, PhieudathangTableMap::COL_PHUONG_XA => 6, PhieudathangTableMap::COL_CHIPHI => 7, PhieudathangTableMap::COL_KHACHHANG_MAKH => 8, PhieudathangTableMap::COL_TONGTIEN => 9, PhieudathangTableMap::COL_NGAYGIAO => 10, ),
+        self::TYPE_FIELDNAME     => array('SoPhieu' => 0, 'NgayLap' => 1, 'TenNguoiNhan' => 2, 'DiaChi' => 3, 'ThanhPho' => 4, 'Quan_Huyen' => 5, 'Phuong_Xa' => 6, 'ChiPhi' => 7, 'KhachHang_MaKH' => 8, 'TongTien' => 9, 'NgayGiao' => 10, ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, )
     );
 
     /**
@@ -168,13 +178,15 @@ class PhieudathangTableMap extends TableMap
         // columns
         $this->addPrimaryKey('SoPhieu', 'Sophieu', 'INTEGER', true, null, null);
         $this->addColumn('NgayLap', 'Ngaylap', 'TIMESTAMP', true, null, null);
-        $this->addColumn('TenNguoiNhan', 'Tennguoinhan', 'VARCHAR', false, 30, null);
-        $this->addColumn('DiaChi', 'Diachi', 'VARCHAR', false, 30, null);
-        $this->addColumn('ThanhPho', 'Thanhpho', 'CHAR', false, 25, null);
-        $this->addColumn('Quan_Huyen', 'QuanHuyen', 'VARCHAR', false, 30, null);
-        $this->addColumn('Phuong_Xa', 'PhuongXa', 'VARCHAR', false, 30, null);
-        $this->addColumn('ChiPhi', 'Chiphi', 'DECIMAL', true, 6, null);
+        $this->addColumn('TenNguoiNhan', 'Tennguoinhan', 'VARCHAR', true, 30, null);
+        $this->addColumn('DiaChi', 'Diachi', 'VARCHAR', true, 30, null);
+        $this->addColumn('ThanhPho', 'Thanhpho', 'CHAR', true, 25, null);
+        $this->addColumn('Quan_Huyen', 'QuanHuyen', 'VARCHAR', true, 30, null);
+        $this->addColumn('Phuong_Xa', 'PhuongXa', 'VARCHAR', true, 30, null);
+        $this->addColumn('ChiPhi', 'Chiphi', 'DECIMAL', true, 15, null);
         $this->addForeignKey('KhachHang_MaKH', 'KhachhangMakh', 'INTEGER', 'KhachHang', 'MaKH', true, null, null);
+        $this->addColumn('TongTien', 'Tongtien', 'DECIMAL', true, 15, null);
+        $this->addColumn('NgayGiao', 'Ngaygiao', 'TIMESTAMP', false, null, null);
     } // initialize()
 
     /**
@@ -348,6 +360,8 @@ class PhieudathangTableMap extends TableMap
             $criteria->addSelectColumn(PhieudathangTableMap::COL_PHUONG_XA);
             $criteria->addSelectColumn(PhieudathangTableMap::COL_CHIPHI);
             $criteria->addSelectColumn(PhieudathangTableMap::COL_KHACHHANG_MAKH);
+            $criteria->addSelectColumn(PhieudathangTableMap::COL_TONGTIEN);
+            $criteria->addSelectColumn(PhieudathangTableMap::COL_NGAYGIAO);
         } else {
             $criteria->addSelectColumn($alias . '.SoPhieu');
             $criteria->addSelectColumn($alias . '.NgayLap');
@@ -358,6 +372,8 @@ class PhieudathangTableMap extends TableMap
             $criteria->addSelectColumn($alias . '.Phuong_Xa');
             $criteria->addSelectColumn($alias . '.ChiPhi');
             $criteria->addSelectColumn($alias . '.KhachHang_MaKH');
+            $criteria->addSelectColumn($alias . '.TongTien');
+            $criteria->addSelectColumn($alias . '.NgayGiao');
         }
     }
 

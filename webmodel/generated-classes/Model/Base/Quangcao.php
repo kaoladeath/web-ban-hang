@@ -827,7 +827,7 @@ abstract class Quangcao implements ActiveRecordInterface
             $modifiedColumns[':p' . $index++]  = 'Link';
         }
         if ($this->isColumnModified(QuangcaoTableMap::COL_HINHANH)) {
-            $modifiedColumns[':p' . $index++]  = 'HinhAnh';
+            $modifiedColumns[':p' . $index++]  = 'HInhAnh';
         }
         if ($this->isColumnModified(QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO)) {
             $modifiedColumns[':p' . $index++]  = 'LoaiQuangCao_MaLoaiQuangCao';
@@ -855,7 +855,7 @@ abstract class Quangcao implements ActiveRecordInterface
                     case 'Link':
                         $stmt->bindValue($identifier, $this->link, PDO::PARAM_STR);
                         break;
-                    case 'HinhAnh':
+                    case 'HInhAnh':
                         $stmt->bindValue($identifier, $this->hinhanh, PDO::PARAM_STR);
                         break;
                     case 'LoaiQuangCao_MaLoaiQuangCao':

@@ -22,7 +22,7 @@ use Propel\Runtime\Exception\PropelException;
  *
  * @method     ChildSanphamQuery orderByMasanpham($order = Criteria::ASC) Order by the MaSanpham column
  * @method     ChildSanphamQuery orderByTensanpham($order = Criteria::ASC) Order by the TenSanpham column
- * @method     ChildSanphamQuery orderByHinhanh($order = Criteria::ASC) Order by the HinhAnh column
+ * @method     ChildSanphamQuery orderByHinhanh($order = Criteria::ASC) Order by the HInhAnh column
  * @method     ChildSanphamQuery orderByGiasp($order = Criteria::ASC) Order by the GiaSP column
  * @method     ChildSanphamQuery orderByDonvitinh($order = Criteria::ASC) Order by the DonViTinh column
  * @method     ChildSanphamQuery orderByThongtin($order = Criteria::ASC) Order by the ThongTin column
@@ -30,7 +30,7 @@ use Propel\Runtime\Exception\PropelException;
  *
  * @method     ChildSanphamQuery groupByMasanpham() Group by the MaSanpham column
  * @method     ChildSanphamQuery groupByTensanpham() Group by the TenSanpham column
- * @method     ChildSanphamQuery groupByHinhanh() Group by the HinhAnh column
+ * @method     ChildSanphamQuery groupByHinhanh() Group by the HInhAnh column
  * @method     ChildSanphamQuery groupByGiasp() Group by the GiaSP column
  * @method     ChildSanphamQuery groupByDonvitinh() Group by the DonViTinh column
  * @method     ChildSanphamQuery groupByThongtin() Group by the ThongTin column
@@ -71,7 +71,7 @@ use Propel\Runtime\Exception\PropelException;
  *
  * @method     ChildSanpham findOneByMasanpham(int $MaSanpham) Return the first ChildSanpham filtered by the MaSanpham column
  * @method     ChildSanpham findOneByTensanpham(string $TenSanpham) Return the first ChildSanpham filtered by the TenSanpham column
- * @method     ChildSanpham findOneByHinhanh(string $HinhAnh) Return the first ChildSanpham filtered by the HinhAnh column
+ * @method     ChildSanpham findOneByHinhanh(string $HInhAnh) Return the first ChildSanpham filtered by the HInhAnh column
  * @method     ChildSanpham findOneByGiasp(string $GiaSP) Return the first ChildSanpham filtered by the GiaSP column
  * @method     ChildSanpham findOneByDonvitinh(string $DonViTinh) Return the first ChildSanpham filtered by the DonViTinh column
  * @method     ChildSanpham findOneByThongtin(string $ThongTin) Return the first ChildSanpham filtered by the ThongTin column
@@ -82,7 +82,7 @@ use Propel\Runtime\Exception\PropelException;
  *
  * @method     ChildSanpham requireOneByMasanpham(int $MaSanpham) Return the first ChildSanpham filtered by the MaSanpham column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildSanpham requireOneByTensanpham(string $TenSanpham) Return the first ChildSanpham filtered by the TenSanpham column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildSanpham requireOneByHinhanh(string $HinhAnh) Return the first ChildSanpham filtered by the HinhAnh column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildSanpham requireOneByHinhanh(string $HInhAnh) Return the first ChildSanpham filtered by the HInhAnh column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildSanpham requireOneByGiasp(string $GiaSP) Return the first ChildSanpham filtered by the GiaSP column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildSanpham requireOneByDonvitinh(string $DonViTinh) Return the first ChildSanpham filtered by the DonViTinh column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildSanpham requireOneByThongtin(string $ThongTin) Return the first ChildSanpham filtered by the ThongTin column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -91,7 +91,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildSanpham[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildSanpham objects based on current ModelCriteria
  * @method     ChildSanpham[]|ObjectCollection findByMasanpham(int $MaSanpham) Return ChildSanpham objects filtered by the MaSanpham column
  * @method     ChildSanpham[]|ObjectCollection findByTensanpham(string $TenSanpham) Return ChildSanpham objects filtered by the TenSanpham column
- * @method     ChildSanpham[]|ObjectCollection findByHinhanh(string $HinhAnh) Return ChildSanpham objects filtered by the HinhAnh column
+ * @method     ChildSanpham[]|ObjectCollection findByHinhanh(string $HInhAnh) Return ChildSanpham objects filtered by the HInhAnh column
  * @method     ChildSanpham[]|ObjectCollection findByGiasp(string $GiaSP) Return ChildSanpham objects filtered by the GiaSP column
  * @method     ChildSanpham[]|ObjectCollection findByDonvitinh(string $DonViTinh) Return ChildSanpham objects filtered by the DonViTinh column
  * @method     ChildSanpham[]|ObjectCollection findByThongtin(string $ThongTin) Return ChildSanpham objects filtered by the ThongTin column
@@ -194,7 +194,7 @@ abstract class SanphamQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT MaSanpham, TenSanpham, HinhAnh, GiaSP, DonViTinh, ThongTin, LoaiSP_MaLoaiSP FROM Sanpham WHERE MaSanpham = :p0';
+        $sql = 'SELECT MaSanpham, TenSanpham, HInhAnh, GiaSP, DonViTinh, ThongTin, LoaiSP_MaLoaiSP FROM Sanpham WHERE MaSanpham = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -355,12 +355,12 @@ abstract class SanphamQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query on the HinhAnh column
+     * Filter the query on the HInhAnh column
      *
      * Example usage:
      * <code>
-     * $query->filterByHinhanh('fooValue');   // WHERE HinhAnh = 'fooValue'
-     * $query->filterByHinhanh('%fooValue%'); // WHERE HinhAnh LIKE '%fooValue%'
+     * $query->filterByHinhanh('fooValue');   // WHERE HInhAnh = 'fooValue'
+     * $query->filterByHinhanh('%fooValue%'); // WHERE HInhAnh LIKE '%fooValue%'
      * </code>
      *
      * @param     string $hinhanh The value to use as filter.

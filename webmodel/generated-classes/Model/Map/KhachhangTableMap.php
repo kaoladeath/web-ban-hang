@@ -59,7 +59,7 @@ class KhachhangTableMap extends TableMap
     /**
      * The total number of columns
      */
-    const NUM_COLUMNS = 8;
+    const NUM_COLUMNS = 10;
 
     /**
      * The number of lazy-loaded columns
@@ -69,7 +69,7 @@ class KhachhangTableMap extends TableMap
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    const NUM_HYDRATE_COLUMNS = 8;
+    const NUM_HYDRATE_COLUMNS = 10;
 
     /**
      * the column name for the MaKH field
@@ -112,6 +112,16 @@ class KhachhangTableMap extends TableMap
     const COL_PHUONG_XA = 'KhachHang.Phuong_Xa';
 
     /**
+     * the column name for the UserName field
+     */
+    const COL_USERNAME = 'KhachHang.UserName';
+
+    /**
+     * the column name for the Password field
+     */
+    const COL_PASSWORD = 'KhachHang.Password';
+
+    /**
      * The default string format for model objects of the related table
      */
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -123,11 +133,11 @@ class KhachhangTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('Makh', 'Tenkh', 'Dt', 'Email', 'Diachi', 'Thanhpho', 'QuanHuyen', 'PhuongXa', ),
-        self::TYPE_CAMELNAME     => array('makh', 'tenkh', 'dt', 'email', 'diachi', 'thanhpho', 'quanHuyen', 'phuongXa', ),
-        self::TYPE_COLNAME       => array(KhachhangTableMap::COL_MAKH, KhachhangTableMap::COL_TENKH, KhachhangTableMap::COL_DT, KhachhangTableMap::COL_EMAIL, KhachhangTableMap::COL_DIACHI, KhachhangTableMap::COL_THANHPHO, KhachhangTableMap::COL_QUAN_HUYEN, KhachhangTableMap::COL_PHUONG_XA, ),
-        self::TYPE_FIELDNAME     => array('MaKH', 'TenKH', 'DT', 'Email', 'DiaChi', 'ThanhPho', 'Quan_Huyen', 'Phuong_Xa', ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, )
+        self::TYPE_PHPNAME       => array('Makh', 'Tenkh', 'Dt', 'Email', 'Diachi', 'Thanhpho', 'QuanHuyen', 'PhuongXa', 'Username', 'Password', ),
+        self::TYPE_CAMELNAME     => array('makh', 'tenkh', 'dt', 'email', 'diachi', 'thanhpho', 'quanHuyen', 'phuongXa', 'username', 'password', ),
+        self::TYPE_COLNAME       => array(KhachhangTableMap::COL_MAKH, KhachhangTableMap::COL_TENKH, KhachhangTableMap::COL_DT, KhachhangTableMap::COL_EMAIL, KhachhangTableMap::COL_DIACHI, KhachhangTableMap::COL_THANHPHO, KhachhangTableMap::COL_QUAN_HUYEN, KhachhangTableMap::COL_PHUONG_XA, KhachhangTableMap::COL_USERNAME, KhachhangTableMap::COL_PASSWORD, ),
+        self::TYPE_FIELDNAME     => array('MaKH', 'TenKH', 'DT', 'Email', 'DiaChi', 'ThanhPho', 'Quan_Huyen', 'Phuong_Xa', 'UserName', 'Password', ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
     );
 
     /**
@@ -137,11 +147,11 @@ class KhachhangTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('Makh' => 0, 'Tenkh' => 1, 'Dt' => 2, 'Email' => 3, 'Diachi' => 4, 'Thanhpho' => 5, 'QuanHuyen' => 6, 'PhuongXa' => 7, ),
-        self::TYPE_CAMELNAME     => array('makh' => 0, 'tenkh' => 1, 'dt' => 2, 'email' => 3, 'diachi' => 4, 'thanhpho' => 5, 'quanHuyen' => 6, 'phuongXa' => 7, ),
-        self::TYPE_COLNAME       => array(KhachhangTableMap::COL_MAKH => 0, KhachhangTableMap::COL_TENKH => 1, KhachhangTableMap::COL_DT => 2, KhachhangTableMap::COL_EMAIL => 3, KhachhangTableMap::COL_DIACHI => 4, KhachhangTableMap::COL_THANHPHO => 5, KhachhangTableMap::COL_QUAN_HUYEN => 6, KhachhangTableMap::COL_PHUONG_XA => 7, ),
-        self::TYPE_FIELDNAME     => array('MaKH' => 0, 'TenKH' => 1, 'DT' => 2, 'Email' => 3, 'DiaChi' => 4, 'ThanhPho' => 5, 'Quan_Huyen' => 6, 'Phuong_Xa' => 7, ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, )
+        self::TYPE_PHPNAME       => array('Makh' => 0, 'Tenkh' => 1, 'Dt' => 2, 'Email' => 3, 'Diachi' => 4, 'Thanhpho' => 5, 'QuanHuyen' => 6, 'PhuongXa' => 7, 'Username' => 8, 'Password' => 9, ),
+        self::TYPE_CAMELNAME     => array('makh' => 0, 'tenkh' => 1, 'dt' => 2, 'email' => 3, 'diachi' => 4, 'thanhpho' => 5, 'quanHuyen' => 6, 'phuongXa' => 7, 'username' => 8, 'password' => 9, ),
+        self::TYPE_COLNAME       => array(KhachhangTableMap::COL_MAKH => 0, KhachhangTableMap::COL_TENKH => 1, KhachhangTableMap::COL_DT => 2, KhachhangTableMap::COL_EMAIL => 3, KhachhangTableMap::COL_DIACHI => 4, KhachhangTableMap::COL_THANHPHO => 5, KhachhangTableMap::COL_QUAN_HUYEN => 6, KhachhangTableMap::COL_PHUONG_XA => 7, KhachhangTableMap::COL_USERNAME => 8, KhachhangTableMap::COL_PASSWORD => 9, ),
+        self::TYPE_FIELDNAME     => array('MaKH' => 0, 'TenKH' => 1, 'DT' => 2, 'Email' => 3, 'DiaChi' => 4, 'ThanhPho' => 5, 'Quan_Huyen' => 6, 'Phuong_Xa' => 7, 'UserName' => 8, 'Password' => 9, ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, )
     );
 
     /**
@@ -169,6 +179,8 @@ class KhachhangTableMap extends TableMap
         $this->addColumn('ThanhPho', 'Thanhpho', 'VARCHAR', false, 20, null);
         $this->addColumn('Quan_Huyen', 'QuanHuyen', 'VARCHAR', false, 20, null);
         $this->addColumn('Phuong_Xa', 'PhuongXa', 'VARCHAR', false, 45, null);
+        $this->addColumn('UserName', 'Username', 'VARCHAR', false, 45, null);
+        $this->addColumn('Password', 'Password', 'VARCHAR', false, 45, null);
     } // initialize()
 
     /**
@@ -334,6 +346,8 @@ class KhachhangTableMap extends TableMap
             $criteria->addSelectColumn(KhachhangTableMap::COL_THANHPHO);
             $criteria->addSelectColumn(KhachhangTableMap::COL_QUAN_HUYEN);
             $criteria->addSelectColumn(KhachhangTableMap::COL_PHUONG_XA);
+            $criteria->addSelectColumn(KhachhangTableMap::COL_USERNAME);
+            $criteria->addSelectColumn(KhachhangTableMap::COL_PASSWORD);
         } else {
             $criteria->addSelectColumn($alias . '.MaKH');
             $criteria->addSelectColumn($alias . '.TenKH');
@@ -343,6 +357,8 @@ class KhachhangTableMap extends TableMap
             $criteria->addSelectColumn($alias . '.ThanhPho');
             $criteria->addSelectColumn($alias . '.Quan_Huyen');
             $criteria->addSelectColumn($alias . '.Phuong_Xa');
+            $criteria->addSelectColumn($alias . '.UserName');
+            $criteria->addSelectColumn($alias . '.Password');
         }
     }
 

@@ -23,12 +23,10 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildCtpdhQuery orderBySanphamMasanpham($order = Criteria::ASC) Order by the Sanpham_MaSanpham column
  * @method     ChildCtpdhQuery orderByPhieudathangSophieu($order = Criteria::ASC) Order by the PhieuDatHang_SoPhieu column
  * @method     ChildCtpdhQuery orderBySoluong($order = Criteria::ASC) Order by the SoLuong column
- * @method     ChildCtpdhQuery orderByThanhtien($order = Criteria::ASC) Order by the ThanhTien column
  *
  * @method     ChildCtpdhQuery groupBySanphamMasanpham() Group by the Sanpham_MaSanpham column
  * @method     ChildCtpdhQuery groupByPhieudathangSophieu() Group by the PhieuDatHang_SoPhieu column
  * @method     ChildCtpdhQuery groupBySoluong() Group by the SoLuong column
- * @method     ChildCtpdhQuery groupByThanhtien() Group by the ThanhTien column
  *
  * @method     ChildCtpdhQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     ChildCtpdhQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -65,8 +63,7 @@ use Propel\Runtime\Exception\PropelException;
  *
  * @method     ChildCtpdh findOneBySanphamMasanpham(int $Sanpham_MaSanpham) Return the first ChildCtpdh filtered by the Sanpham_MaSanpham column
  * @method     ChildCtpdh findOneByPhieudathangSophieu(int $PhieuDatHang_SoPhieu) Return the first ChildCtpdh filtered by the PhieuDatHang_SoPhieu column
- * @method     ChildCtpdh findOneBySoluong(int $SoLuong) Return the first ChildCtpdh filtered by the SoLuong column
- * @method     ChildCtpdh findOneByThanhtien(string $ThanhTien) Return the first ChildCtpdh filtered by the ThanhTien column *
+ * @method     ChildCtpdh findOneBySoluong(int $SoLuong) Return the first ChildCtpdh filtered by the SoLuong column *
 
  * @method     ChildCtpdh requirePk($key, ConnectionInterface $con = null) Return the ChildCtpdh by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildCtpdh requireOne(ConnectionInterface $con = null) Return the first ChildCtpdh matching the query and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -74,13 +71,11 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildCtpdh requireOneBySanphamMasanpham(int $Sanpham_MaSanpham) Return the first ChildCtpdh filtered by the Sanpham_MaSanpham column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildCtpdh requireOneByPhieudathangSophieu(int $PhieuDatHang_SoPhieu) Return the first ChildCtpdh filtered by the PhieuDatHang_SoPhieu column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildCtpdh requireOneBySoluong(int $SoLuong) Return the first ChildCtpdh filtered by the SoLuong column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildCtpdh requireOneByThanhtien(string $ThanhTien) Return the first ChildCtpdh filtered by the ThanhTien column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildCtpdh[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildCtpdh objects based on current ModelCriteria
  * @method     ChildCtpdh[]|ObjectCollection findBySanphamMasanpham(int $Sanpham_MaSanpham) Return ChildCtpdh objects filtered by the Sanpham_MaSanpham column
  * @method     ChildCtpdh[]|ObjectCollection findByPhieudathangSophieu(int $PhieuDatHang_SoPhieu) Return ChildCtpdh objects filtered by the PhieuDatHang_SoPhieu column
  * @method     ChildCtpdh[]|ObjectCollection findBySoluong(int $SoLuong) Return ChildCtpdh objects filtered by the SoLuong column
- * @method     ChildCtpdh[]|ObjectCollection findByThanhtien(string $ThanhTien) Return ChildCtpdh objects filtered by the ThanhTien column
  * @method     ChildCtpdh[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *
  */
@@ -179,7 +174,7 @@ abstract class CtpdhQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT Sanpham_MaSanpham, PhieuDatHang_SoPhieu, SoLuong, ThanhTien FROM CTPDH WHERE Sanpham_MaSanpham = :p0 AND PhieuDatHang_SoPhieu = :p1';
+        $sql = 'SELECT Sanpham_MaSanpham, PhieuDatHang_SoPhieu, SoLuong FROM CTPDH WHERE Sanpham_MaSanpham = :p0 AND PhieuDatHang_SoPhieu = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -406,47 +401,6 @@ abstract class CtpdhQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(CtpdhTableMap::COL_SOLUONG, $soluong, $comparison);
-    }
-
-    /**
-     * Filter the query on the ThanhTien column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByThanhtien(1234); // WHERE ThanhTien = 1234
-     * $query->filterByThanhtien(array(12, 34)); // WHERE ThanhTien IN (12, 34)
-     * $query->filterByThanhtien(array('min' => 12)); // WHERE ThanhTien > 12
-     * </code>
-     *
-     * @param     mixed $thanhtien The value to use as filter.
-     *              Use scalar values for equality.
-     *              Use array values for in_array() equivalent.
-     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return $this|ChildCtpdhQuery The current query, for fluid interface
-     */
-    public function filterByThanhtien($thanhtien = null, $comparison = null)
-    {
-        if (is_array($thanhtien)) {
-            $useMinMax = false;
-            if (isset($thanhtien['min'])) {
-                $this->addUsingAlias(CtpdhTableMap::COL_THANHTIEN, $thanhtien['min'], Criteria::GREATER_EQUAL);
-                $useMinMax = true;
-            }
-            if (isset($thanhtien['max'])) {
-                $this->addUsingAlias(CtpdhTableMap::COL_THANHTIEN, $thanhtien['max'], Criteria::LESS_EQUAL);
-                $useMinMax = true;
-            }
-            if ($useMinMax) {
-                return $this;
-            }
-            if (null === $comparison) {
-                $comparison = Criteria::IN;
-            }
-        }
-
-        return $this->addUsingAlias(CtpdhTableMap::COL_THANHTIEN, $thanhtien, $comparison);
     }
 
     /**

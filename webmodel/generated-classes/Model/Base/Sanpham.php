@@ -882,7 +882,7 @@ abstract class Sanpham implements ActiveRecordInterface
             $modifiedColumns[':p' . $index++]  = 'TenSanpham';
         }
         if ($this->isColumnModified(SanphamTableMap::COL_HINHANH)) {
-            $modifiedColumns[':p' . $index++]  = 'HinhAnh';
+            $modifiedColumns[':p' . $index++]  = 'HInhAnh';
         }
         if ($this->isColumnModified(SanphamTableMap::COL_GIASP)) {
             $modifiedColumns[':p' . $index++]  = 'GiaSP';
@@ -913,7 +913,7 @@ abstract class Sanpham implements ActiveRecordInterface
                     case 'TenSanpham':
                         $stmt->bindValue($identifier, $this->tensanpham, PDO::PARAM_STR);
                         break;
-                    case 'HinhAnh':
+                    case 'HInhAnh':
                         $stmt->bindValue($identifier, $this->hinhanh, PDO::PARAM_STR);
                         break;
                     case 'GiaSP':

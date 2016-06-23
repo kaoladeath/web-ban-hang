@@ -82,9 +82,9 @@ class SanphamTableMap extends TableMap
     const COL_TENSANPHAM = 'Sanpham.TenSanpham';
 
     /**
-     * the column name for the HinhAnh field
+     * the column name for the HInhAnh field
      */
-    const COL_HINHANH = 'Sanpham.HinhAnh';
+    const COL_HINHANH = 'Sanpham.HInhAnh';
 
     /**
      * the column name for the GiaSP field
@@ -121,7 +121,7 @@ class SanphamTableMap extends TableMap
         self::TYPE_PHPNAME       => array('Masanpham', 'Tensanpham', 'Hinhanh', 'Giasp', 'Donvitinh', 'Thongtin', 'LoaispMaloaisp', ),
         self::TYPE_CAMELNAME     => array('masanpham', 'tensanpham', 'hinhanh', 'giasp', 'donvitinh', 'thongtin', 'loaispMaloaisp', ),
         self::TYPE_COLNAME       => array(SanphamTableMap::COL_MASANPHAM, SanphamTableMap::COL_TENSANPHAM, SanphamTableMap::COL_HINHANH, SanphamTableMap::COL_GIASP, SanphamTableMap::COL_DONVITINH, SanphamTableMap::COL_THONGTIN, SanphamTableMap::COL_LOAISP_MALOAISP, ),
-        self::TYPE_FIELDNAME     => array('MaSanpham', 'TenSanpham', 'HinhAnh', 'GiaSP', 'DonViTinh', 'ThongTin', 'LoaiSP_MaLoaiSP', ),
+        self::TYPE_FIELDNAME     => array('MaSanpham', 'TenSanpham', 'HInhAnh', 'GiaSP', 'DonViTinh', 'ThongTin', 'LoaiSP_MaLoaiSP', ),
         self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, )
     );
 
@@ -135,7 +135,7 @@ class SanphamTableMap extends TableMap
         self::TYPE_PHPNAME       => array('Masanpham' => 0, 'Tensanpham' => 1, 'Hinhanh' => 2, 'Giasp' => 3, 'Donvitinh' => 4, 'Thongtin' => 5, 'LoaispMaloaisp' => 6, ),
         self::TYPE_CAMELNAME     => array('masanpham' => 0, 'tensanpham' => 1, 'hinhanh' => 2, 'giasp' => 3, 'donvitinh' => 4, 'thongtin' => 5, 'loaispMaloaisp' => 6, ),
         self::TYPE_COLNAME       => array(SanphamTableMap::COL_MASANPHAM => 0, SanphamTableMap::COL_TENSANPHAM => 1, SanphamTableMap::COL_HINHANH => 2, SanphamTableMap::COL_GIASP => 3, SanphamTableMap::COL_DONVITINH => 4, SanphamTableMap::COL_THONGTIN => 5, SanphamTableMap::COL_LOAISP_MALOAISP => 6, ),
-        self::TYPE_FIELDNAME     => array('MaSanpham' => 0, 'TenSanpham' => 1, 'HinhAnh' => 2, 'GiaSP' => 3, 'DonViTinh' => 4, 'ThongTin' => 5, 'LoaiSP_MaLoaiSP' => 6, ),
+        self::TYPE_FIELDNAME     => array('MaSanpham' => 0, 'TenSanpham' => 1, 'HInhAnh' => 2, 'GiaSP' => 3, 'DonViTinh' => 4, 'ThongTin' => 5, 'LoaiSP_MaLoaiSP' => 6, ),
         self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, )
     );
 
@@ -158,7 +158,7 @@ class SanphamTableMap extends TableMap
         // columns
         $this->addPrimaryKey('MaSanpham', 'Masanpham', 'INTEGER', true, null, null);
         $this->addColumn('TenSanpham', 'Tensanpham', 'VARCHAR', true, 20, null);
-        $this->addColumn('HinhAnh', 'Hinhanh', 'VARCHAR', false, 50, null);
+        $this->addColumn('HInhAnh', 'Hinhanh', 'VARCHAR', false, 50, null);
         $this->addColumn('GiaSP', 'Giasp', 'DECIMAL', true, 15, null);
         $this->addColumn('DonViTinh', 'Donvitinh', 'CHAR', true, 5, null);
         $this->addColumn('ThongTin', 'Thongtin', 'LONGVARCHAR', false, null, null);
@@ -337,7 +337,7 @@ class SanphamTableMap extends TableMap
         } else {
             $criteria->addSelectColumn($alias . '.MaSanpham');
             $criteria->addSelectColumn($alias . '.TenSanpham');
-            $criteria->addSelectColumn($alias . '.HinhAnh');
+            $criteria->addSelectColumn($alias . '.HInhAnh');
             $criteria->addSelectColumn($alias . '.GiaSP');
             $criteria->addSelectColumn($alias . '.DonViTinh');
             $criteria->addSelectColumn($alias . '.ThongTin');

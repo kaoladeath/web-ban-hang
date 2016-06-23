@@ -1,35 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <database name="quanlybanhang" defaultIdMethod="native" defaultPhpNamingMethod="underscore" namespace="Model">
-  <table name="CTPDH" idMethod="native" phpName="Ctpdh">
-      
-    <column name="Sanpham_MaSanpham" phpName="SanphamMasanpham" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="PhieuDatHang_SoPhieu" phpName="PhieudathangSophieu" type="INTEGER" primaryKey="true" required="true"/>
-    <column name="SoLuong" phpName="Soluong" type="INTEGER" required="true"/>
-    <column name="ThanhTien" phpName="Thanhtien" type="DECIMAL" size="9" scale="3" required="true"/>
-    
-    <foreign-key foreignTable="PhieuDatHang" name="fk_Sanpham_has_PhieuDatHang_PhieuDatHang1">
-      <reference local="PhieuDatHang_SoPhieu" foreign="SoPhieu"/>
-    </foreign-key>
-    
-    <foreign-key foreignTable="Sanpham" name="fk_Sanpham_has_PhieuDatHang_Sanpham1">
-      <reference local="Sanpham_MaSanpham" foreign="MaSanpham"/>
-    </foreign-key>
-    
-    <index name="fk_Sanpham_has_PhieuDatHang_PhieuDatHang1_idx">
-      <index-column name="PhieuDatHang_SoPhieu"/>
-    </index>
-    
-    <index name="fk_Sanpham_has_PhieuDatHang_Sanpham1_idx">
-      <index-column name="Sanpham_MaSanpham"/>
-    </index>
-    
+  <table name="Admin" idMethod="native" phpName="Admin">
+    <column name="MaAdmin" phpName="Maadmin" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="UserName" phpName="Username" type="VARCHAR" size="30" required="true"/>
+    <column name="Password" phpName="Password" type="VARCHAR" size="45" required="true"/>
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>
     </vendor>
   </table>
-  
+  <table name="CTPDH" idMethod="native" phpName="Ctpdh">
+    <column name="Sanpham_MaSanpham" phpName="SanphamMasanpham" type="INTEGER" primaryKey="true" required="true"/>
+    <column name="PhieuDatHang_SoPhieu" phpName="PhieudathangSophieu" type="INTEGER" primaryKey="true" required="true"/>
+    <column name="SoLuong" phpName="Soluong" type="INTEGER" required="true"/>
+    <foreign-key foreignTable="PhieuDatHang" name="fk_Sanpham_has_PhieuDatHang_PhieuDatHang1">
+      <reference local="PhieuDatHang_SoPhieu" foreign="SoPhieu"/>
+    </foreign-key>
+    <foreign-key foreignTable="Sanpham" name="fk_Sanpham_has_PhieuDatHang_Sanpham1">
+      <reference local="Sanpham_MaSanpham" foreign="MaSanpham"/>
+    </foreign-key>
+    <index name="fk_Sanpham_has_PhieuDatHang_PhieuDatHang1_idx">
+      <index-column name="PhieuDatHang_SoPhieu"/>
+    </index>
+    <index name="fk_Sanpham_has_PhieuDatHang_Sanpham1_idx">
+      <index-column name="Sanpham_MaSanpham"/>
+    </index>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
   <table name="KhachHang" idMethod="native" phpName="Khachhang">
-      
     <column name="MaKH" phpName="Makh" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="TenKH" phpName="Tenkh" type="VARCHAR" size="30"/>
     <column name="DT" phpName="Dt" type="CHAR" size="13"/>
@@ -38,105 +37,98 @@
     <column name="ThanhPho" phpName="Thanhpho" type="VARCHAR" size="20"/>
     <column name="Quan_Huyen" phpName="QuanHuyen" type="VARCHAR" size="20"/>
     <column name="Phuong_Xa" phpName="PhuongXa" type="VARCHAR" size="45"/>
-    
+    <column name="UserName" phpName="Username" type="VARCHAR" size="45"/>
+    <column name="Password" phpName="Password" type="VARCHAR" size="45"/>
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>
     </vendor>
-    
+  </table>
+  <table name="LienHe" idMethod="native" phpName="Lienhe">
+    <column name="MaLienHe" phpName="Malienhe" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="TenNguoiLH" phpName="Tennguoilh" type="VARCHAR" size="30" required="true"/>
+    <column name="DienThoai" phpName="Dienthoai" type="VARCHAR" size="45" required="true"/>
+    <column name="Email" phpName="Email" type="VARCHAR" size="45"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
   </table>
   <table name="LoaiQuangCao" idMethod="native" phpName="Loaiquangcao">
-      
     <column name="MaLoaiQuangCao" phpName="Maloaiquangcao" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="TenLoaiQuangCao" phpName="Tenloaiquangcao" type="VARCHAR" size="45" required="true"/>
-    
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>
     </vendor>
-    
   </table>
-  
   <table name="LoaiSP" idMethod="native" phpName="Loaisp">
-      
     <column name="MaLoaiSP" phpName="Maloaisp" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="TenLoaiSP" phpName="Tenloaisp" type="VARCHAR" size="20" required="true"/>
-    
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>
     </vendor>
-    
   </table>
-  
+  <table name="PhanHoi" idMethod="native" phpName="Phanhoi">
+    <column name="MaPH" phpName="Maph" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
+    <column name="TenNguoiPH" phpName="Tennguoiph" type="VARCHAR" size="45"/>
+    <column name="Email" phpName="Email" type="VARCHAR" size="45" required="true"/>
+    <vendor type="mysql">
+      <parameter name="Engine" value="InnoDB"/>
+    </vendor>
+  </table>
   <table name="PhieuDatHang" idMethod="native" phpName="Phieudathang">
-      
     <column name="SoPhieu" phpName="Sophieu" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="NgayLap" phpName="Ngaylap" type="TIMESTAMP" required="true"/>
-    <column name="TenNguoiNhan" phpName="Tennguoinhan" type="VARCHAR" size="30"/>
-    <column name="DiaChi" phpName="Diachi" type="VARCHAR" size="30"/>
-    <column name="ThanhPho" phpName="Thanhpho" type="CHAR" size="25"/>
-    <column name="Quan_Huyen" phpName="QuanHuyen" type="VARCHAR" size="30"/>
-    <column name="Phuong_Xa" phpName="PhuongXa" type="VARCHAR" size="30"/>
-    <column name="ChiPhi" phpName="Chiphi" type="DECIMAL" size="6" scale="3" required="true"/>
+    <column name="TenNguoiNhan" phpName="Tennguoinhan" type="VARCHAR" size="30" required="true"/>
+    <column name="DiaChi" phpName="Diachi" type="VARCHAR" size="30" required="true"/>
+    <column name="ThanhPho" phpName="Thanhpho" type="CHAR" size="25" required="true"/>
+    <column name="Quan_Huyen" phpName="QuanHuyen" type="VARCHAR" size="30" required="true"/>
+    <column name="Phuong_Xa" phpName="PhuongXa" type="VARCHAR" size="30" required="true"/>
+    <column name="ChiPhi" phpName="Chiphi" type="DECIMAL" size="15" scale="3" required="true"/>
     <column name="KhachHang_MaKH" phpName="KhachhangMakh" type="INTEGER" required="true"/>
-    
+    <column name="TongTien" phpName="Tongtien" type="DECIMAL" size="15" scale="3" required="true"/>
+    <column name="NgayGiao" phpName="Ngaygiao" type="TIMESTAMP"/>
     <foreign-key foreignTable="KhachHang" name="fk_PhieuDatHang_KhachHang1">
       <reference local="KhachHang_MaKH" foreign="MaKH"/>
     </foreign-key>
-    
     <index name="fk_PhieuDatHang_KhachHang1_idx">
       <index-column name="KhachHang_MaKH"/>
     </index>
-    
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>
     </vendor>
-    
   </table>
-  
   <table name="QuangCao" idMethod="native" phpName="Quangcao">
-      
     <column name="MaQuangCao" phpName="Maquangcao" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="NoiDung" phpName="Noidung" type="LONGVARCHAR" required="true"/>
     <column name="NgayDang" phpName="Ngaydang" type="TIMESTAMP" required="true"/>
     <column name="Link" phpName="Link" type="VARCHAR" size="30" required="true"/>
-    <column name="HinhAnh" phpName="Hinhanh" type="VARCHAR" size="50"/>
+    <column name="HInhAnh" phpName="Hinhanh" type="VARCHAR" size="50"/>
     <column name="LoaiQuangCao_MaLoaiQuangCao" phpName="LoaiquangcaoMaloaiquangcao" type="INTEGER" primaryKey="true" required="true"/>
-    
     <foreign-key foreignTable="LoaiQuangCao" name="fk_QuangCao_LoaiQuangCao1">
       <reference local="LoaiQuangCao_MaLoaiQuangCao" foreign="MaLoaiQuangCao"/>
     </foreign-key>
-    
     <index name="fk_QuangCao_LoaiQuangCao1_idx">
       <index-column name="LoaiQuangCao_MaLoaiQuangCao"/>
     </index>
-    
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>
     </vendor>
-    
   </table>
-  
   <table name="Sanpham" idMethod="native" phpName="Sanpham">
-      
     <column name="MaSanpham" phpName="Masanpham" type="INTEGER" primaryKey="true" autoIncrement="true" required="true"/>
     <column name="TenSanpham" phpName="Tensanpham" type="VARCHAR" size="20" required="true"/>
-    <column name="HinhAnh" phpName="Hinhanh" type="VARCHAR" size="50"/>
-    <column name="GiaSP" phpName="Giasp" type="DECIMAL" size="15" scale="4" required="true"/>
+    <column name="HInhAnh" phpName="Hinhanh" type="VARCHAR" size="50"/>
+    <column name="GiaSP" phpName="Giasp" type="DECIMAL" size="15" scale="3" required="true"/>
     <column name="DonViTinh" phpName="Donvitinh" type="CHAR" size="5" required="true"/>
     <column name="ThongTin" phpName="Thongtin" type="LONGVARCHAR"/>
     <column name="LoaiSP_MaLoaiSP" phpName="LoaispMaloaisp" type="INTEGER" required="true"/>
-    
     <foreign-key foreignTable="LoaiSP" name="fk_Sanpham_LoaiSP1">
       <reference local="LoaiSP_MaLoaiSP" foreign="MaLoaiSP"/>
     </foreign-key>
-    
     <index name="fk_Sanpham_LoaiSP1_idx">
       <index-column name="LoaiSP_MaLoaiSP"/>
     </index>
-    
     <vendor type="mysql">
       <parameter name="Engine" value="InnoDB"/>
     </vendor>
-    
   </table>
-  
 </database>

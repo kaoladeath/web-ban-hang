@@ -16,8 +16,7 @@ use Model\Base\Sanpham as BaseSanpham;
  */
 class Sanpham extends BaseSanpham
 {
-    private $soluong;
-    private $thanhtien;
+	private $soluong;
     
     
     function __construct() {

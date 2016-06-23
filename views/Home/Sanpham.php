@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-
+    <title>Safety</title>
     <?php include_once 'views/Layout/head.php'; ?>
 
 </head>

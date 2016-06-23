@@ -29,6 +29,8 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildPhieudathangQuery orderByPhuongXa($order = Criteria::ASC) Order by the Phuong_Xa column
  * @method     ChildPhieudathangQuery orderByChiphi($order = Criteria::ASC) Order by the ChiPhi column
  * @method     ChildPhieudathangQuery orderByKhachhangMakh($order = Criteria::ASC) Order by the KhachHang_MaKH column
+ * @method     ChildPhieudathangQuery orderByTongtien($order = Criteria::ASC) Order by the TongTien column
+ * @method     ChildPhieudathangQuery orderByNgaygiao($order = Criteria::ASC) Order by the NgayGiao column
  *
  * @method     ChildPhieudathangQuery groupBySophieu() Group by the SoPhieu column
  * @method     ChildPhieudathangQuery groupByNgaylap() Group by the NgayLap column
@@ -39,6 +41,8 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildPhieudathangQuery groupByPhuongXa() Group by the Phuong_Xa column
  * @method     ChildPhieudathangQuery groupByChiphi() Group by the ChiPhi column
  * @method     ChildPhieudathangQuery groupByKhachhangMakh() Group by the KhachHang_MaKH column
+ * @method     ChildPhieudathangQuery groupByTongtien() Group by the TongTien column
+ * @method     ChildPhieudathangQuery groupByNgaygiao() Group by the NgayGiao column
  *
  * @method     ChildPhieudathangQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     ChildPhieudathangQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -81,7 +85,9 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildPhieudathang findOneByQuanHuyen(string $Quan_Huyen) Return the first ChildPhieudathang filtered by the Quan_Huyen column
  * @method     ChildPhieudathang findOneByPhuongXa(string $Phuong_Xa) Return the first ChildPhieudathang filtered by the Phuong_Xa column
  * @method     ChildPhieudathang findOneByChiphi(string $ChiPhi) Return the first ChildPhieudathang filtered by the ChiPhi column
- * @method     ChildPhieudathang findOneByKhachhangMakh(int $KhachHang_MaKH) Return the first ChildPhieudathang filtered by the KhachHang_MaKH column *
+ * @method     ChildPhieudathang findOneByKhachhangMakh(int $KhachHang_MaKH) Return the first ChildPhieudathang filtered by the KhachHang_MaKH column
+ * @method     ChildPhieudathang findOneByTongtien(string $TongTien) Return the first ChildPhieudathang filtered by the TongTien column
+ * @method     ChildPhieudathang findOneByNgaygiao(string $NgayGiao) Return the first ChildPhieudathang filtered by the NgayGiao column *
 
  * @method     ChildPhieudathang requirePk($key, ConnectionInterface $con = null) Return the ChildPhieudathang by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildPhieudathang requireOne(ConnectionInterface $con = null) Return the first ChildPhieudathang matching the query and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -95,6 +101,8 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildPhieudathang requireOneByPhuongXa(string $Phuong_Xa) Return the first ChildPhieudathang filtered by the Phuong_Xa column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildPhieudathang requireOneByChiphi(string $ChiPhi) Return the first ChildPhieudathang filtered by the ChiPhi column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildPhieudathang requireOneByKhachhangMakh(int $KhachHang_MaKH) Return the first ChildPhieudathang filtered by the KhachHang_MaKH column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildPhieudathang requireOneByTongtien(string $TongTien) Return the first ChildPhieudathang filtered by the TongTien column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildPhieudathang requireOneByNgaygiao(string $NgayGiao) Return the first ChildPhieudathang filtered by the NgayGiao column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildPhieudathang[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildPhieudathang objects based on current ModelCriteria
  * @method     ChildPhieudathang[]|ObjectCollection findBySophieu(int $SoPhieu) Return ChildPhieudathang objects filtered by the SoPhieu column
@@ -106,6 +114,8 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildPhieudathang[]|ObjectCollection findByPhuongXa(string $Phuong_Xa) Return ChildPhieudathang objects filtered by the Phuong_Xa column
  * @method     ChildPhieudathang[]|ObjectCollection findByChiphi(string $ChiPhi) Return ChildPhieudathang objects filtered by the ChiPhi column
  * @method     ChildPhieudathang[]|ObjectCollection findByKhachhangMakh(int $KhachHang_MaKH) Return ChildPhieudathang objects filtered by the KhachHang_MaKH column
+ * @method     ChildPhieudathang[]|ObjectCollection findByTongtien(string $TongTien) Return ChildPhieudathang objects filtered by the TongTien column
+ * @method     ChildPhieudathang[]|ObjectCollection findByNgaygiao(string $NgayGiao) Return ChildPhieudathang objects filtered by the NgayGiao column
  * @method     ChildPhieudathang[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *
  */
@@ -204,7 +214,7 @@ abstract class PhieudathangQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT SoPhieu, NgayLap, TenNguoiNhan, DiaChi, ThanhPho, Quan_Huyen, Phuong_Xa, ChiPhi, KhachHang_MaKH FROM PhieuDatHang WHERE SoPhieu = :p0';
+        $sql = 'SELECT SoPhieu, NgayLap, TenNguoiNhan, DiaChi, ThanhPho, Quan_Huyen, Phuong_Xa, ChiPhi, KhachHang_MaKH, TongTien, NgayGiao FROM PhieuDatHang WHERE SoPhieu = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -605,6 +615,90 @@ abstract class PhieudathangQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(PhieudathangTableMap::COL_KHACHHANG_MAKH, $khachhangMakh, $comparison);
+    }
+
+    /**
+     * Filter the query on the TongTien column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByTongtien(1234); // WHERE TongTien = 1234
+     * $query->filterByTongtien(array(12, 34)); // WHERE TongTien IN (12, 34)
+     * $query->filterByTongtien(array('min' => 12)); // WHERE TongTien > 12
+     * </code>
+     *
+     * @param     mixed $tongtien The value to use as filter.
+     *              Use scalar values for equality.
+     *              Use array values for in_array() equivalent.
+     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return $this|ChildPhieudathangQuery The current query, for fluid interface
+     */
+    public function filterByTongtien($tongtien = null, $comparison = null)
+    {
+        if (is_array($tongtien)) {
+            $useMinMax = false;
+            if (isset($tongtien['min'])) {
+                $this->addUsingAlias(PhieudathangTableMap::COL_TONGTIEN, $tongtien['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($tongtien['max'])) {
+                $this->addUsingAlias(PhieudathangTableMap::COL_TONGTIEN, $tongtien['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+        }
+
+        return $this->addUsingAlias(PhieudathangTableMap::COL_TONGTIEN, $tongtien, $comparison);
+    }
+
+    /**
+     * Filter the query on the NgayGiao column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByNgaygiao('2011-03-14'); // WHERE NgayGiao = '2011-03-14'
+     * $query->filterByNgaygiao('now'); // WHERE NgayGiao = '2011-03-14'
+     * $query->filterByNgaygiao(array('max' => 'yesterday')); // WHERE NgayGiao > '2011-03-13'
+     * </code>
+     *
+     * @param     mixed $ngaygiao The value to use as filter.
+     *              Values can be integers (unix timestamps), DateTime objects, or strings.
+     *              Empty strings are treated as NULL.
+     *              Use scalar values for equality.
+     *              Use array values for in_array() equivalent.
+     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return $this|ChildPhieudathangQuery The current query, for fluid interface
+     */
+    public function filterByNgaygiao($ngaygiao = null, $comparison = null)
+    {
+        if (is_array($ngaygiao)) {
+            $useMinMax = false;
+            if (isset($ngaygiao['min'])) {
+                $this->addUsingAlias(PhieudathangTableMap::COL_NGAYGIAO, $ngaygiao['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($ngaygiao['max'])) {
+                $this->addUsingAlias(PhieudathangTableMap::COL_NGAYGIAO, $ngaygiao['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+        }
+
+        return $this->addUsingAlias(PhieudathangTableMap::COL_NGAYGIAO, $ngaygiao, $comparison);
     }
 
     /**

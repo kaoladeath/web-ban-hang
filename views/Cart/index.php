@@ -6,7 +6,7 @@ and open the template in the editor.
 -->
 <html>
     <head>
-
+        <title>Gio hang</title>
         <?php include 'views/Layout/head.php'; ?>
 
     </head>
@@ -74,7 +74,7 @@ and open the template in the editor.
                     <br/>
                     <br/>
                     <br/>
-                    <button style="float: right" class="btn btn-primary" onclick="showAlert('thanhtoan')"><span class="glyphicon glyphicon-ok"></span><strong> Thanh toán</strong></button>
+                    <a href="/WebsiteBanHang/Cart/Thanhtoan/" role="button" class="btn btn-primary pull-right"><span class="glyphicon glyphicon-ok"></span><strong> Thanh toán</strong></a>
                 </div>
 
             </div>

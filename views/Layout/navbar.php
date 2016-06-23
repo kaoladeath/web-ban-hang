@@ -176,7 +176,7 @@
                         <div class="top-cart-content arrow_box">
                             <div class="top-subtotal">Tổng tiền: <span id="price">0</span> VND</div>
                             <div class="actions">
-                                <a class="btn-checkout" href="/checkout"><span>Thanh toán</span></a>
+                                <a class="btn-checkout" href="/WebsiteBanHang/Cart/Thanhtoan/"><span>Thanh toán</span></a>
                                 <a class="view-cart" href="/WebsiteBanHang/Cart"><span>Giỏ hàng</span></a>
                             </div>
                         </div>

@@ -28,6 +28,8 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildKhachhangQuery orderByThanhpho($order = Criteria::ASC) Order by the ThanhPho column
  * @method     ChildKhachhangQuery orderByQuanHuyen($order = Criteria::ASC) Order by the Quan_Huyen column
  * @method     ChildKhachhangQuery orderByPhuongXa($order = Criteria::ASC) Order by the Phuong_Xa column
+ * @method     ChildKhachhangQuery orderByUsername($order = Criteria::ASC) Order by the UserName column
+ * @method     ChildKhachhangQuery orderByPassword($order = Criteria::ASC) Order by the Password column
  *
  * @method     ChildKhachhangQuery groupByMakh() Group by the MaKH column
  * @method     ChildKhachhangQuery groupByTenkh() Group by the TenKH column
@@ -37,6 +39,8 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildKhachhangQuery groupByThanhpho() Group by the ThanhPho column
  * @method     ChildKhachhangQuery groupByQuanHuyen() Group by the Quan_Huyen column
  * @method     ChildKhachhangQuery groupByPhuongXa() Group by the Phuong_Xa column
+ * @method     ChildKhachhangQuery groupByUsername() Group by the UserName column
+ * @method     ChildKhachhangQuery groupByPassword() Group by the Password column
  *
  * @method     ChildKhachhangQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     ChildKhachhangQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -68,7 +72,9 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildKhachhang findOneByDiachi(string $DiaChi) Return the first ChildKhachhang filtered by the DiaChi column
  * @method     ChildKhachhang findOneByThanhpho(string $ThanhPho) Return the first ChildKhachhang filtered by the ThanhPho column
  * @method     ChildKhachhang findOneByQuanHuyen(string $Quan_Huyen) Return the first ChildKhachhang filtered by the Quan_Huyen column
- * @method     ChildKhachhang findOneByPhuongXa(string $Phuong_Xa) Return the first ChildKhachhang filtered by the Phuong_Xa column *
+ * @method     ChildKhachhang findOneByPhuongXa(string $Phuong_Xa) Return the first ChildKhachhang filtered by the Phuong_Xa column
+ * @method     ChildKhachhang findOneByUsername(string $UserName) Return the first ChildKhachhang filtered by the UserName column
+ * @method     ChildKhachhang findOneByPassword(string $Password) Return the first ChildKhachhang filtered by the Password column *
 
  * @method     ChildKhachhang requirePk($key, ConnectionInterface $con = null) Return the ChildKhachhang by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildKhachhang requireOne(ConnectionInterface $con = null) Return the first ChildKhachhang matching the query and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -81,6 +87,8 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildKhachhang requireOneByThanhpho(string $ThanhPho) Return the first ChildKhachhang filtered by the ThanhPho column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildKhachhang requireOneByQuanHuyen(string $Quan_Huyen) Return the first ChildKhachhang filtered by the Quan_Huyen column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildKhachhang requireOneByPhuongXa(string $Phuong_Xa) Return the first ChildKhachhang filtered by the Phuong_Xa column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildKhachhang requireOneByUsername(string $UserName) Return the first ChildKhachhang filtered by the UserName column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildKhachhang requireOneByPassword(string $Password) Return the first ChildKhachhang filtered by the Password column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildKhachhang[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildKhachhang objects based on current ModelCriteria
  * @method     ChildKhachhang[]|ObjectCollection findByMakh(int $MaKH) Return ChildKhachhang objects filtered by the MaKH column
@@ -91,6 +99,8 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildKhachhang[]|ObjectCollection findByThanhpho(string $ThanhPho) Return ChildKhachhang objects filtered by the ThanhPho column
  * @method     ChildKhachhang[]|ObjectCollection findByQuanHuyen(string $Quan_Huyen) Return ChildKhachhang objects filtered by the Quan_Huyen column
  * @method     ChildKhachhang[]|ObjectCollection findByPhuongXa(string $Phuong_Xa) Return ChildKhachhang objects filtered by the Phuong_Xa column
+ * @method     ChildKhachhang[]|ObjectCollection findByUsername(string $UserName) Return ChildKhachhang objects filtered by the UserName column
+ * @method     ChildKhachhang[]|ObjectCollection findByPassword(string $Password) Return ChildKhachhang objects filtered by the Password column
  * @method     ChildKhachhang[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *
  */
@@ -189,7 +199,7 @@ abstract class KhachhangQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT MaKH, TenKH, DT, Email, DiaChi, ThanhPho, Quan_Huyen, Phuong_Xa FROM KhachHang WHERE MaKH = :p0';
+        $sql = 'SELECT MaKH, TenKH, DT, Email, DiaChi, ThanhPho, Quan_Huyen, Phuong_Xa, UserName, Password FROM KhachHang WHERE MaKH = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -521,6 +531,64 @@ abstract class KhachhangQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(KhachhangTableMap::COL_PHUONG_XA, $phuongXa, $comparison);
+    }
+
+    /**
+     * Filter the query on the UserName column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByUsername('fooValue');   // WHERE UserName = 'fooValue'
+     * $query->filterByUsername('%fooValue%'); // WHERE UserName LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $username The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return $this|ChildKhachhangQuery The current query, for fluid interface
+     */
+    public function filterByUsername($username = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($username)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $username)) {
+                $username = str_replace('*', '%', $username);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(KhachhangTableMap::COL_USERNAME, $username, $comparison);
+    }
+
+    /**
+     * Filter the query on the Password column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByPassword('fooValue');   // WHERE Password = 'fooValue'
+     * $query->filterByPassword('%fooValue%'); // WHERE Password LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $password The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return $this|ChildKhachhangQuery The current query, for fluid interface
+     */
+    public function filterByPassword($password = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($password)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $password)) {
+                $password = str_replace('*', '%', $password);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(KhachhangTableMap::COL_PASSWORD, $password, $comparison);
     }
 
     /**

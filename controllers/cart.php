@@ -20,5 +20,9 @@ class CartController extends BaseController {
         }
         include 'views/Cart/index.php';
     }
+    
+    public function thanhtoan(){
+        include 'views/Cart/ThanhToan.php';
+    }
 
 }

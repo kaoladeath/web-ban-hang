@@ -59,7 +59,7 @@ class CtpdhTableMap extends TableMap
     /**
      * The total number of columns
      */
-    const NUM_COLUMNS = 4;
+    const NUM_COLUMNS = 3;
 
     /**
      * The number of lazy-loaded columns
@@ -69,7 +69,7 @@ class CtpdhTableMap extends TableMap
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    const NUM_HYDRATE_COLUMNS = 4;
+    const NUM_HYDRATE_COLUMNS = 3;
 
     /**
      * the column name for the Sanpham_MaSanpham field
@@ -87,11 +87,6 @@ class CtpdhTableMap extends TableMap
     const COL_SOLUONG = 'CTPDH.SoLuong';
 
     /**
-     * the column name for the ThanhTien field
-     */
-    const COL_THANHTIEN = 'CTPDH.ThanhTien';
-
-    /**
      * The default string format for model objects of the related table
      */
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -103,11 +98,11 @@ class CtpdhTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('SanphamMasanpham', 'PhieudathangSophieu', 'Soluong', 'Thanhtien', ),
-        self::TYPE_CAMELNAME     => array('sanphamMasanpham', 'phieudathangSophieu', 'soluong', 'thanhtien', ),
-        self::TYPE_COLNAME       => array(CtpdhTableMap::COL_SANPHAM_MASANPHAM, CtpdhTableMap::COL_PHIEUDATHANG_SOPHIEU, CtpdhTableMap::COL_SOLUONG, CtpdhTableMap::COL_THANHTIEN, ),
-        self::TYPE_FIELDNAME     => array('Sanpham_MaSanpham', 'PhieuDatHang_SoPhieu', 'SoLuong', 'ThanhTien', ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, )
+        self::TYPE_PHPNAME       => array('SanphamMasanpham', 'PhieudathangSophieu', 'Soluong', ),
+        self::TYPE_CAMELNAME     => array('sanphamMasanpham', 'phieudathangSophieu', 'soluong', ),
+        self::TYPE_COLNAME       => array(CtpdhTableMap::COL_SANPHAM_MASANPHAM, CtpdhTableMap::COL_PHIEUDATHANG_SOPHIEU, CtpdhTableMap::COL_SOLUONG, ),
+        self::TYPE_FIELDNAME     => array('Sanpham_MaSanpham', 'PhieuDatHang_SoPhieu', 'SoLuong', ),
+        self::TYPE_NUM           => array(0, 1, 2, )
     );
 
     /**
@@ -117,11 +112,11 @@ class CtpdhTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('SanphamMasanpham' => 0, 'PhieudathangSophieu' => 1, 'Soluong' => 2, 'Thanhtien' => 3, ),
-        self::TYPE_CAMELNAME     => array('sanphamMasanpham' => 0, 'phieudathangSophieu' => 1, 'soluong' => 2, 'thanhtien' => 3, ),
-        self::TYPE_COLNAME       => array(CtpdhTableMap::COL_SANPHAM_MASANPHAM => 0, CtpdhTableMap::COL_PHIEUDATHANG_SOPHIEU => 1, CtpdhTableMap::COL_SOLUONG => 2, CtpdhTableMap::COL_THANHTIEN => 3, ),
-        self::TYPE_FIELDNAME     => array('Sanpham_MaSanpham' => 0, 'PhieuDatHang_SoPhieu' => 1, 'SoLuong' => 2, 'ThanhTien' => 3, ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, )
+        self::TYPE_PHPNAME       => array('SanphamMasanpham' => 0, 'PhieudathangSophieu' => 1, 'Soluong' => 2, ),
+        self::TYPE_CAMELNAME     => array('sanphamMasanpham' => 0, 'phieudathangSophieu' => 1, 'soluong' => 2, ),
+        self::TYPE_COLNAME       => array(CtpdhTableMap::COL_SANPHAM_MASANPHAM => 0, CtpdhTableMap::COL_PHIEUDATHANG_SOPHIEU => 1, CtpdhTableMap::COL_SOLUONG => 2, ),
+        self::TYPE_FIELDNAME     => array('Sanpham_MaSanpham' => 0, 'PhieuDatHang_SoPhieu' => 1, 'SoLuong' => 2, ),
+        self::TYPE_NUM           => array(0, 1, 2, )
     );
 
     /**
@@ -144,7 +139,6 @@ class CtpdhTableMap extends TableMap
         $this->addForeignPrimaryKey('Sanpham_MaSanpham', 'SanphamMasanpham', 'INTEGER' , 'Sanpham', 'MaSanpham', true, null, null);
         $this->addForeignPrimaryKey('PhieuDatHang_SoPhieu', 'PhieudathangSophieu', 'INTEGER' , 'PhieuDatHang', 'SoPhieu', true, null, null);
         $this->addColumn('SoLuong', 'Soluong', 'INTEGER', true, null, null);
-        $this->addColumn('ThanhTien', 'Thanhtien', 'DECIMAL', true, 9, null);
     } // initialize()
 
     /**
@@ -374,12 +368,10 @@ class CtpdhTableMap extends TableMap
             $criteria->addSelectColumn(CtpdhTableMap::COL_SANPHAM_MASANPHAM);
             $criteria->addSelectColumn(CtpdhTableMap::COL_PHIEUDATHANG_SOPHIEU);
             $criteria->addSelectColumn(CtpdhTableMap::COL_SOLUONG);
-            $criteria->addSelectColumn(CtpdhTableMap::COL_THANHTIEN);
         } else {
             $criteria->addSelectColumn($alias . '.Sanpham_MaSanpham');
             $criteria->addSelectColumn($alias . '.PhieuDatHang_SoPhieu');
             $criteria->addSelectColumn($alias . '.SoLuong');
-            $criteria->addSelectColumn($alias . '.ThanhTien');
         }
     }
 

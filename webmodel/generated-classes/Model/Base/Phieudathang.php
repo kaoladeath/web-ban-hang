@@ -132,6 +132,20 @@ abstract class Phieudathang implements ActiveRecordInterface
     protected $khachhang_makh;
 
     /**
+     * The value for the tongtien field.
+     *
+     * @var        string
+     */
+    protected $tongtien;
+
+    /**
+     * The value for the ngaygiao field.
+     *
+     * @var        DateTime
+     */
+    protected $ngaygiao;
+
+    /**
      * @var        ChildKhachhang
      */
     protected $aKhachhang;
@@ -482,6 +496,36 @@ abstract class Phieudathang implements ActiveRecordInterface
     }
 
     /**
+     * Get the [tongtien] column value.
+     *
+     * @return string
+     */
+    public function getTongtien()
+    {
+        return $this->tongtien;
+    }
+
+    /**
+     * Get the [optionally formatted] temporal [ngaygiao] column value.
+     *
+     *
+     * @param      string $format The date/time format string (either date()-style or strftime()-style).
+     *                            If format is NULL, then the raw DateTime object will be returned.
+     *
+     * @return string|DateTime Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
+     *
+     * @throws PropelException - if unable to parse/validate the date/time value.
+     */
+    public function getNgaygiao($format = NULL)
+    {
+        if ($format === null) {
+            return $this->ngaygiao;
+        } else {
+            return $this->ngaygiao instanceof \DateTimeInterface ? $this->ngaygiao->format($format) : null;
+        }
+    }
+
+    /**
      * Set the value of [sophieu] column.
      *
      * @param int $v new value
@@ -666,6 +710,46 @@ abstract class Phieudathang implements ActiveRecordInterface
     } // setKhachhangMakh()
 
     /**
+     * Set the value of [tongtien] column.
+     *
+     * @param string $v new value
+     * @return $this|\Model\Phieudathang The current object (for fluent API support)
+     */
+    public function setTongtien($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->tongtien !== $v) {
+            $this->tongtien = $v;
+            $this->modifiedColumns[PhieudathangTableMap::COL_TONGTIEN] = true;
+        }
+
+        return $this;
+    } // setTongtien()
+
+    /**
+     * Sets the value of [ngaygiao] column to a normalized version of the date/time value specified.
+     *
+     * @param  mixed $v string, integer (timestamp), or \DateTimeInterface value.
+     *               Empty strings are treated as NULL.
+     * @return $this|\Model\Phieudathang The current object (for fluent API support)
+     */
+    public function setNgaygiao($v)
+    {
+        $dt = PropelDateTime::newInstance($v, null, 'DateTime');
+        if ($this->ngaygiao !== null || $dt !== null) {
+            if ($this->ngaygiao === null || $dt === null || $dt->format("Y-m-d H:i:s.u") !== $this->ngaygiao->format("Y-m-d H:i:s.u")) {
+                $this->ngaygiao = $dt === null ? null : clone $dt;
+                $this->modifiedColumns[PhieudathangTableMap::COL_NGAYGIAO] = true;
+            }
+        } // if either are not null
+
+        return $this;
+    } // setNgaygiao()
+
+    /**
      * Indicates whether the columns in this object are only set to default values.
      *
      * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -730,6 +814,15 @@ abstract class Phieudathang implements ActiveRecordInterface
 
             $col = $row[TableMap::TYPE_NUM == $indexType ? 8 + $startcol : PhieudathangTableMap::translateFieldName('KhachhangMakh', TableMap::TYPE_PHPNAME, $indexType)];
             $this->khachhang_makh = (null !== $col) ? (int) $col : null;
+
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 9 + $startcol : PhieudathangTableMap::translateFieldName('Tongtien', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->tongtien = (null !== $col) ? (string) $col : null;
+
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 10 + $startcol : PhieudathangTableMap::translateFieldName('Ngaygiao', TableMap::TYPE_PHPNAME, $indexType)];
+            if ($col === '0000-00-00 00:00:00') {
+                $col = null;
+            }
+            $this->ngaygiao = (null !== $col) ? PropelDateTime::newInstance($col, null, 'DateTime') : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -738,7 +831,7 @@ abstract class Phieudathang implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 9; // 9 = PhieudathangTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 11; // 11 = PhieudathangTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\Model\\Phieudathang'), 0, $e);
@@ -997,6 +1090,12 @@ abstract class Phieudathang implements ActiveRecordInterface
         if ($this->isColumnModified(PhieudathangTableMap::COL_KHACHHANG_MAKH)) {
             $modifiedColumns[':p' . $index++]  = 'KhachHang_MaKH';
         }
+        if ($this->isColumnModified(PhieudathangTableMap::COL_TONGTIEN)) {
+            $modifiedColumns[':p' . $index++]  = 'TongTien';
+        }
+        if ($this->isColumnModified(PhieudathangTableMap::COL_NGAYGIAO)) {
+            $modifiedColumns[':p' . $index++]  = 'NgayGiao';
+        }
 
         $sql = sprintf(
             'INSERT INTO PhieuDatHang (%s) VALUES (%s)',
@@ -1034,6 +1133,12 @@ abstract class Phieudathang implements ActiveRecordInterface
                         break;
                     case 'KhachHang_MaKH':
                         $stmt->bindValue($identifier, $this->khachhang_makh, PDO::PARAM_INT);
+                        break;
+                    case 'TongTien':
+                        $stmt->bindValue($identifier, $this->tongtien, PDO::PARAM_STR);
+                        break;
+                    case 'NgayGiao':
+                        $stmt->bindValue($identifier, $this->ngaygiao ? $this->ngaygiao->format("Y-m-d H:i:s.u") : null, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -1124,6 +1229,12 @@ abstract class Phieudathang implements ActiveRecordInterface
             case 8:
                 return $this->getKhachhangMakh();
                 break;
+            case 9:
+                return $this->getTongtien();
+                break;
+            case 10:
+                return $this->getNgaygiao();
+                break;
             default:
                 return null;
                 break;
@@ -1163,9 +1274,15 @@ abstract class Phieudathang implements ActiveRecordInterface
             $keys[6] => $this->getPhuongXa(),
             $keys[7] => $this->getChiphi(),
             $keys[8] => $this->getKhachhangMakh(),
+            $keys[9] => $this->getTongtien(),
+            $keys[10] => $this->getNgaygiao(),
         );
         if ($result[$keys[1]] instanceof \DateTime) {
             $result[$keys[1]] = $result[$keys[1]]->format('c');
+        }
+
+        if ($result[$keys[10]] instanceof \DateTime) {
+            $result[$keys[10]] = $result[$keys[10]]->format('c');
         }
 
         $virtualColumns = $this->virtualColumns;
@@ -1265,6 +1382,12 @@ abstract class Phieudathang implements ActiveRecordInterface
             case 8:
                 $this->setKhachhangMakh($value);
                 break;
+            case 9:
+                $this->setTongtien($value);
+                break;
+            case 10:
+                $this->setNgaygiao($value);
+                break;
         } // switch()
 
         return $this;
@@ -1317,6 +1440,12 @@ abstract class Phieudathang implements ActiveRecordInterface
         }
         if (array_key_exists($keys[8], $arr)) {
             $this->setKhachhangMakh($arr[$keys[8]]);
+        }
+        if (array_key_exists($keys[9], $arr)) {
+            $this->setTongtien($arr[$keys[9]]);
+        }
+        if (array_key_exists($keys[10], $arr)) {
+            $this->setNgaygiao($arr[$keys[10]]);
         }
     }
 
@@ -1385,6 +1514,12 @@ abstract class Phieudathang implements ActiveRecordInterface
         }
         if ($this->isColumnModified(PhieudathangTableMap::COL_KHACHHANG_MAKH)) {
             $criteria->add(PhieudathangTableMap::COL_KHACHHANG_MAKH, $this->khachhang_makh);
+        }
+        if ($this->isColumnModified(PhieudathangTableMap::COL_TONGTIEN)) {
+            $criteria->add(PhieudathangTableMap::COL_TONGTIEN, $this->tongtien);
+        }
+        if ($this->isColumnModified(PhieudathangTableMap::COL_NGAYGIAO)) {
+            $criteria->add(PhieudathangTableMap::COL_NGAYGIAO, $this->ngaygiao);
         }
 
         return $criteria;
@@ -1480,6 +1615,8 @@ abstract class Phieudathang implements ActiveRecordInterface
         $copyObj->setPhuongXa($this->getPhuongXa());
         $copyObj->setChiphi($this->getChiphi());
         $copyObj->setKhachhangMakh($this->getKhachhangMakh());
+        $copyObj->setTongtien($this->getTongtien());
+        $copyObj->setNgaygiao($this->getNgaygiao());
 
         if ($deepCopy) {
             // important: temporarily setNew(false) because this affects the behavior of
@@ -1861,6 +1998,8 @@ abstract class Phieudathang implements ActiveRecordInterface
         $this->phuong_xa = null;
         $this->chiphi = null;
         $this->khachhang_makh = null;
+        $this->tongtien = null;
+        $this->ngaygiao = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->resetModified();

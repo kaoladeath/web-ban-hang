@@ -6,3 +6,33 @@
 .white{
     color: white;
 }
+
+.mylabel{
+    font-size: 150%
+}
+
+.ch-table td{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.ch-box{
+    border: 1px solid #dde2e4;
+    margin-top: 15px;
+}
+
+.ch-box-inner{
+    padding: 15px;
+}
+
+.left-col{
+    float: left;
+}
+
+.big-col{
+    width: 700px;
+}
+
+.right-col{
+    float: right;
+}

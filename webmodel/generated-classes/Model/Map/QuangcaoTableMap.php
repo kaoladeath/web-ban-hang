@@ -92,9 +92,9 @@ class QuangcaoTableMap extends TableMap
     const COL_LINK = 'QuangCao.Link';
 
     /**
-     * the column name for the HinhAnh field
+     * the column name for the HInhAnh field
      */
-    const COL_HINHANH = 'QuangCao.HinhAnh';
+    const COL_HINHANH = 'QuangCao.HInhAnh';
 
     /**
      * the column name for the LoaiQuangCao_MaLoaiQuangCao field
@@ -116,7 +116,7 @@ class QuangcaoTableMap extends TableMap
         self::TYPE_PHPNAME       => array('Maquangcao', 'Noidung', 'Ngaydang', 'Link', 'Hinhanh', 'LoaiquangcaoMaloaiquangcao', ),
         self::TYPE_CAMELNAME     => array('maquangcao', 'noidung', 'ngaydang', 'link', 'hinhanh', 'loaiquangcaoMaloaiquangcao', ),
         self::TYPE_COLNAME       => array(QuangcaoTableMap::COL_MAQUANGCAO, QuangcaoTableMap::COL_NOIDUNG, QuangcaoTableMap::COL_NGAYDANG, QuangcaoTableMap::COL_LINK, QuangcaoTableMap::COL_HINHANH, QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO, ),
-        self::TYPE_FIELDNAME     => array('MaQuangCao', 'NoiDung', 'NgayDang', 'Link', 'HinhAnh', 'LoaiQuangCao_MaLoaiQuangCao', ),
+        self::TYPE_FIELDNAME     => array('MaQuangCao', 'NoiDung', 'NgayDang', 'Link', 'HInhAnh', 'LoaiQuangCao_MaLoaiQuangCao', ),
         self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, )
     );
 
@@ -130,7 +130,7 @@ class QuangcaoTableMap extends TableMap
         self::TYPE_PHPNAME       => array('Maquangcao' => 0, 'Noidung' => 1, 'Ngaydang' => 2, 'Link' => 3, 'Hinhanh' => 4, 'LoaiquangcaoMaloaiquangcao' => 5, ),
         self::TYPE_CAMELNAME     => array('maquangcao' => 0, 'noidung' => 1, 'ngaydang' => 2, 'link' => 3, 'hinhanh' => 4, 'loaiquangcaoMaloaiquangcao' => 5, ),
         self::TYPE_COLNAME       => array(QuangcaoTableMap::COL_MAQUANGCAO => 0, QuangcaoTableMap::COL_NOIDUNG => 1, QuangcaoTableMap::COL_NGAYDANG => 2, QuangcaoTableMap::COL_LINK => 3, QuangcaoTableMap::COL_HINHANH => 4, QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO => 5, ),
-        self::TYPE_FIELDNAME     => array('MaQuangCao' => 0, 'NoiDung' => 1, 'NgayDang' => 2, 'Link' => 3, 'HinhAnh' => 4, 'LoaiQuangCao_MaLoaiQuangCao' => 5, ),
+        self::TYPE_FIELDNAME     => array('MaQuangCao' => 0, 'NoiDung' => 1, 'NgayDang' => 2, 'Link' => 3, 'HInhAnh' => 4, 'LoaiQuangCao_MaLoaiQuangCao' => 5, ),
         self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, )
     );
 
@@ -155,7 +155,7 @@ class QuangcaoTableMap extends TableMap
         $this->addColumn('NoiDung', 'Noidung', 'LONGVARCHAR', true, null, null);
         $this->addColumn('NgayDang', 'Ngaydang', 'TIMESTAMP', true, null, null);
         $this->addColumn('Link', 'Link', 'VARCHAR', true, 30, null);
-        $this->addColumn('HinhAnh', 'Hinhanh', 'VARCHAR', false, 50, null);
+        $this->addColumn('HInhAnh', 'Hinhanh', 'VARCHAR', false, 50, null);
         $this->addForeignPrimaryKey('LoaiQuangCao_MaLoaiQuangCao', 'LoaiquangcaoMaloaiquangcao', 'INTEGER' , 'LoaiQuangCao', 'MaLoaiQuangCao', true, null, null);
     } // initialize()
 
@@ -387,7 +387,7 @@ class QuangcaoTableMap extends TableMap
             $criteria->addSelectColumn($alias . '.NoiDung');
             $criteria->addSelectColumn($alias . '.NgayDang');
             $criteria->addSelectColumn($alias . '.Link');
-            $criteria->addSelectColumn($alias . '.HinhAnh');
+            $criteria->addSelectColumn($alias . '.HInhAnh');
             $criteria->addSelectColumn($alias . '.LoaiQuangCao_MaLoaiQuangCao');
         }
     }

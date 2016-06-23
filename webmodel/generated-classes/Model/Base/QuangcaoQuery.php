@@ -24,14 +24,14 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildQuangcaoQuery orderByNoidung($order = Criteria::ASC) Order by the NoiDung column
  * @method     ChildQuangcaoQuery orderByNgaydang($order = Criteria::ASC) Order by the NgayDang column
  * @method     ChildQuangcaoQuery orderByLink($order = Criteria::ASC) Order by the Link column
- * @method     ChildQuangcaoQuery orderByHinhanh($order = Criteria::ASC) Order by the HinhAnh column
+ * @method     ChildQuangcaoQuery orderByHinhanh($order = Criteria::ASC) Order by the HInhAnh column
  * @method     ChildQuangcaoQuery orderByLoaiquangcaoMaloaiquangcao($order = Criteria::ASC) Order by the LoaiQuangCao_MaLoaiQuangCao column
  *
  * @method     ChildQuangcaoQuery groupByMaquangcao() Group by the MaQuangCao column
  * @method     ChildQuangcaoQuery groupByNoidung() Group by the NoiDung column
  * @method     ChildQuangcaoQuery groupByNgaydang() Group by the NgayDang column
  * @method     ChildQuangcaoQuery groupByLink() Group by the Link column
- * @method     ChildQuangcaoQuery groupByHinhanh() Group by the HinhAnh column
+ * @method     ChildQuangcaoQuery groupByHinhanh() Group by the HInhAnh column
  * @method     ChildQuangcaoQuery groupByLoaiquangcaoMaloaiquangcao() Group by the LoaiQuangCao_MaLoaiQuangCao column
  *
  * @method     ChildQuangcaoQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
@@ -61,7 +61,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildQuangcao findOneByNoidung(string $NoiDung) Return the first ChildQuangcao filtered by the NoiDung column
  * @method     ChildQuangcao findOneByNgaydang(string $NgayDang) Return the first ChildQuangcao filtered by the NgayDang column
  * @method     ChildQuangcao findOneByLink(string $Link) Return the first ChildQuangcao filtered by the Link column
- * @method     ChildQuangcao findOneByHinhanh(string $HinhAnh) Return the first ChildQuangcao filtered by the HinhAnh column
+ * @method     ChildQuangcao findOneByHinhanh(string $HInhAnh) Return the first ChildQuangcao filtered by the HInhAnh column
  * @method     ChildQuangcao findOneByLoaiquangcaoMaloaiquangcao(int $LoaiQuangCao_MaLoaiQuangCao) Return the first ChildQuangcao filtered by the LoaiQuangCao_MaLoaiQuangCao column *
 
  * @method     ChildQuangcao requirePk($key, ConnectionInterface $con = null) Return the ChildQuangcao by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -71,7 +71,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildQuangcao requireOneByNoidung(string $NoiDung) Return the first ChildQuangcao filtered by the NoiDung column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildQuangcao requireOneByNgaydang(string $NgayDang) Return the first ChildQuangcao filtered by the NgayDang column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildQuangcao requireOneByLink(string $Link) Return the first ChildQuangcao filtered by the Link column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildQuangcao requireOneByHinhanh(string $HinhAnh) Return the first ChildQuangcao filtered by the HinhAnh column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildQuangcao requireOneByHinhanh(string $HInhAnh) Return the first ChildQuangcao filtered by the HInhAnh column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildQuangcao requireOneByLoaiquangcaoMaloaiquangcao(int $LoaiQuangCao_MaLoaiQuangCao) Return the first ChildQuangcao filtered by the LoaiQuangCao_MaLoaiQuangCao column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildQuangcao[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildQuangcao objects based on current ModelCriteria
@@ -79,7 +79,7 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildQuangcao[]|ObjectCollection findByNoidung(string $NoiDung) Return ChildQuangcao objects filtered by the NoiDung column
  * @method     ChildQuangcao[]|ObjectCollection findByNgaydang(string $NgayDang) Return ChildQuangcao objects filtered by the NgayDang column
  * @method     ChildQuangcao[]|ObjectCollection findByLink(string $Link) Return ChildQuangcao objects filtered by the Link column
- * @method     ChildQuangcao[]|ObjectCollection findByHinhanh(string $HinhAnh) Return ChildQuangcao objects filtered by the HinhAnh column
+ * @method     ChildQuangcao[]|ObjectCollection findByHinhanh(string $HInhAnh) Return ChildQuangcao objects filtered by the HInhAnh column
  * @method     ChildQuangcao[]|ObjectCollection findByLoaiquangcaoMaloaiquangcao(int $LoaiQuangCao_MaLoaiQuangCao) Return ChildQuangcao objects filtered by the LoaiQuangCao_MaLoaiQuangCao column
  * @method     ChildQuangcao[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *
@@ -179,7 +179,7 @@ abstract class QuangcaoQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT MaQuangCao, NoiDung, NgayDang, Link, HinhAnh, LoaiQuangCao_MaLoaiQuangCao FROM QuangCao WHERE MaQuangCao = :p0 AND LoaiQuangCao_MaLoaiQuangCao = :p1';
+        $sql = 'SELECT MaQuangCao, NoiDung, NgayDang, Link, HInhAnh, LoaiQuangCao_MaLoaiQuangCao FROM QuangCao WHERE MaQuangCao = :p0 AND LoaiQuangCao_MaLoaiQuangCao = :p1';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
@@ -424,12 +424,12 @@ abstract class QuangcaoQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query on the HinhAnh column
+     * Filter the query on the HInhAnh column
      *
      * Example usage:
      * <code>
-     * $query->filterByHinhanh('fooValue');   // WHERE HinhAnh = 'fooValue'
-     * $query->filterByHinhanh('%fooValue%'); // WHERE HinhAnh LIKE '%fooValue%'
+     * $query->filterByHinhanh('fooValue');   // WHERE HInhAnh = 'fooValue'
+     * $query->filterByHinhanh('%fooValue%'); // WHERE HInhAnh LIKE '%fooValue%'
      * </code>
      *
      * @param     string $hinhanh The value to use as filter.
