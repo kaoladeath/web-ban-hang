@@ -14,13 +14,14 @@ and open the template in the editor.
         <!--Header-->
         <?php include 'views/Layout/header.php' ?>
         <!--End Header-->
-        
+
         <!--Content-->
+        <!--Form thanh toan -->
         <div class="container">
             <div class="row">
                 <div class="ch-box col-xs-6 left-col">
                     <div class="ch-box-inner">
-                        <form role="form" method="POST">
+                        <form role="form" method="POST" action="/WebsiteBanHang/Cart/Dathang">
                             <h3>Bước 1: Nhập Email</h3>
                             <div class="form-group">
                                 <label for="email" class="mylabel">Email:</label>
@@ -29,8 +30,8 @@ and open the template in the editor.
                             <hr>
                             <h3>Bước 2: Nhập thông tin giao hàng</h3>
                             <div class="form-group">
-                                <label for="name" class="mylabel">Tên người nhận:</label>
-                                <input type="text" id="name" name="name" class="form-control" placeholder="Tên người nhận">
+                                <label for="ten" class="mylabel">Tên người nhận:</label>
+                                <input type="text" id="ten" name="ten" class="form-control" placeholder="Tên người nhận">
                             </div>
                             <div class="form-group">
                                 <label for="diachi" class="mylabel">Địa chỉ - số nhà - đường:</label>
@@ -39,27 +40,27 @@ and open the template in the editor.
                             <div class="form-group">
                                 <label for="thanhpho" class="mylabel">Thành phố:</label><br/>
                                 <select id="thanhpho" name="thanhpho" class="selectpicker">
-                                    <option value="Ho Chi Minh" selected="true">Hồ Chí Minh</option>
-                                    <option value="Ha Noi">Hà Nội</option>
+                                    <option value="Hồ Chí Minh" selected="true">Hồ Chí Minh</option>
+                                    <option value="Hà Nội">Hà Nội</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="quan_huyen" class="mylabel">Quận-Huyện:</label><br/>
                                 <select id="quan_huyen" name="quan_huyen" class="selectpicker">
-                                    <option value="Binh Thanh" selected="true">Bình Thạnh</option>
-                                    <option value="Go Vap">Gò Vấp</option>
+                                    <option value="Bình Thạnh" selected="true">Bình Thạnh</option>
+                                    <option value="Gò Vấp">Gòạnh Vấp</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="phuong_xa" class="mylabel">Phường-Xã:</label><br/>
                                 <select id="phuong_xa" name="phuong_xa" class="selectpicker">
-                                    <option value="phuong 5" selected="true">Phường 5</option>
-                                    <option value="phuong 6">Phường 6</option>
+                                    <option value="phường 5" selected="true">Phường 5</option>
+                                    <option value="phường 6">Phường 6</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="dienthoai" class="mylabel">Điện thoại:</label>
-                                <input type="text" id="dienthoai" name="thoai" class="form-control" placeholder="Số điện thoại">
+                                <input type="text" id="dienthoai" name="dtthoai" class="form-control" placeholder="Số điện thoại">
                             </div>
                             <hr>
                             <h3>Bước 3: Chọn phương thức thanh toán</h3>
@@ -85,10 +86,11 @@ and open the template in the editor.
                             </div>
                             <hr>
                             <h3>Bước 4: Kiểm tra kỹ thông tin trên sau đó bấm nút đặt hàng</h3>
-                            <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> Đặt hàng</button>
+                            <button type="submit" class="btn btn-success" id="btn-submit"><span class="glyphicon glyphicon-ok"></span> Đặt hàng</button>
                         </form>
                     </div>
                 </div>
+                <!--End Form thanh toan -->
                 <div class="ch-box right-col col-xs-4">
                     <div class="ch-box-inner">
                         <h4>Thông tin đơn hàng</h4>
@@ -127,11 +129,28 @@ and open the template in the editor.
                 //lastPost = $(window).scrollTop();
             });
             /*
-            $(window).bind('hashchange',function(){
-                location.hash = '';
-                $(window).scrollTop(lastPos);
-                //alert(location.hash);
-            });*/
+             $(window).bind('hashchange',function(){
+             location.hash = '';
+             $(window).scrollTop(lastPos);
+             //alert(location.hash);
+             });*/
+
+            $('#btn-submit').on('click',function (e){
+               e.preventDefault();
+               var form = $(this).parent('form');
+               swal({
+                   title: "Bạn muốn đặt hàng ?",
+                   text: "Hãy kiểm tra kỹ lại thông tin!",
+                   type: "info",
+                   showCancelButton: true,
+                   confirmButtonClass: "btn btn-primary",
+                   confirmButtonText: "Vâng! đặt hàng",
+                   closeOnConfirm: true
+               },
+               function(){
+                   form.submit();
+               });
+            });
         </script>
     </body>
 </html>

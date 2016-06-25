@@ -24,5 +24,11 @@ class CartController extends BaseController {
     public function thanhtoan(){
         include 'views/Cart/ThanhToan.php';
     }
+    
+    public function dathang(){
+        $arrayPost = filter_input_array(INPUT_POST);
+        
+        include 'views/Cart/DatHang.php';
+    }
 
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ca6b95d77cc0bc008cdf7d3c5272cdac",
+    "hash": "393b75869e95428e79c2ea17c313717e",
     "content-hash": "ad78c255f1cfdb734016ac28727f2a7e",
     "packages": [
         {
@@ -91,12 +91,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/propelorm/Propel2.git",
-                "reference": "30506eb28f6de0f89b95cdcd72cf954c57f1f4d8"
+                "reference": "d0d24d540a51d42fde8cb70244c4e8ae37b56358"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/propelorm/Propel2/zipball/30506eb28f6de0f89b95cdcd72cf954c57f1f4d8",
-                "reference": "30506eb28f6de0f89b95cdcd72cf954c57f1f4d8",
+                "url": "https://api.github.com/repos/propelorm/Propel2/zipball/d0d24d540a51d42fde8cb70244c4e8ae37b56358",
+                "reference": "d0d24d540a51d42fde8cb70244c4e8ae37b56358",
                 "shasum": ""
             },
             "require": {
@@ -148,7 +148,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2016-06-04 05:00:04"
+            "time": "2016-06-14 13:17:25"
         },
         {
             "name": "psr/log",
@@ -190,7 +190,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -243,16 +243,16 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "f62db5b8afec27073a4609b8c84b1f9936652259"
+                "reference": "64a4d43b045f07055bb197650159769604cb2a92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/f62db5b8afec27073a4609b8c84b1f9936652259",
-                "reference": "f62db5b8afec27073a4609b8c84b1f9936652259",
+                "url": "https://api.github.com/repos/symfony/console/zipball/64a4d43b045f07055bb197650159769604cb2a92",
+                "reference": "64a4d43b045f07055bb197650159769604cb2a92",
                 "shasum": ""
             },
             "require": {
@@ -299,11 +299,11 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2016-05-30 06:58:39"
+            "time": "2016-06-14 11:18:07"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
@@ -352,7 +352,7 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -460,16 +460,16 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "0e67031c9ef0ad681932d2b24f4fd0ec8a6679ff"
+                "reference": "b36e79d7bbbfa4a7e9708335082b3eba2263d356"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/0e67031c9ef0ad681932d2b24f4fd0ec8a6679ff",
-                "reference": "0e67031c9ef0ad681932d2b24f4fd0ec8a6679ff",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/b36e79d7bbbfa4a7e9708335082b3eba2263d356",
+                "reference": "b36e79d7bbbfa4a7e9708335082b3eba2263d356",
                 "shasum": ""
             },
             "require": {
@@ -520,11 +520,11 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2016-05-12 18:19:29"
+            "time": "2016-06-14 11:18:07"
         },
         {
             "name": "symfony/validator",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/validator.git",
@@ -598,16 +598,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v3.1.0",
+            "version": "v3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "eca51b7b65eb9be6af88ad7cc91685f1556f5c9a"
+                "reference": "c5a7e7fc273c758b92b85dcb9c46149ccda89623"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/eca51b7b65eb9be6af88ad7cc91685f1556f5c9a",
-                "reference": "eca51b7b65eb9be6af88ad7cc91685f1556f5c9a",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/c5a7e7fc273c758b92b85dcb9c46149ccda89623",
+                "reference": "c5a7e7fc273c758b92b85dcb9c46149ccda89623",
                 "shasum": ""
             },
             "require": {
@@ -643,7 +643,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-05-26 21:46:24"
+            "time": "2016-06-14 11:18:07"
         }
     ],
     "packages-dev": [],
