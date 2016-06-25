@@ -36,3 +36,51 @@
 .right-col{
     float: right;
 }
+
+.ch-menu{
+    padding: 0;
+    margin: 0;
+    
+}
+
+.ch-menu li{
+    display: inline-block;
+    list-style-type: none;
+    margin: 0 0 0.25em 0;
+}
+
+.ch-menu a, .ch-menu a:visited{
+    display: block;
+    width: 9em;
+    border: 1px solid #dde2e4;
+    font-family: arial, vernada, sans-serif;
+    font-size: 1em;
+    text-align: center;
+    text-decoration: none;
+    padding: 0.25em;
+}
+
+
+.ch-menu a:hover{
+    background: #ddd;
+    color: black;
+}
+
+.ch-menu a span{
+    display: none;
+    
+}
+
+.ch-menu a:hover span{
+    display: block;
+    /*position: absolute;
+    left: 10em;
+    top: 0;
+    text-align: left;
+    padding: 0.5em;
+    width: 24em;
+    background-color: #eee;
+    color: #000;*/
+    border: 1px solid #808;
+}
+
