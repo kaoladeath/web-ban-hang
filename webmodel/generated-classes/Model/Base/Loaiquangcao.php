@@ -65,18 +65,18 @@ abstract class Loaiquangcao implements ActiveRecordInterface
     protected $virtualColumns = array();
 
     /**
-     * The value for the maloaiquangcao field.
+     * The value for the malqc field.
      *
      * @var        int
      */
-    protected $maloaiquangcao;
+    protected $malqc;
 
     /**
-     * The value for the tenloaiquangcao field.
+     * The value for the tenlqc field.
      *
      * @var        string
      */
-    protected $tenloaiquangcao;
+    protected $tenlqc;
 
     /**
      * @var        ObjectCollection|ChildQuangcao[] Collection to store aggregation of ChildQuangcao objects.
@@ -324,64 +324,64 @@ abstract class Loaiquangcao implements ActiveRecordInterface
     }
 
     /**
-     * Get the [maloaiquangcao] column value.
+     * Get the [malqc] column value.
      *
      * @return int
      */
-    public function getMaloaiquangcao()
+    public function getMalqc()
     {
-        return $this->maloaiquangcao;
+        return $this->malqc;
     }
 
     /**
-     * Get the [tenloaiquangcao] column value.
+     * Get the [tenlqc] column value.
      *
      * @return string
      */
-    public function getTenloaiquangcao()
+    public function getTenlqc()
     {
-        return $this->tenloaiquangcao;
+        return $this->tenlqc;
     }
 
     /**
-     * Set the value of [maloaiquangcao] column.
+     * Set the value of [malqc] column.
      *
      * @param int $v new value
      * @return $this|\Model\Loaiquangcao The current object (for fluent API support)
      */
-    public function setMaloaiquangcao($v)
+    public function setMalqc($v)
     {
         if ($v !== null) {
             $v = (int) $v;
         }
 
-        if ($this->maloaiquangcao !== $v) {
-            $this->maloaiquangcao = $v;
-            $this->modifiedColumns[LoaiquangcaoTableMap::COL_MALOAIQUANGCAO] = true;
+        if ($this->malqc !== $v) {
+            $this->malqc = $v;
+            $this->modifiedColumns[LoaiquangcaoTableMap::COL_MALQC] = true;
         }
 
         return $this;
-    } // setMaloaiquangcao()
+    } // setMalqc()
 
     /**
-     * Set the value of [tenloaiquangcao] column.
+     * Set the value of [tenlqc] column.
      *
      * @param string $v new value
      * @return $this|\Model\Loaiquangcao The current object (for fluent API support)
      */
-    public function setTenloaiquangcao($v)
+    public function setTenlqc($v)
     {
         if ($v !== null) {
             $v = (string) $v;
         }
 
-        if ($this->tenloaiquangcao !== $v) {
-            $this->tenloaiquangcao = $v;
-            $this->modifiedColumns[LoaiquangcaoTableMap::COL_TENLOAIQUANGCAO] = true;
+        if ($this->tenlqc !== $v) {
+            $this->tenlqc = $v;
+            $this->modifiedColumns[LoaiquangcaoTableMap::COL_TENLQC] = true;
         }
 
         return $this;
-    } // setTenloaiquangcao()
+    } // setTenlqc()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -419,11 +419,11 @@ abstract class Loaiquangcao implements ActiveRecordInterface
     {
         try {
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : LoaiquangcaoTableMap::translateFieldName('Maloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->maloaiquangcao = (null !== $col) ? (int) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : LoaiquangcaoTableMap::translateFieldName('Malqc', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->malqc = (null !== $col) ? (int) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : LoaiquangcaoTableMap::translateFieldName('Tenloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->tenloaiquangcao = (null !== $col) ? (string) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : LoaiquangcaoTableMap::translateFieldName('Tenlqc', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->tenlqc = (null !== $col) ? (string) $col : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -642,17 +642,17 @@ abstract class Loaiquangcao implements ActiveRecordInterface
         $modifiedColumns = array();
         $index = 0;
 
-        $this->modifiedColumns[LoaiquangcaoTableMap::COL_MALOAIQUANGCAO] = true;
-        if (null !== $this->maloaiquangcao) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key (' . LoaiquangcaoTableMap::COL_MALOAIQUANGCAO . ')');
+        $this->modifiedColumns[LoaiquangcaoTableMap::COL_MALQC] = true;
+        if (null !== $this->malqc) {
+            throw new PropelException('Cannot insert a value for auto-increment primary key (' . LoaiquangcaoTableMap::COL_MALQC . ')');
         }
 
          // check the columns in natural order for more readable SQL queries
-        if ($this->isColumnModified(LoaiquangcaoTableMap::COL_MALOAIQUANGCAO)) {
-            $modifiedColumns[':p' . $index++]  = 'MaLoaiQuangCao';
+        if ($this->isColumnModified(LoaiquangcaoTableMap::COL_MALQC)) {
+            $modifiedColumns[':p' . $index++]  = 'MaLQC';
         }
-        if ($this->isColumnModified(LoaiquangcaoTableMap::COL_TENLOAIQUANGCAO)) {
-            $modifiedColumns[':p' . $index++]  = 'TenLoaiQuangCao';
+        if ($this->isColumnModified(LoaiquangcaoTableMap::COL_TENLQC)) {
+            $modifiedColumns[':p' . $index++]  = 'TenLQC';
         }
 
         $sql = sprintf(
@@ -665,11 +665,11 @@ abstract class Loaiquangcao implements ActiveRecordInterface
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case 'MaLoaiQuangCao':
-                        $stmt->bindValue($identifier, $this->maloaiquangcao, PDO::PARAM_INT);
+                    case 'MaLQC':
+                        $stmt->bindValue($identifier, $this->malqc, PDO::PARAM_INT);
                         break;
-                    case 'TenLoaiQuangCao':
-                        $stmt->bindValue($identifier, $this->tenloaiquangcao, PDO::PARAM_STR);
+                    case 'TenLQC':
+                        $stmt->bindValue($identifier, $this->tenlqc, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -684,7 +684,7 @@ abstract class Loaiquangcao implements ActiveRecordInterface
         } catch (Exception $e) {
             throw new PropelException('Unable to get autoincrement id.', 0, $e);
         }
-        $this->setMaloaiquangcao($pk);
+        $this->setMalqc($pk);
 
         $this->setNew(false);
     }
@@ -734,10 +734,10 @@ abstract class Loaiquangcao implements ActiveRecordInterface
     {
         switch ($pos) {
             case 0:
-                return $this->getMaloaiquangcao();
+                return $this->getMalqc();
                 break;
             case 1:
-                return $this->getTenloaiquangcao();
+                return $this->getTenlqc();
                 break;
             default:
                 return null;
@@ -769,8 +769,8 @@ abstract class Loaiquangcao implements ActiveRecordInterface
         $alreadyDumpedObjects['Loaiquangcao'][$this->hashCode()] = true;
         $keys = LoaiquangcaoTableMap::getFieldNames($keyType);
         $result = array(
-            $keys[0] => $this->getMaloaiquangcao(),
-            $keys[1] => $this->getTenloaiquangcao(),
+            $keys[0] => $this->getMalqc(),
+            $keys[1] => $this->getTenlqc(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -828,10 +828,10 @@ abstract class Loaiquangcao implements ActiveRecordInterface
     {
         switch ($pos) {
             case 0:
-                $this->setMaloaiquangcao($value);
+                $this->setMalqc($value);
                 break;
             case 1:
-                $this->setTenloaiquangcao($value);
+                $this->setTenlqc($value);
                 break;
         } // switch()
 
@@ -860,10 +860,10 @@ abstract class Loaiquangcao implements ActiveRecordInterface
         $keys = LoaiquangcaoTableMap::getFieldNames($keyType);
 
         if (array_key_exists($keys[0], $arr)) {
-            $this->setMaloaiquangcao($arr[$keys[0]]);
+            $this->setMalqc($arr[$keys[0]]);
         }
         if (array_key_exists($keys[1], $arr)) {
-            $this->setTenloaiquangcao($arr[$keys[1]]);
+            $this->setTenlqc($arr[$keys[1]]);
         }
     }
 
@@ -906,11 +906,11 @@ abstract class Loaiquangcao implements ActiveRecordInterface
     {
         $criteria = new Criteria(LoaiquangcaoTableMap::DATABASE_NAME);
 
-        if ($this->isColumnModified(LoaiquangcaoTableMap::COL_MALOAIQUANGCAO)) {
-            $criteria->add(LoaiquangcaoTableMap::COL_MALOAIQUANGCAO, $this->maloaiquangcao);
+        if ($this->isColumnModified(LoaiquangcaoTableMap::COL_MALQC)) {
+            $criteria->add(LoaiquangcaoTableMap::COL_MALQC, $this->malqc);
         }
-        if ($this->isColumnModified(LoaiquangcaoTableMap::COL_TENLOAIQUANGCAO)) {
-            $criteria->add(LoaiquangcaoTableMap::COL_TENLOAIQUANGCAO, $this->tenloaiquangcao);
+        if ($this->isColumnModified(LoaiquangcaoTableMap::COL_TENLQC)) {
+            $criteria->add(LoaiquangcaoTableMap::COL_TENLQC, $this->tenlqc);
         }
 
         return $criteria;
@@ -929,7 +929,7 @@ abstract class Loaiquangcao implements ActiveRecordInterface
     public function buildPkeyCriteria()
     {
         $criteria = ChildLoaiquangcaoQuery::create();
-        $criteria->add(LoaiquangcaoTableMap::COL_MALOAIQUANGCAO, $this->maloaiquangcao);
+        $criteria->add(LoaiquangcaoTableMap::COL_MALQC, $this->malqc);
 
         return $criteria;
     }
@@ -942,7 +942,7 @@ abstract class Loaiquangcao implements ActiveRecordInterface
      */
     public function hashCode()
     {
-        $validPk = null !== $this->getMaloaiquangcao();
+        $validPk = null !== $this->getMalqc();
 
         $validPrimaryKeyFKs = 0;
         $primaryKeyFKs = [];
@@ -962,18 +962,18 @@ abstract class Loaiquangcao implements ActiveRecordInterface
      */
     public function getPrimaryKey()
     {
-        return $this->getMaloaiquangcao();
+        return $this->getMalqc();
     }
 
     /**
-     * Generic method to set the primary key (maloaiquangcao column).
+     * Generic method to set the primary key (malqc column).
      *
      * @param       int $key Primary key.
      * @return void
      */
     public function setPrimaryKey($key)
     {
-        $this->setMaloaiquangcao($key);
+        $this->setMalqc($key);
     }
 
     /**
@@ -982,7 +982,7 @@ abstract class Loaiquangcao implements ActiveRecordInterface
      */
     public function isPrimaryKeyNull()
     {
-        return null === $this->getMaloaiquangcao();
+        return null === $this->getMalqc();
     }
 
     /**
@@ -998,7 +998,7 @@ abstract class Loaiquangcao implements ActiveRecordInterface
      */
     public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
     {
-        $copyObj->setTenloaiquangcao($this->getTenloaiquangcao());
+        $copyObj->setTenlqc($this->getTenlqc());
 
         if ($deepCopy) {
             // important: temporarily setNew(false) because this affects the behavior of
@@ -1015,7 +1015,7 @@ abstract class Loaiquangcao implements ActiveRecordInterface
 
         if ($makeNew) {
             $copyObj->setNew(true);
-            $copyObj->setMaloaiquangcao(NULL); // this is a auto-increment column, so set to default value
+            $copyObj->setMalqc(NULL); // this is a auto-increment column, so set to default value
         }
     }
 
@@ -1177,10 +1177,7 @@ abstract class Loaiquangcao implements ActiveRecordInterface
         $quangcaosToDelete = $this->getQuangcaos(new Criteria(), $con)->diff($quangcaos);
 
 
-        //since at least one column in the foreign key is at the same time a PK
-        //we can not just set a PK to NULL in the lines below. We have to store
-        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
-        $this->quangcaosScheduledForDeletion = clone $quangcaosToDelete;
+        $this->quangcaosScheduledForDeletion = $quangcaosToDelete;
 
         foreach ($quangcaosToDelete as $quangcaoRemoved) {
             $quangcaoRemoved->setLoaiquangcao(null);
@@ -1292,8 +1289,8 @@ abstract class Loaiquangcao implements ActiveRecordInterface
      */
     public function clear()
     {
-        $this->maloaiquangcao = null;
-        $this->tenloaiquangcao = null;
+        $this->malqc = null;
+        $this->tenlqc = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->resetModified();

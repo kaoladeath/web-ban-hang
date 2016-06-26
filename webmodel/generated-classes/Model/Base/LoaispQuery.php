@@ -22,9 +22,11 @@ use Propel\Runtime\Exception\PropelException;
  *
  * @method     ChildLoaispQuery orderByMaloaisp($order = Criteria::ASC) Order by the MaLoaiSP column
  * @method     ChildLoaispQuery orderByTenloaisp($order = Criteria::ASC) Order by the TenLoaiSP column
+ * @method     ChildLoaispQuery orderByDanhmucMadm($order = Criteria::ASC) Order by the DanhMuc_MaDM column
  *
  * @method     ChildLoaispQuery groupByMaloaisp() Group by the MaLoaiSP column
  * @method     ChildLoaispQuery groupByTenloaisp() Group by the TenLoaiSP column
+ * @method     ChildLoaispQuery groupByDanhmucMadm() Group by the DanhMuc_MaDM column
  *
  * @method     ChildLoaispQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     ChildLoaispQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -33,6 +35,16 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildLoaispQuery leftJoinWith($relation) Adds a LEFT JOIN clause and with to the query
  * @method     ChildLoaispQuery rightJoinWith($relation) Adds a RIGHT JOIN clause and with to the query
  * @method     ChildLoaispQuery innerJoinWith($relation) Adds a INNER JOIN clause and with to the query
+ *
+ * @method     ChildLoaispQuery leftJoinDanhmuc($relationAlias = null) Adds a LEFT JOIN clause to the query using the Danhmuc relation
+ * @method     ChildLoaispQuery rightJoinDanhmuc($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Danhmuc relation
+ * @method     ChildLoaispQuery innerJoinDanhmuc($relationAlias = null) Adds a INNER JOIN clause to the query using the Danhmuc relation
+ *
+ * @method     ChildLoaispQuery joinWithDanhmuc($joinType = Criteria::INNER_JOIN) Adds a join clause and with to the query using the Danhmuc relation
+ *
+ * @method     ChildLoaispQuery leftJoinWithDanhmuc() Adds a LEFT JOIN clause and with to the query using the Danhmuc relation
+ * @method     ChildLoaispQuery rightJoinWithDanhmuc() Adds a RIGHT JOIN clause and with to the query using the Danhmuc relation
+ * @method     ChildLoaispQuery innerJoinWithDanhmuc() Adds a INNER JOIN clause and with to the query using the Danhmuc relation
  *
  * @method     ChildLoaispQuery leftJoinSanpham($relationAlias = null) Adds a LEFT JOIN clause to the query using the Sanpham relation
  * @method     ChildLoaispQuery rightJoinSanpham($relationAlias = null) Adds a RIGHT JOIN clause to the query using the Sanpham relation
@@ -44,23 +56,26 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildLoaispQuery rightJoinWithSanpham() Adds a RIGHT JOIN clause and with to the query using the Sanpham relation
  * @method     ChildLoaispQuery innerJoinWithSanpham() Adds a INNER JOIN clause and with to the query using the Sanpham relation
  *
- * @method     \Model\SanphamQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
+ * @method     \Model\DanhmucQuery|\Model\SanphamQuery endUse() Finalizes a secondary criteria and merges it with its primary Criteria
  *
  * @method     ChildLoaisp findOne(ConnectionInterface $con = null) Return the first ChildLoaisp matching the query
  * @method     ChildLoaisp findOneOrCreate(ConnectionInterface $con = null) Return the first ChildLoaisp matching the query, or a new ChildLoaisp object populated from the query conditions when no match is found
  *
  * @method     ChildLoaisp findOneByMaloaisp(int $MaLoaiSP) Return the first ChildLoaisp filtered by the MaLoaiSP column
- * @method     ChildLoaisp findOneByTenloaisp(string $TenLoaiSP) Return the first ChildLoaisp filtered by the TenLoaiSP column *
+ * @method     ChildLoaisp findOneByTenloaisp(string $TenLoaiSP) Return the first ChildLoaisp filtered by the TenLoaiSP column
+ * @method     ChildLoaisp findOneByDanhmucMadm(int $DanhMuc_MaDM) Return the first ChildLoaisp filtered by the DanhMuc_MaDM column *
 
  * @method     ChildLoaisp requirePk($key, ConnectionInterface $con = null) Return the ChildLoaisp by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildLoaisp requireOne(ConnectionInterface $con = null) Return the first ChildLoaisp matching the query and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildLoaisp requireOneByMaloaisp(int $MaLoaiSP) Return the first ChildLoaisp filtered by the MaLoaiSP column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildLoaisp requireOneByTenloaisp(string $TenLoaiSP) Return the first ChildLoaisp filtered by the TenLoaiSP column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildLoaisp requireOneByDanhmucMadm(int $DanhMuc_MaDM) Return the first ChildLoaisp filtered by the DanhMuc_MaDM column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildLoaisp[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildLoaisp objects based on current ModelCriteria
  * @method     ChildLoaisp[]|ObjectCollection findByMaloaisp(int $MaLoaiSP) Return ChildLoaisp objects filtered by the MaLoaiSP column
  * @method     ChildLoaisp[]|ObjectCollection findByTenloaisp(string $TenLoaiSP) Return ChildLoaisp objects filtered by the TenLoaiSP column
+ * @method     ChildLoaisp[]|ObjectCollection findByDanhmucMadm(int $DanhMuc_MaDM) Return ChildLoaisp objects filtered by the DanhMuc_MaDM column
  * @method     ChildLoaisp[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *
  */
@@ -159,7 +174,7 @@ abstract class LoaispQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT MaLoaiSP, TenLoaiSP FROM LoaiSP WHERE MaLoaiSP = :p0';
+        $sql = 'SELECT MaLoaiSP, TenLoaiSP, DanhMuc_MaDM FROM LoaiSP WHERE MaLoaiSP = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -317,6 +332,126 @@ abstract class LoaispQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(LoaispTableMap::COL_TENLOAISP, $tenloaisp, $comparison);
+    }
+
+    /**
+     * Filter the query on the DanhMuc_MaDM column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByDanhmucMadm(1234); // WHERE DanhMuc_MaDM = 1234
+     * $query->filterByDanhmucMadm(array(12, 34)); // WHERE DanhMuc_MaDM IN (12, 34)
+     * $query->filterByDanhmucMadm(array('min' => 12)); // WHERE DanhMuc_MaDM > 12
+     * </code>
+     *
+     * @see       filterByDanhmuc()
+     *
+     * @param     mixed $danhmucMadm The value to use as filter.
+     *              Use scalar values for equality.
+     *              Use array values for in_array() equivalent.
+     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return $this|ChildLoaispQuery The current query, for fluid interface
+     */
+    public function filterByDanhmucMadm($danhmucMadm = null, $comparison = null)
+    {
+        if (is_array($danhmucMadm)) {
+            $useMinMax = false;
+            if (isset($danhmucMadm['min'])) {
+                $this->addUsingAlias(LoaispTableMap::COL_DANHMUC_MADM, $danhmucMadm['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($danhmucMadm['max'])) {
+                $this->addUsingAlias(LoaispTableMap::COL_DANHMUC_MADM, $danhmucMadm['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+        }
+
+        return $this->addUsingAlias(LoaispTableMap::COL_DANHMUC_MADM, $danhmucMadm, $comparison);
+    }
+
+    /**
+     * Filter the query by a related \Model\Danhmuc object
+     *
+     * @param \Model\Danhmuc|ObjectCollection $danhmuc The related object(s) to use as filter
+     * @param string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @throws \Propel\Runtime\Exception\PropelException
+     *
+     * @return ChildLoaispQuery The current query, for fluid interface
+     */
+    public function filterByDanhmuc($danhmuc, $comparison = null)
+    {
+        if ($danhmuc instanceof \Model\Danhmuc) {
+            return $this
+                ->addUsingAlias(LoaispTableMap::COL_DANHMUC_MADM, $danhmuc->getMadm(), $comparison);
+        } elseif ($danhmuc instanceof ObjectCollection) {
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+
+            return $this
+                ->addUsingAlias(LoaispTableMap::COL_DANHMUC_MADM, $danhmuc->toKeyValue('PrimaryKey', 'Madm'), $comparison);
+        } else {
+            throw new PropelException('filterByDanhmuc() only accepts arguments of type \Model\Danhmuc or Collection');
+        }
+    }
+
+    /**
+     * Adds a JOIN clause to the query using the Danhmuc relation
+     *
+     * @param     string $relationAlias optional alias for the relation
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return $this|ChildLoaispQuery The current query, for fluid interface
+     */
+    public function joinDanhmuc($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        $tableMap = $this->getTableMap();
+        $relationMap = $tableMap->getRelation('Danhmuc');
+
+        // create a ModelJoin object for this join
+        $join = new ModelJoin();
+        $join->setJoinType($joinType);
+        $join->setRelationMap($relationMap, $this->useAliasInSQL ? $this->getModelAlias() : null, $relationAlias);
+        if ($previousJoin = $this->getPreviousJoin()) {
+            $join->setPreviousJoin($previousJoin);
+        }
+
+        // add the ModelJoin to the current object
+        if ($relationAlias) {
+            $this->addAlias($relationAlias, $relationMap->getRightTable()->getName());
+            $this->addJoinObject($join, $relationAlias);
+        } else {
+            $this->addJoinObject($join, 'Danhmuc');
+        }
+
+        return $this;
+    }
+
+    /**
+     * Use the Danhmuc relation Danhmuc object
+     *
+     * @see useQuery()
+     *
+     * @param     string $relationAlias optional alias for the relation,
+     *                                   to be used as main alias in the secondary query
+     * @param     string $joinType Accepted values are null, 'left join', 'right join', 'inner join'
+     *
+     * @return \Model\DanhmucQuery A secondary query class using the current class as primary query
+     */
+    public function useDanhmucQuery($relationAlias = null, $joinType = Criteria::INNER_JOIN)
+    {
+        return $this
+            ->joinDanhmuc($relationAlias, $joinType)
+            ->useQuery($relationAlias ? $relationAlias : 'Danhmuc', '\Model\DanhmucQuery');
     }
 
     /**

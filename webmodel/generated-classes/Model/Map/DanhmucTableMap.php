@@ -2,8 +2,8 @@
 
 namespace Model\Map;
 
-use Model\Loaisp;
-use Model\LoaispQuery;
+use Model\Danhmuc;
+use Model\DanhmucQuery;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\InstancePoolTrait;
@@ -16,7 +16,7 @@ use Propel\Runtime\Map\TableMapTrait;
 
 
 /**
- * This class defines the structure of the 'LoaiSP' table.
+ * This class defines the structure of the 'DanhMuc' table.
  *
  *
  *
@@ -26,7 +26,7 @@ use Propel\Runtime\Map\TableMapTrait;
  * (i.e. if it's a text column type).
  *
  */
-class LoaispTableMap extends TableMap
+class DanhmucTableMap extends TableMap
 {
     use InstancePoolTrait;
     use TableMapTrait;
@@ -34,7 +34,7 @@ class LoaispTableMap extends TableMap
     /**
      * The (dot-path) name of this class
      */
-    const CLASS_NAME = 'Model.Map.LoaispTableMap';
+    const CLASS_NAME = 'Model.Map.DanhmucTableMap';
 
     /**
      * The default database name for this class
@@ -44,22 +44,22 @@ class LoaispTableMap extends TableMap
     /**
      * The table name for this class
      */
-    const TABLE_NAME = 'LoaiSP';
+    const TABLE_NAME = 'DanhMuc';
 
     /**
      * The related Propel class for this table
      */
-    const OM_CLASS = '\\Model\\Loaisp';
+    const OM_CLASS = '\\Model\\Danhmuc';
 
     /**
      * A class that can be returned by this tableMap
      */
-    const CLASS_DEFAULT = 'Model.Loaisp';
+    const CLASS_DEFAULT = 'Model.Danhmuc';
 
     /**
      * The total number of columns
      */
-    const NUM_COLUMNS = 3;
+    const NUM_COLUMNS = 2;
 
     /**
      * The number of lazy-loaded columns
@@ -69,22 +69,17 @@ class LoaispTableMap extends TableMap
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    const NUM_HYDRATE_COLUMNS = 3;
+    const NUM_HYDRATE_COLUMNS = 2;
 
     /**
-     * the column name for the MaLoaiSP field
+     * the column name for the MaDM field
      */
-    const COL_MALOAISP = 'LoaiSP.MaLoaiSP';
+    const COL_MADM = 'DanhMuc.MaDM';
 
     /**
-     * the column name for the TenLoaiSP field
+     * the column name for the TenDM field
      */
-    const COL_TENLOAISP = 'LoaiSP.TenLoaiSP';
-
-    /**
-     * the column name for the DanhMuc_MaDM field
-     */
-    const COL_DANHMUC_MADM = 'LoaiSP.DanhMuc_MaDM';
+    const COL_TENDM = 'DanhMuc.TenDM';
 
     /**
      * The default string format for model objects of the related table
@@ -98,11 +93,11 @@ class LoaispTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('Maloaisp', 'Tenloaisp', 'DanhmucMadm', ),
-        self::TYPE_CAMELNAME     => array('maloaisp', 'tenloaisp', 'danhmucMadm', ),
-        self::TYPE_COLNAME       => array(LoaispTableMap::COL_MALOAISP, LoaispTableMap::COL_TENLOAISP, LoaispTableMap::COL_DANHMUC_MADM, ),
-        self::TYPE_FIELDNAME     => array('MaLoaiSP', 'TenLoaiSP', 'DanhMuc_MaDM', ),
-        self::TYPE_NUM           => array(0, 1, 2, )
+        self::TYPE_PHPNAME       => array('Madm', 'Tendm', ),
+        self::TYPE_CAMELNAME     => array('madm', 'tendm', ),
+        self::TYPE_COLNAME       => array(DanhmucTableMap::COL_MADM, DanhmucTableMap::COL_TENDM, ),
+        self::TYPE_FIELDNAME     => array('MaDM', 'TenDM', ),
+        self::TYPE_NUM           => array(0, 1, )
     );
 
     /**
@@ -112,11 +107,11 @@ class LoaispTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('Maloaisp' => 0, 'Tenloaisp' => 1, 'DanhmucMadm' => 2, ),
-        self::TYPE_CAMELNAME     => array('maloaisp' => 0, 'tenloaisp' => 1, 'danhmucMadm' => 2, ),
-        self::TYPE_COLNAME       => array(LoaispTableMap::COL_MALOAISP => 0, LoaispTableMap::COL_TENLOAISP => 1, LoaispTableMap::COL_DANHMUC_MADM => 2, ),
-        self::TYPE_FIELDNAME     => array('MaLoaiSP' => 0, 'TenLoaiSP' => 1, 'DanhMuc_MaDM' => 2, ),
-        self::TYPE_NUM           => array(0, 1, 2, )
+        self::TYPE_PHPNAME       => array('Madm' => 0, 'Tendm' => 1, ),
+        self::TYPE_CAMELNAME     => array('madm' => 0, 'tendm' => 1, ),
+        self::TYPE_COLNAME       => array(DanhmucTableMap::COL_MADM => 0, DanhmucTableMap::COL_TENDM => 1, ),
+        self::TYPE_FIELDNAME     => array('MaDM' => 0, 'TenDM' => 1, ),
+        self::TYPE_NUM           => array(0, 1, )
     );
 
     /**
@@ -129,16 +124,15 @@ class LoaispTableMap extends TableMap
     public function initialize()
     {
         // attributes
-        $this->setName('LoaiSP');
-        $this->setPhpName('Loaisp');
+        $this->setName('DanhMuc');
+        $this->setPhpName('Danhmuc');
         $this->setIdentifierQuoting(false);
-        $this->setClassName('\\Model\\Loaisp');
+        $this->setClassName('\\Model\\Danhmuc');
         $this->setPackage('Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('MaLoaiSP', 'Maloaisp', 'INTEGER', true, null, null);
-        $this->addColumn('TenLoaiSP', 'Tenloaisp', 'VARCHAR', true, 20, null);
-        $this->addForeignKey('DanhMuc_MaDM', 'DanhmucMadm', 'INTEGER', 'DanhMuc', 'MaDM', true, null, null);
+        $this->addPrimaryKey('MaDM', 'Madm', 'INTEGER', true, null, null);
+        $this->addColumn('TenDM', 'Tendm', 'CHAR', true, 30, null);
     } // initialize()
 
     /**
@@ -146,20 +140,13 @@ class LoaispTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('Danhmuc', '\\Model\\Danhmuc', RelationMap::MANY_TO_ONE, array (
+        $this->addRelation('Loaisp', '\\Model\\Loaisp', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
     0 => ':DanhMuc_MaDM',
     1 => ':MaDM',
   ),
-), null, null, null, false);
-        $this->addRelation('Sanpham', '\\Model\\Sanpham', RelationMap::ONE_TO_MANY, array (
-  0 =>
-  array (
-    0 => ':LoaiSP_MaLoaiSP',
-    1 => ':MaLoaiSP',
-  ),
-), null, null, 'Sanphams', false);
+), null, null, 'Loaisps', false);
     } // buildRelations()
 
     /**
@@ -178,11 +165,11 @@ class LoaispTableMap extends TableMap
     public static function getPrimaryKeyHashFromRow($row, $offset = 0, $indexType = TableMap::TYPE_NUM)
     {
         // If the PK cannot be derived from the row, return NULL.
-        if ($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaisp', TableMap::TYPE_PHPNAME, $indexType)] === null) {
+        if ($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Madm', TableMap::TYPE_PHPNAME, $indexType)] === null) {
             return null;
         }
 
-        return null === $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaisp', TableMap::TYPE_PHPNAME, $indexType)] || is_scalar($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaisp', TableMap::TYPE_PHPNAME, $indexType)]) || is_callable([$row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaisp', TableMap::TYPE_PHPNAME, $indexType)], '__toString']) ? (string) $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaisp', TableMap::TYPE_PHPNAME, $indexType)] : $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaisp', TableMap::TYPE_PHPNAME, $indexType)];
+        return null === $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Madm', TableMap::TYPE_PHPNAME, $indexType)] || is_scalar($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Madm', TableMap::TYPE_PHPNAME, $indexType)]) || is_callable([$row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Madm', TableMap::TYPE_PHPNAME, $indexType)], '__toString']) ? (string) $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Madm', TableMap::TYPE_PHPNAME, $indexType)] : $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Madm', TableMap::TYPE_PHPNAME, $indexType)];
     }
 
     /**
@@ -202,7 +189,7 @@ class LoaispTableMap extends TableMap
         return (int) $row[
             $indexType == TableMap::TYPE_NUM
                 ? 0 + $offset
-                : self::translateFieldName('Maloaisp', TableMap::TYPE_PHPNAME, $indexType)
+                : self::translateFieldName('Madm', TableMap::TYPE_PHPNAME, $indexType)
         ];
     }
 
@@ -219,7 +206,7 @@ class LoaispTableMap extends TableMap
      */
     public static function getOMClass($withPrefix = true)
     {
-        return $withPrefix ? LoaispTableMap::CLASS_DEFAULT : LoaispTableMap::OM_CLASS;
+        return $withPrefix ? DanhmucTableMap::CLASS_DEFAULT : DanhmucTableMap::OM_CLASS;
     }
 
     /**
@@ -233,22 +220,22 @@ class LoaispTableMap extends TableMap
      *
      * @throws PropelException Any exceptions caught during processing will be
      *                         rethrown wrapped into a PropelException.
-     * @return array           (Loaisp object, last column rank)
+     * @return array           (Danhmuc object, last column rank)
      */
     public static function populateObject($row, $offset = 0, $indexType = TableMap::TYPE_NUM)
     {
-        $key = LoaispTableMap::getPrimaryKeyHashFromRow($row, $offset, $indexType);
-        if (null !== ($obj = LoaispTableMap::getInstanceFromPool($key))) {
+        $key = DanhmucTableMap::getPrimaryKeyHashFromRow($row, $offset, $indexType);
+        if (null !== ($obj = DanhmucTableMap::getInstanceFromPool($key))) {
             // We no longer rehydrate the object, since this can cause data loss.
             // See http://www.propelorm.org/ticket/509
             // $obj->hydrate($row, $offset, true); // rehydrate
-            $col = $offset + LoaispTableMap::NUM_HYDRATE_COLUMNS;
+            $col = $offset + DanhmucTableMap::NUM_HYDRATE_COLUMNS;
         } else {
-            $cls = LoaispTableMap::OM_CLASS;
-            /** @var Loaisp $obj */
+            $cls = DanhmucTableMap::OM_CLASS;
+            /** @var Danhmuc $obj */
             $obj = new $cls();
             $col = $obj->hydrate($row, $offset, false, $indexType);
-            LoaispTableMap::addInstanceToPool($obj, $key);
+            DanhmucTableMap::addInstanceToPool($obj, $key);
         }
 
         return array($obj, $col);
@@ -271,18 +258,18 @@ class LoaispTableMap extends TableMap
         $cls = static::getOMClass(false);
         // populate the object(s)
         while ($row = $dataFetcher->fetch()) {
-            $key = LoaispTableMap::getPrimaryKeyHashFromRow($row, 0, $dataFetcher->getIndexType());
-            if (null !== ($obj = LoaispTableMap::getInstanceFromPool($key))) {
+            $key = DanhmucTableMap::getPrimaryKeyHashFromRow($row, 0, $dataFetcher->getIndexType());
+            if (null !== ($obj = DanhmucTableMap::getInstanceFromPool($key))) {
                 // We no longer rehydrate the object, since this can cause data loss.
                 // See http://www.propelorm.org/ticket/509
                 // $obj->hydrate($row, 0, true); // rehydrate
                 $results[] = $obj;
             } else {
-                /** @var Loaisp $obj */
+                /** @var Danhmuc $obj */
                 $obj = new $cls();
                 $obj->hydrate($row);
                 $results[] = $obj;
-                LoaispTableMap::addInstanceToPool($obj, $key);
+                DanhmucTableMap::addInstanceToPool($obj, $key);
             } // if key exists
         }
 
@@ -303,13 +290,11 @@ class LoaispTableMap extends TableMap
     public static function addSelectColumns(Criteria $criteria, $alias = null)
     {
         if (null === $alias) {
-            $criteria->addSelectColumn(LoaispTableMap::COL_MALOAISP);
-            $criteria->addSelectColumn(LoaispTableMap::COL_TENLOAISP);
-            $criteria->addSelectColumn(LoaispTableMap::COL_DANHMUC_MADM);
+            $criteria->addSelectColumn(DanhmucTableMap::COL_MADM);
+            $criteria->addSelectColumn(DanhmucTableMap::COL_TENDM);
         } else {
-            $criteria->addSelectColumn($alias . '.MaLoaiSP');
-            $criteria->addSelectColumn($alias . '.TenLoaiSP');
-            $criteria->addSelectColumn($alias . '.DanhMuc_MaDM');
+            $criteria->addSelectColumn($alias . '.MaDM');
+            $criteria->addSelectColumn($alias . '.TenDM');
         }
     }
 
@@ -322,7 +307,7 @@ class LoaispTableMap extends TableMap
      */
     public static function getTableMap()
     {
-        return Propel::getServiceContainer()->getDatabaseMap(LoaispTableMap::DATABASE_NAME)->getTable(LoaispTableMap::TABLE_NAME);
+        return Propel::getServiceContainer()->getDatabaseMap(DanhmucTableMap::DATABASE_NAME)->getTable(DanhmucTableMap::TABLE_NAME);
     }
 
     /**
@@ -330,16 +315,16 @@ class LoaispTableMap extends TableMap
      */
     public static function buildTableMap()
     {
-        $dbMap = Propel::getServiceContainer()->getDatabaseMap(LoaispTableMap::DATABASE_NAME);
-        if (!$dbMap->hasTable(LoaispTableMap::TABLE_NAME)) {
-            $dbMap->addTableObject(new LoaispTableMap());
+        $dbMap = Propel::getServiceContainer()->getDatabaseMap(DanhmucTableMap::DATABASE_NAME);
+        if (!$dbMap->hasTable(DanhmucTableMap::TABLE_NAME)) {
+            $dbMap->addTableObject(new DanhmucTableMap());
         }
     }
 
     /**
-     * Performs a DELETE on the database, given a Loaisp or Criteria object OR a primary key value.
+     * Performs a DELETE on the database, given a Danhmuc or Criteria object OR a primary key value.
      *
-     * @param mixed               $values Criteria or Loaisp object or primary key or array of primary keys
+     * @param mixed               $values Criteria or Danhmuc object or primary key or array of primary keys
      *              which is used to create the DELETE statement
      * @param  ConnectionInterface $con the connection to use
      * @return int             The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
@@ -350,27 +335,27 @@ class LoaispTableMap extends TableMap
      public static function doDelete($values, ConnectionInterface $con = null)
      {
         if (null === $con) {
-            $con = Propel::getServiceContainer()->getWriteConnection(LoaispTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(DanhmucTableMap::DATABASE_NAME);
         }
 
         if ($values instanceof Criteria) {
             // rename for clarity
             $criteria = $values;
-        } elseif ($values instanceof \Model\Loaisp) { // it's a model object
+        } elseif ($values instanceof \Model\Danhmuc) { // it's a model object
             // create criteria based on pk values
             $criteria = $values->buildPkeyCriteria();
         } else { // it's a primary key, or an array of pks
-            $criteria = new Criteria(LoaispTableMap::DATABASE_NAME);
-            $criteria->add(LoaispTableMap::COL_MALOAISP, (array) $values, Criteria::IN);
+            $criteria = new Criteria(DanhmucTableMap::DATABASE_NAME);
+            $criteria->add(DanhmucTableMap::COL_MADM, (array) $values, Criteria::IN);
         }
 
-        $query = LoaispQuery::create()->mergeWith($criteria);
+        $query = DanhmucQuery::create()->mergeWith($criteria);
 
         if ($values instanceof Criteria) {
-            LoaispTableMap::clearInstancePool();
+            DanhmucTableMap::clearInstancePool();
         } elseif (!is_object($values)) { // it's a primary key, or an array of pks
             foreach ((array) $values as $singleval) {
-                LoaispTableMap::removeInstanceFromPool($singleval);
+                DanhmucTableMap::removeInstanceFromPool($singleval);
             }
         }
 
@@ -378,20 +363,20 @@ class LoaispTableMap extends TableMap
     }
 
     /**
-     * Deletes all rows from the LoaiSP table.
+     * Deletes all rows from the DanhMuc table.
      *
      * @param ConnectionInterface $con the connection to use
      * @return int The number of affected rows (if supported by underlying database driver).
      */
     public static function doDeleteAll(ConnectionInterface $con = null)
     {
-        return LoaispQuery::create()->doDeleteAll($con);
+        return DanhmucQuery::create()->doDeleteAll($con);
     }
 
     /**
-     * Performs an INSERT on the database, given a Loaisp or Criteria object.
+     * Performs an INSERT on the database, given a Danhmuc or Criteria object.
      *
-     * @param mixed               $criteria Criteria or Loaisp object containing data that is used to create the INSERT statement.
+     * @param mixed               $criteria Criteria or Danhmuc object containing data that is used to create the INSERT statement.
      * @param ConnectionInterface $con the ConnectionInterface connection to use
      * @return mixed           The new primary key.
      * @throws PropelException Any exceptions caught during processing will be
@@ -400,22 +385,22 @@ class LoaispTableMap extends TableMap
     public static function doInsert($criteria, ConnectionInterface $con = null)
     {
         if (null === $con) {
-            $con = Propel::getServiceContainer()->getWriteConnection(LoaispTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(DanhmucTableMap::DATABASE_NAME);
         }
 
         if ($criteria instanceof Criteria) {
             $criteria = clone $criteria; // rename for clarity
         } else {
-            $criteria = $criteria->buildCriteria(); // build Criteria from Loaisp object
+            $criteria = $criteria->buildCriteria(); // build Criteria from Danhmuc object
         }
 
-        if ($criteria->containsKey(LoaispTableMap::COL_MALOAISP) && $criteria->keyContainsValue(LoaispTableMap::COL_MALOAISP) ) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key ('.LoaispTableMap::COL_MALOAISP.')');
+        if ($criteria->containsKey(DanhmucTableMap::COL_MADM) && $criteria->keyContainsValue(DanhmucTableMap::COL_MADM) ) {
+            throw new PropelException('Cannot insert a value for auto-increment primary key ('.DanhmucTableMap::COL_MADM.')');
         }
 
 
         // Set the correct dbName
-        $query = LoaispQuery::create()->mergeWith($criteria);
+        $query = DanhmucQuery::create()->mergeWith($criteria);
 
         // use transaction because $criteria could contain info
         // for more than one table (I guess, conceivably)
@@ -424,7 +409,7 @@ class LoaispTableMap extends TableMap
         });
     }
 
-} // LoaispTableMap
+} // DanhmucTableMap
 // This is the static code needed to register the TableMap for this table with the main Propel class.
 //
-LoaispTableMap::buildTableMap();
+DanhmucTableMap::buildTableMap();

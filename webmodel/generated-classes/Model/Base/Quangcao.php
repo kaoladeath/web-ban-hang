@@ -2,7 +2,6 @@
 
 namespace Model\Base;
 
-use \DateTime;
 use \Exception;
 use \PDO;
 use Model\Loaiquangcao as ChildLoaiquangcao;
@@ -20,7 +19,6 @@ use Propel\Runtime\Exception\LogicException;
 use Propel\Runtime\Exception\PropelException;
 use Propel\Runtime\Map\TableMap;
 use Propel\Runtime\Parser\AbstractParser;
-use Propel\Runtime\Util\PropelDateTime;
 
 /**
  * Base class that represents a row from the 'QuangCao' table.
@@ -64,11 +62,18 @@ abstract class Quangcao implements ActiveRecordInterface
     protected $virtualColumns = array();
 
     /**
-     * The value for the maquangcao field.
+     * The value for the maqc field.
      *
      * @var        int
      */
-    protected $maquangcao;
+    protected $maqc;
+
+    /**
+     * The value for the tenqc field.
+     *
+     * @var        string
+     */
+    protected $tenqc;
 
     /**
      * The value for the noidung field.
@@ -78,20 +83,6 @@ abstract class Quangcao implements ActiveRecordInterface
     protected $noidung;
 
     /**
-     * The value for the ngaydang field.
-     *
-     * @var        DateTime
-     */
-    protected $ngaydang;
-
-    /**
-     * The value for the link field.
-     *
-     * @var        string
-     */
-    protected $link;
-
-    /**
      * The value for the hinhanh field.
      *
      * @var        string
@@ -99,11 +90,11 @@ abstract class Quangcao implements ActiveRecordInterface
     protected $hinhanh;
 
     /**
-     * The value for the loaiquangcao_maloaiquangcao field.
+     * The value for the loaiquangcao_malqc field.
      *
      * @var        int
      */
-    protected $loaiquangcao_maloaiquangcao;
+    protected $loaiquangcao_malqc;
 
     /**
      * @var        ChildLoaiquangcao
@@ -344,13 +335,23 @@ abstract class Quangcao implements ActiveRecordInterface
     }
 
     /**
-     * Get the [maquangcao] column value.
+     * Get the [maqc] column value.
      *
      * @return int
      */
-    public function getMaquangcao()
+    public function getMaqc()
     {
-        return $this->maquangcao;
+        return $this->maqc;
+    }
+
+    /**
+     * Get the [tenqc] column value.
+     *
+     * @return string
+     */
+    public function getTenqc()
+    {
+        return $this->tenqc;
     }
 
     /**
@@ -364,36 +365,6 @@ abstract class Quangcao implements ActiveRecordInterface
     }
 
     /**
-     * Get the [optionally formatted] temporal [ngaydang] column value.
-     *
-     *
-     * @param      string $format The date/time format string (either date()-style or strftime()-style).
-     *                            If format is NULL, then the raw DateTime object will be returned.
-     *
-     * @return string|DateTime Formatted date/time value as string or DateTime object (if format is NULL), NULL if column is NULL, and 0 if column value is 0000-00-00 00:00:00
-     *
-     * @throws PropelException - if unable to parse/validate the date/time value.
-     */
-    public function getNgaydang($format = NULL)
-    {
-        if ($format === null) {
-            return $this->ngaydang;
-        } else {
-            return $this->ngaydang instanceof \DateTimeInterface ? $this->ngaydang->format($format) : null;
-        }
-    }
-
-    /**
-     * Get the [link] column value.
-     *
-     * @return string
-     */
-    public function getLink()
-    {
-        return $this->link;
-    }
-
-    /**
      * Get the [hinhanh] column value.
      *
      * @return string
@@ -404,34 +375,54 @@ abstract class Quangcao implements ActiveRecordInterface
     }
 
     /**
-     * Get the [loaiquangcao_maloaiquangcao] column value.
+     * Get the [loaiquangcao_malqc] column value.
      *
      * @return int
      */
-    public function getLoaiquangcaoMaloaiquangcao()
+    public function getLoaiquangcaoMalqc()
     {
-        return $this->loaiquangcao_maloaiquangcao;
+        return $this->loaiquangcao_malqc;
     }
 
     /**
-     * Set the value of [maquangcao] column.
+     * Set the value of [maqc] column.
      *
      * @param int $v new value
      * @return $this|\Model\Quangcao The current object (for fluent API support)
      */
-    public function setMaquangcao($v)
+    public function setMaqc($v)
     {
         if ($v !== null) {
             $v = (int) $v;
         }
 
-        if ($this->maquangcao !== $v) {
-            $this->maquangcao = $v;
-            $this->modifiedColumns[QuangcaoTableMap::COL_MAQUANGCAO] = true;
+        if ($this->maqc !== $v) {
+            $this->maqc = $v;
+            $this->modifiedColumns[QuangcaoTableMap::COL_MAQC] = true;
         }
 
         return $this;
-    } // setMaquangcao()
+    } // setMaqc()
+
+    /**
+     * Set the value of [tenqc] column.
+     *
+     * @param string $v new value
+     * @return $this|\Model\Quangcao The current object (for fluent API support)
+     */
+    public function setTenqc($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->tenqc !== $v) {
+            $this->tenqc = $v;
+            $this->modifiedColumns[QuangcaoTableMap::COL_TENQC] = true;
+        }
+
+        return $this;
+    } // setTenqc()
 
     /**
      * Set the value of [noidung] column.
@@ -454,46 +445,6 @@ abstract class Quangcao implements ActiveRecordInterface
     } // setNoidung()
 
     /**
-     * Sets the value of [ngaydang] column to a normalized version of the date/time value specified.
-     *
-     * @param  mixed $v string, integer (timestamp), or \DateTimeInterface value.
-     *               Empty strings are treated as NULL.
-     * @return $this|\Model\Quangcao The current object (for fluent API support)
-     */
-    public function setNgaydang($v)
-    {
-        $dt = PropelDateTime::newInstance($v, null, 'DateTime');
-        if ($this->ngaydang !== null || $dt !== null) {
-            if ($this->ngaydang === null || $dt === null || $dt->format("Y-m-d H:i:s.u") !== $this->ngaydang->format("Y-m-d H:i:s.u")) {
-                $this->ngaydang = $dt === null ? null : clone $dt;
-                $this->modifiedColumns[QuangcaoTableMap::COL_NGAYDANG] = true;
-            }
-        } // if either are not null
-
-        return $this;
-    } // setNgaydang()
-
-    /**
-     * Set the value of [link] column.
-     *
-     * @param string $v new value
-     * @return $this|\Model\Quangcao The current object (for fluent API support)
-     */
-    public function setLink($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->link !== $v) {
-            $this->link = $v;
-            $this->modifiedColumns[QuangcaoTableMap::COL_LINK] = true;
-        }
-
-        return $this;
-    } // setLink()
-
-    /**
      * Set the value of [hinhanh] column.
      *
      * @param string $v new value
@@ -514,28 +465,28 @@ abstract class Quangcao implements ActiveRecordInterface
     } // setHinhanh()
 
     /**
-     * Set the value of [loaiquangcao_maloaiquangcao] column.
+     * Set the value of [loaiquangcao_malqc] column.
      *
      * @param int $v new value
      * @return $this|\Model\Quangcao The current object (for fluent API support)
      */
-    public function setLoaiquangcaoMaloaiquangcao($v)
+    public function setLoaiquangcaoMalqc($v)
     {
         if ($v !== null) {
             $v = (int) $v;
         }
 
-        if ($this->loaiquangcao_maloaiquangcao !== $v) {
-            $this->loaiquangcao_maloaiquangcao = $v;
-            $this->modifiedColumns[QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO] = true;
+        if ($this->loaiquangcao_malqc !== $v) {
+            $this->loaiquangcao_malqc = $v;
+            $this->modifiedColumns[QuangcaoTableMap::COL_LOAIQUANGCAO_MALQC] = true;
         }
 
-        if ($this->aLoaiquangcao !== null && $this->aLoaiquangcao->getMaloaiquangcao() !== $v) {
+        if ($this->aLoaiquangcao !== null && $this->aLoaiquangcao->getMalqc() !== $v) {
             $this->aLoaiquangcao = null;
         }
 
         return $this;
-    } // setLoaiquangcaoMaloaiquangcao()
+    } // setLoaiquangcaoMalqc()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -573,26 +524,20 @@ abstract class Quangcao implements ActiveRecordInterface
     {
         try {
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : QuangcaoTableMap::translateFieldName('Maquangcao', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->maquangcao = (null !== $col) ? (int) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : QuangcaoTableMap::translateFieldName('Maqc', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->maqc = (null !== $col) ? (int) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : QuangcaoTableMap::translateFieldName('Noidung', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : QuangcaoTableMap::translateFieldName('Tenqc', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->tenqc = (null !== $col) ? (string) $col : null;
+
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : QuangcaoTableMap::translateFieldName('Noidung', TableMap::TYPE_PHPNAME, $indexType)];
             $this->noidung = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : QuangcaoTableMap::translateFieldName('Ngaydang', TableMap::TYPE_PHPNAME, $indexType)];
-            if ($col === '0000-00-00 00:00:00') {
-                $col = null;
-            }
-            $this->ngaydang = (null !== $col) ? PropelDateTime::newInstance($col, null, 'DateTime') : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : QuangcaoTableMap::translateFieldName('Link', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->link = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : QuangcaoTableMap::translateFieldName('Hinhanh', TableMap::TYPE_PHPNAME, $indexType)];
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : QuangcaoTableMap::translateFieldName('Hinhanh', TableMap::TYPE_PHPNAME, $indexType)];
             $this->hinhanh = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : QuangcaoTableMap::translateFieldName('LoaiquangcaoMaloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->loaiquangcao_maloaiquangcao = (null !== $col) ? (int) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : QuangcaoTableMap::translateFieldName('LoaiquangcaoMalqc', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->loaiquangcao_malqc = (null !== $col) ? (int) $col : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -601,7 +546,7 @@ abstract class Quangcao implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 6; // 6 = QuangcaoTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 5; // 5 = QuangcaoTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\Model\\Quangcao'), 0, $e);
@@ -623,7 +568,7 @@ abstract class Quangcao implements ActiveRecordInterface
      */
     public function ensureConsistency()
     {
-        if ($this->aLoaiquangcao !== null && $this->loaiquangcao_maloaiquangcao !== $this->aLoaiquangcao->getMaloaiquangcao()) {
+        if ($this->aLoaiquangcao !== null && $this->loaiquangcao_malqc !== $this->aLoaiquangcao->getMalqc()) {
             $this->aLoaiquangcao = null;
         }
     } // ensureConsistency
@@ -808,29 +753,26 @@ abstract class Quangcao implements ActiveRecordInterface
         $modifiedColumns = array();
         $index = 0;
 
-        $this->modifiedColumns[QuangcaoTableMap::COL_MAQUANGCAO] = true;
-        if (null !== $this->maquangcao) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key (' . QuangcaoTableMap::COL_MAQUANGCAO . ')');
+        $this->modifiedColumns[QuangcaoTableMap::COL_MAQC] = true;
+        if (null !== $this->maqc) {
+            throw new PropelException('Cannot insert a value for auto-increment primary key (' . QuangcaoTableMap::COL_MAQC . ')');
         }
 
          // check the columns in natural order for more readable SQL queries
-        if ($this->isColumnModified(QuangcaoTableMap::COL_MAQUANGCAO)) {
-            $modifiedColumns[':p' . $index++]  = 'MaQuangCao';
+        if ($this->isColumnModified(QuangcaoTableMap::COL_MAQC)) {
+            $modifiedColumns[':p' . $index++]  = 'MaQC';
+        }
+        if ($this->isColumnModified(QuangcaoTableMap::COL_TENQC)) {
+            $modifiedColumns[':p' . $index++]  = 'TenQC';
         }
         if ($this->isColumnModified(QuangcaoTableMap::COL_NOIDUNG)) {
             $modifiedColumns[':p' . $index++]  = 'NoiDung';
         }
-        if ($this->isColumnModified(QuangcaoTableMap::COL_NGAYDANG)) {
-            $modifiedColumns[':p' . $index++]  = 'NgayDang';
-        }
-        if ($this->isColumnModified(QuangcaoTableMap::COL_LINK)) {
-            $modifiedColumns[':p' . $index++]  = 'Link';
-        }
         if ($this->isColumnModified(QuangcaoTableMap::COL_HINHANH)) {
-            $modifiedColumns[':p' . $index++]  = 'HInhAnh';
+            $modifiedColumns[':p' . $index++]  = 'HinhAnh';
         }
-        if ($this->isColumnModified(QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO)) {
-            $modifiedColumns[':p' . $index++]  = 'LoaiQuangCao_MaLoaiQuangCao';
+        if ($this->isColumnModified(QuangcaoTableMap::COL_LOAIQUANGCAO_MALQC)) {
+            $modifiedColumns[':p' . $index++]  = 'LoaiQuangCao_MaLQC';
         }
 
         $sql = sprintf(
@@ -843,23 +785,20 @@ abstract class Quangcao implements ActiveRecordInterface
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case 'MaQuangCao':
-                        $stmt->bindValue($identifier, $this->maquangcao, PDO::PARAM_INT);
+                    case 'MaQC':
+                        $stmt->bindValue($identifier, $this->maqc, PDO::PARAM_INT);
+                        break;
+                    case 'TenQC':
+                        $stmt->bindValue($identifier, $this->tenqc, PDO::PARAM_STR);
                         break;
                     case 'NoiDung':
                         $stmt->bindValue($identifier, $this->noidung, PDO::PARAM_STR);
                         break;
-                    case 'NgayDang':
-                        $stmt->bindValue($identifier, $this->ngaydang ? $this->ngaydang->format("Y-m-d H:i:s.u") : null, PDO::PARAM_STR);
-                        break;
-                    case 'Link':
-                        $stmt->bindValue($identifier, $this->link, PDO::PARAM_STR);
-                        break;
-                    case 'HInhAnh':
+                    case 'HinhAnh':
                         $stmt->bindValue($identifier, $this->hinhanh, PDO::PARAM_STR);
                         break;
-                    case 'LoaiQuangCao_MaLoaiQuangCao':
-                        $stmt->bindValue($identifier, $this->loaiquangcao_maloaiquangcao, PDO::PARAM_INT);
+                    case 'LoaiQuangCao_MaLQC':
+                        $stmt->bindValue($identifier, $this->loaiquangcao_malqc, PDO::PARAM_INT);
                         break;
                 }
             }
@@ -874,7 +813,7 @@ abstract class Quangcao implements ActiveRecordInterface
         } catch (Exception $e) {
             throw new PropelException('Unable to get autoincrement id.', 0, $e);
         }
-        $this->setMaquangcao($pk);
+        $this->setMaqc($pk);
 
         $this->setNew(false);
     }
@@ -924,22 +863,19 @@ abstract class Quangcao implements ActiveRecordInterface
     {
         switch ($pos) {
             case 0:
-                return $this->getMaquangcao();
+                return $this->getMaqc();
                 break;
             case 1:
-                return $this->getNoidung();
+                return $this->getTenqc();
                 break;
             case 2:
-                return $this->getNgaydang();
+                return $this->getNoidung();
                 break;
             case 3:
-                return $this->getLink();
-                break;
-            case 4:
                 return $this->getHinhanh();
                 break;
-            case 5:
-                return $this->getLoaiquangcaoMaloaiquangcao();
+            case 4:
+                return $this->getLoaiquangcaoMalqc();
                 break;
             default:
                 return null;
@@ -971,17 +907,12 @@ abstract class Quangcao implements ActiveRecordInterface
         $alreadyDumpedObjects['Quangcao'][$this->hashCode()] = true;
         $keys = QuangcaoTableMap::getFieldNames($keyType);
         $result = array(
-            $keys[0] => $this->getMaquangcao(),
-            $keys[1] => $this->getNoidung(),
-            $keys[2] => $this->getNgaydang(),
-            $keys[3] => $this->getLink(),
-            $keys[4] => $this->getHinhanh(),
-            $keys[5] => $this->getLoaiquangcaoMaloaiquangcao(),
+            $keys[0] => $this->getMaqc(),
+            $keys[1] => $this->getTenqc(),
+            $keys[2] => $this->getNoidung(),
+            $keys[3] => $this->getHinhanh(),
+            $keys[4] => $this->getLoaiquangcaoMalqc(),
         );
-        if ($result[$keys[2]] instanceof \DateTime) {
-            $result[$keys[2]] = $result[$keys[2]]->format('c');
-        }
-
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
             $result[$key] = $virtualColumn;
@@ -1038,22 +969,19 @@ abstract class Quangcao implements ActiveRecordInterface
     {
         switch ($pos) {
             case 0:
-                $this->setMaquangcao($value);
+                $this->setMaqc($value);
                 break;
             case 1:
-                $this->setNoidung($value);
+                $this->setTenqc($value);
                 break;
             case 2:
-                $this->setNgaydang($value);
+                $this->setNoidung($value);
                 break;
             case 3:
-                $this->setLink($value);
-                break;
-            case 4:
                 $this->setHinhanh($value);
                 break;
-            case 5:
-                $this->setLoaiquangcaoMaloaiquangcao($value);
+            case 4:
+                $this->setLoaiquangcaoMalqc($value);
                 break;
         } // switch()
 
@@ -1082,22 +1010,19 @@ abstract class Quangcao implements ActiveRecordInterface
         $keys = QuangcaoTableMap::getFieldNames($keyType);
 
         if (array_key_exists($keys[0], $arr)) {
-            $this->setMaquangcao($arr[$keys[0]]);
+            $this->setMaqc($arr[$keys[0]]);
         }
         if (array_key_exists($keys[1], $arr)) {
-            $this->setNoidung($arr[$keys[1]]);
+            $this->setTenqc($arr[$keys[1]]);
         }
         if (array_key_exists($keys[2], $arr)) {
-            $this->setNgaydang($arr[$keys[2]]);
+            $this->setNoidung($arr[$keys[2]]);
         }
         if (array_key_exists($keys[3], $arr)) {
-            $this->setLink($arr[$keys[3]]);
+            $this->setHinhanh($arr[$keys[3]]);
         }
         if (array_key_exists($keys[4], $arr)) {
-            $this->setHinhanh($arr[$keys[4]]);
-        }
-        if (array_key_exists($keys[5], $arr)) {
-            $this->setLoaiquangcaoMaloaiquangcao($arr[$keys[5]]);
+            $this->setLoaiquangcaoMalqc($arr[$keys[4]]);
         }
     }
 
@@ -1140,23 +1065,20 @@ abstract class Quangcao implements ActiveRecordInterface
     {
         $criteria = new Criteria(QuangcaoTableMap::DATABASE_NAME);
 
-        if ($this->isColumnModified(QuangcaoTableMap::COL_MAQUANGCAO)) {
-            $criteria->add(QuangcaoTableMap::COL_MAQUANGCAO, $this->maquangcao);
+        if ($this->isColumnModified(QuangcaoTableMap::COL_MAQC)) {
+            $criteria->add(QuangcaoTableMap::COL_MAQC, $this->maqc);
+        }
+        if ($this->isColumnModified(QuangcaoTableMap::COL_TENQC)) {
+            $criteria->add(QuangcaoTableMap::COL_TENQC, $this->tenqc);
         }
         if ($this->isColumnModified(QuangcaoTableMap::COL_NOIDUNG)) {
             $criteria->add(QuangcaoTableMap::COL_NOIDUNG, $this->noidung);
         }
-        if ($this->isColumnModified(QuangcaoTableMap::COL_NGAYDANG)) {
-            $criteria->add(QuangcaoTableMap::COL_NGAYDANG, $this->ngaydang);
-        }
-        if ($this->isColumnModified(QuangcaoTableMap::COL_LINK)) {
-            $criteria->add(QuangcaoTableMap::COL_LINK, $this->link);
-        }
         if ($this->isColumnModified(QuangcaoTableMap::COL_HINHANH)) {
             $criteria->add(QuangcaoTableMap::COL_HINHANH, $this->hinhanh);
         }
-        if ($this->isColumnModified(QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO)) {
-            $criteria->add(QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO, $this->loaiquangcao_maloaiquangcao);
+        if ($this->isColumnModified(QuangcaoTableMap::COL_LOAIQUANGCAO_MALQC)) {
+            $criteria->add(QuangcaoTableMap::COL_LOAIQUANGCAO_MALQC, $this->loaiquangcao_malqc);
         }
 
         return $criteria;
@@ -1175,8 +1097,7 @@ abstract class Quangcao implements ActiveRecordInterface
     public function buildPkeyCriteria()
     {
         $criteria = ChildQuangcaoQuery::create();
-        $criteria->add(QuangcaoTableMap::COL_MAQUANGCAO, $this->maquangcao);
-        $criteria->add(QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO, $this->loaiquangcao_maloaiquangcao);
+        $criteria->add(QuangcaoTableMap::COL_MAQC, $this->maqc);
 
         return $criteria;
     }
@@ -1189,18 +1110,10 @@ abstract class Quangcao implements ActiveRecordInterface
      */
     public function hashCode()
     {
-        $validPk = null !== $this->getMaquangcao() &&
-            null !== $this->getLoaiquangcaoMaloaiquangcao();
+        $validPk = null !== $this->getMaqc();
 
-        $validPrimaryKeyFKs = 1;
+        $validPrimaryKeyFKs = 0;
         $primaryKeyFKs = [];
-
-        //relation fk_QuangCao_LoaiQuangCao1 to table LoaiQuangCao
-        if ($this->aLoaiquangcao && $hash = spl_object_hash($this->aLoaiquangcao)) {
-            $primaryKeyFKs[] = $hash;
-        } else {
-            $validPrimaryKeyFKs = false;
-        }
 
         if ($validPk) {
             return crc32(json_encode($this->getPrimaryKey(), JSON_UNESCAPED_UNICODE));
@@ -1212,29 +1125,23 @@ abstract class Quangcao implements ActiveRecordInterface
     }
 
     /**
-     * Returns the composite primary key for this object.
-     * The array elements will be in same order as specified in XML.
-     * @return array
+     * Returns the primary key for this object (row).
+     * @return int
      */
     public function getPrimaryKey()
     {
-        $pks = array();
-        $pks[0] = $this->getMaquangcao();
-        $pks[1] = $this->getLoaiquangcaoMaloaiquangcao();
-
-        return $pks;
+        return $this->getMaqc();
     }
 
     /**
-     * Set the [composite] primary key.
+     * Generic method to set the primary key (maqc column).
      *
-     * @param      array $keys The elements of the composite key (order must match the order in XML file).
+     * @param       int $key Primary key.
      * @return void
      */
-    public function setPrimaryKey($keys)
+    public function setPrimaryKey($key)
     {
-        $this->setMaquangcao($keys[0]);
-        $this->setLoaiquangcaoMaloaiquangcao($keys[1]);
+        $this->setMaqc($key);
     }
 
     /**
@@ -1243,7 +1150,7 @@ abstract class Quangcao implements ActiveRecordInterface
      */
     public function isPrimaryKeyNull()
     {
-        return (null === $this->getMaquangcao()) && (null === $this->getLoaiquangcaoMaloaiquangcao());
+        return null === $this->getMaqc();
     }
 
     /**
@@ -1259,14 +1166,13 @@ abstract class Quangcao implements ActiveRecordInterface
      */
     public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
     {
+        $copyObj->setTenqc($this->getTenqc());
         $copyObj->setNoidung($this->getNoidung());
-        $copyObj->setNgaydang($this->getNgaydang());
-        $copyObj->setLink($this->getLink());
         $copyObj->setHinhanh($this->getHinhanh());
-        $copyObj->setLoaiquangcaoMaloaiquangcao($this->getLoaiquangcaoMaloaiquangcao());
+        $copyObj->setLoaiquangcaoMalqc($this->getLoaiquangcaoMalqc());
         if ($makeNew) {
             $copyObj->setNew(true);
-            $copyObj->setMaquangcao(NULL); // this is a auto-increment column, so set to default value
+            $copyObj->setMaqc(NULL); // this is a auto-increment column, so set to default value
         }
     }
 
@@ -1302,9 +1208,9 @@ abstract class Quangcao implements ActiveRecordInterface
     public function setLoaiquangcao(ChildLoaiquangcao $v = null)
     {
         if ($v === null) {
-            $this->setLoaiquangcaoMaloaiquangcao(NULL);
+            $this->setLoaiquangcaoMalqc(NULL);
         } else {
-            $this->setLoaiquangcaoMaloaiquangcao($v->getMaloaiquangcao());
+            $this->setLoaiquangcaoMalqc($v->getMalqc());
         }
 
         $this->aLoaiquangcao = $v;
@@ -1329,8 +1235,8 @@ abstract class Quangcao implements ActiveRecordInterface
      */
     public function getLoaiquangcao(ConnectionInterface $con = null)
     {
-        if ($this->aLoaiquangcao === null && ($this->loaiquangcao_maloaiquangcao !== null)) {
-            $this->aLoaiquangcao = ChildLoaiquangcaoQuery::create()->findPk($this->loaiquangcao_maloaiquangcao, $con);
+        if ($this->aLoaiquangcao === null && ($this->loaiquangcao_malqc !== null)) {
+            $this->aLoaiquangcao = ChildLoaiquangcaoQuery::create()->findPk($this->loaiquangcao_malqc, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
                 to this object.  This level of coupling may, however, be
@@ -1353,12 +1259,11 @@ abstract class Quangcao implements ActiveRecordInterface
         if (null !== $this->aLoaiquangcao) {
             $this->aLoaiquangcao->removeQuangcao($this);
         }
-        $this->maquangcao = null;
+        $this->maqc = null;
+        $this->tenqc = null;
         $this->noidung = null;
-        $this->ngaydang = null;
-        $this->link = null;
         $this->hinhanh = null;
-        $this->loaiquangcao_maloaiquangcao = null;
+        $this->loaiquangcao_malqc = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->resetModified();

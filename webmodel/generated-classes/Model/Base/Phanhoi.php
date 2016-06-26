@@ -81,6 +81,13 @@ abstract class Phanhoi implements ActiveRecordInterface
     protected $email;
 
     /**
+     * The value for the noidung field.
+     *
+     * @var        string
+     */
+    protected $noidung;
+
+    /**
      * Flag to prevent endless save loop, if this object is referenced
      * by another object which falls in this transaction.
      *
@@ -344,6 +351,16 @@ abstract class Phanhoi implements ActiveRecordInterface
     }
 
     /**
+     * Get the [noidung] column value.
+     *
+     * @return string
+     */
+    public function getNoidung()
+    {
+        return $this->noidung;
+    }
+
+    /**
      * Set the value of [maph] column.
      *
      * @param int $v new value
@@ -404,6 +421,26 @@ abstract class Phanhoi implements ActiveRecordInterface
     } // setEmail()
 
     /**
+     * Set the value of [noidung] column.
+     *
+     * @param string $v new value
+     * @return $this|\Model\Phanhoi The current object (for fluent API support)
+     */
+    public function setNoidung($v)
+    {
+        if ($v !== null) {
+            $v = (string) $v;
+        }
+
+        if ($this->noidung !== $v) {
+            $this->noidung = $v;
+            $this->modifiedColumns[PhanhoiTableMap::COL_NOIDUNG] = true;
+        }
+
+        return $this;
+    } // setNoidung()
+
+    /**
      * Indicates whether the columns in this object are only set to default values.
      *
      * This method can be used in conjunction with isModified() to indicate whether an object is both
@@ -447,6 +484,9 @@ abstract class Phanhoi implements ActiveRecordInterface
 
             $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : PhanhoiTableMap::translateFieldName('Email', TableMap::TYPE_PHPNAME, $indexType)];
             $this->email = (null !== $col) ? (string) $col : null;
+
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : PhanhoiTableMap::translateFieldName('Noidung', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->noidung = (null !== $col) ? (string) $col : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -455,7 +495,7 @@ abstract class Phanhoi implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 3; // 3 = PhanhoiTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 4; // 4 = PhanhoiTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\Model\\Phanhoi'), 0, $e);
@@ -661,6 +701,9 @@ abstract class Phanhoi implements ActiveRecordInterface
         if ($this->isColumnModified(PhanhoiTableMap::COL_EMAIL)) {
             $modifiedColumns[':p' . $index++]  = 'Email';
         }
+        if ($this->isColumnModified(PhanhoiTableMap::COL_NOIDUNG)) {
+            $modifiedColumns[':p' . $index++]  = 'NoiDung';
+        }
 
         $sql = sprintf(
             'INSERT INTO PhanHoi (%s) VALUES (%s)',
@@ -680,6 +723,9 @@ abstract class Phanhoi implements ActiveRecordInterface
                         break;
                     case 'Email':
                         $stmt->bindValue($identifier, $this->email, PDO::PARAM_STR);
+                        break;
+                    case 'NoiDung':
+                        $stmt->bindValue($identifier, $this->noidung, PDO::PARAM_STR);
                         break;
                 }
             }
@@ -752,6 +798,9 @@ abstract class Phanhoi implements ActiveRecordInterface
             case 2:
                 return $this->getEmail();
                 break;
+            case 3:
+                return $this->getNoidung();
+                break;
             default:
                 return null;
                 break;
@@ -784,6 +833,7 @@ abstract class Phanhoi implements ActiveRecordInterface
             $keys[0] => $this->getMaph(),
             $keys[1] => $this->getTennguoiph(),
             $keys[2] => $this->getEmail(),
+            $keys[3] => $this->getNoidung(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -832,6 +882,9 @@ abstract class Phanhoi implements ActiveRecordInterface
             case 2:
                 $this->setEmail($value);
                 break;
+            case 3:
+                $this->setNoidung($value);
+                break;
         } // switch()
 
         return $this;
@@ -866,6 +919,9 @@ abstract class Phanhoi implements ActiveRecordInterface
         }
         if (array_key_exists($keys[2], $arr)) {
             $this->setEmail($arr[$keys[2]]);
+        }
+        if (array_key_exists($keys[3], $arr)) {
+            $this->setNoidung($arr[$keys[3]]);
         }
     }
 
@@ -916,6 +972,9 @@ abstract class Phanhoi implements ActiveRecordInterface
         }
         if ($this->isColumnModified(PhanhoiTableMap::COL_EMAIL)) {
             $criteria->add(PhanhoiTableMap::COL_EMAIL, $this->email);
+        }
+        if ($this->isColumnModified(PhanhoiTableMap::COL_NOIDUNG)) {
+            $criteria->add(PhanhoiTableMap::COL_NOIDUNG, $this->noidung);
         }
 
         return $criteria;
@@ -1005,6 +1064,7 @@ abstract class Phanhoi implements ActiveRecordInterface
     {
         $copyObj->setTennguoiph($this->getTennguoiph());
         $copyObj->setEmail($this->getEmail());
+        $copyObj->setNoidung($this->getNoidung());
         if ($makeNew) {
             $copyObj->setNew(true);
             $copyObj->setMaph(NULL); // this is a auto-increment column, so set to default value
@@ -1043,6 +1103,7 @@ abstract class Phanhoi implements ActiveRecordInterface
         $this->maph = null;
         $this->tennguoiph = null;
         $this->email = null;
+        $this->noidung = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->resetModified();

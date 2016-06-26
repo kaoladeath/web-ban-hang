@@ -4,20 +4,15 @@ namespace Model\Base;
 
 use \Exception;
 use \PDO;
-use Model\Ctpdh as ChildCtpdh;
-use Model\CtpdhQuery as ChildCtpdhQuery;
-use Model\Loaisp as ChildLoaisp;
-use Model\LoaispQuery as ChildLoaispQuery;
-use Model\Sanpham as ChildSanpham;
-use Model\SanphamQuery as ChildSanphamQuery;
-use Model\Map\CtpdhTableMap;
-use Model\Map\SanphamTableMap;
+use Model\PhuongXaQuery as ChildPhuongXaQuery;
+use Model\QuanHuyen as ChildQuanHuyen;
+use Model\QuanHuyenQuery as ChildQuanHuyenQuery;
+use Model\Map\PhuongXaTableMap;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\ModelCriteria;
 use Propel\Runtime\ActiveRecord\ActiveRecordInterface;
 use Propel\Runtime\Collection\Collection;
-use Propel\Runtime\Collection\ObjectCollection;
 use Propel\Runtime\Connection\ConnectionInterface;
 use Propel\Runtime\Exception\BadMethodCallException;
 use Propel\Runtime\Exception\LogicException;
@@ -26,18 +21,18 @@ use Propel\Runtime\Map\TableMap;
 use Propel\Runtime\Parser\AbstractParser;
 
 /**
- * Base class that represents a row from the 'Sanpham' table.
+ * Base class that represents a row from the 'Phuong_Xa' table.
  *
  *
  *
  * @package    propel.generator.Model.Base
  */
-abstract class Sanpham implements ActiveRecordInterface
+abstract class PhuongXa implements ActiveRecordInterface
 {
     /**
      * TableMap class name
      */
-    const TABLE_MAP = '\\Model\\Map\\SanphamTableMap';
+    const TABLE_MAP = '\\Model\\Map\\PhuongXaTableMap';
 
 
     /**
@@ -67,78 +62,30 @@ abstract class Sanpham implements ActiveRecordInterface
     protected $virtualColumns = array();
 
     /**
-     * The value for the masanpham field.
+     * The value for the map_x field.
      *
      * @var        int
      */
-    protected $masanpham;
+    protected $map_x;
 
     /**
-     * The value for the tensanpham field.
+     * The value for the tenp_x field.
      *
      * @var        string
      */
-    protected $tensanpham;
+    protected $tenp_x;
 
     /**
-     * The value for the hinhanh field.
-     *
-     * @var        string
-     */
-    protected $hinhanh;
-
-    /**
-     * The value for the giasp field.
-     *
-     * @var        string
-     */
-    protected $giasp;
-
-    /**
-     * The value for the donvitinh field.
-     *
-     * @var        string
-     */
-    protected $donvitinh;
-
-    /**
-     * The value for the thongtin field.
-     *
-     * @var        string
-     */
-    protected $thongtin;
-
-    /**
-     * The value for the loaisp_maloaisp field.
+     * The value for the quan_huyen_maquan_huyen field.
      *
      * @var        int
      */
-    protected $loaisp_maloaisp;
+    protected $quan_huyen_maquan_huyen;
 
     /**
-     * The value for the gianhap field.
-     *
-     * @var        string
+     * @var        ChildQuanHuyen
      */
-    protected $gianhap;
-
-    /**
-     * The value for the luotxem field.
-     *
-     * @var        int
-     */
-    protected $luotxem;
-
-    /**
-     * @var        ChildLoaisp
-     */
-    protected $aLoaisp;
-
-    /**
-     * @var        ObjectCollection|ChildCtpdh[] Collection to store aggregation of ChildCtpdh objects.
-     */
-    protected $collCtpdhs;
-    protected $collCtpdhsPartial;
+    protected $aQuanHuyen;
 
     /**
      * Flag to prevent endless save loop, if this object is referenced
@@ -149,13 +96,7 @@ abstract class Sanpham implements ActiveRecordInterface
     protected $alreadyInSave = false;
 
     /**
-     * An array of objects scheduled for deletion.
-     * @var ObjectCollection|ChildCtpdh[]
-     */
-    protected $ctpdhsScheduledForDeletion = null;
-
-    /**
-     * Initializes internal state of Model\Base\Sanpham object.
+     * Initializes internal state of Model\Base\PhuongXa object.
      */
     public function __construct()
     {
@@ -250,9 +191,9 @@ abstract class Sanpham implements ActiveRecordInterface
     }
 
     /**
-     * Compares this with another <code>Sanpham</code> instance.  If
-     * <code>obj</code> is an instance of <code>Sanpham</code>, delegates to
-     * <code>equals(Sanpham)</code>.  Otherwise, returns <code>false</code>.
+     * Compares this with another <code>PhuongXa</code> instance.  If
+     * <code>obj</code> is an instance of <code>PhuongXa</code>, delegates to
+     * <code>equals(PhuongXa)</code>.  Otherwise, returns <code>false</code>.
      *
      * @param  mixed   $obj The object to compare to.
      * @return boolean Whether equal to the object specified.
@@ -318,7 +259,7 @@ abstract class Sanpham implements ActiveRecordInterface
      * @param string $name  The virtual column name
      * @param mixed  $value The value to give to the virtual column
      *
-     * @return $this|Sanpham The current object, for fluid interface
+     * @return $this|PhuongXa The current object, for fluid interface
      */
     public function setVirtualColumn($name, $value)
     {
@@ -380,278 +321,98 @@ abstract class Sanpham implements ActiveRecordInterface
     }
 
     /**
-     * Get the [masanpham] column value.
+     * Get the [map_x] column value.
      *
      * @return int
      */
-    public function getMasanpham()
+    public function getMapX()
     {
-        return $this->masanpham;
+        return $this->map_x;
     }
 
     /**
-     * Get the [tensanpham] column value.
+     * Get the [tenp_x] column value.
      *
      * @return string
      */
-    public function getTensanpham()
+    public function getTenpX()
     {
-        return $this->tensanpham;
+        return $this->tenp_x;
     }
 
     /**
-     * Get the [hinhanh] column value.
-     *
-     * @return string
-     */
-    public function getHinhanh()
-    {
-        return $this->hinhanh;
-    }
-
-    /**
-     * Get the [giasp] column value.
-     *
-     * @return string
-     */
-    public function getGiasp()
-    {
-        return $this->giasp;
-    }
-
-    /**
-     * Get the [donvitinh] column value.
-     *
-     * @return string
-     */
-    public function getDonvitinh()
-    {
-        return $this->donvitinh;
-    }
-
-    /**
-     * Get the [thongtin] column value.
-     *
-     * @return string
-     */
-    public function getThongtin()
-    {
-        return $this->thongtin;
-    }
-
-    /**
-     * Get the [loaisp_maloaisp] column value.
+     * Get the [quan_huyen_maquan_huyen] column value.
      *
      * @return int
      */
-    public function getLoaispMaloaisp()
+    public function getQuanHuyenMaquanHuyen()
     {
-        return $this->loaisp_maloaisp;
+        return $this->quan_huyen_maquan_huyen;
     }
 
     /**
-     * Get the [gianhap] column value.
-     *
-     * @return string
-     */
-    public function getGianhap()
-    {
-        return $this->gianhap;
-    }
-
-    /**
-     * Get the [luotxem] column value.
-     *
-     * @return int
-     */
-    public function getLuotxem()
-    {
-        return $this->luotxem;
-    }
-
-    /**
-     * Set the value of [masanpham] column.
+     * Set the value of [map_x] column.
      *
      * @param int $v new value
-     * @return $this|\Model\Sanpham The current object (for fluent API support)
+     * @return $this|\Model\PhuongXa The current object (for fluent API support)
      */
-    public function setMasanpham($v)
+    public function setMapX($v)
     {
         if ($v !== null) {
             $v = (int) $v;
         }
 
-        if ($this->masanpham !== $v) {
-            $this->masanpham = $v;
-            $this->modifiedColumns[SanphamTableMap::COL_MASANPHAM] = true;
+        if ($this->map_x !== $v) {
+            $this->map_x = $v;
+            $this->modifiedColumns[PhuongXaTableMap::COL_MAP_X] = true;
         }
 
         return $this;
-    } // setMasanpham()
+    } // setMapX()
 
     /**
-     * Set the value of [tensanpham] column.
+     * Set the value of [tenp_x] column.
      *
      * @param string $v new value
-     * @return $this|\Model\Sanpham The current object (for fluent API support)
+     * @return $this|\Model\PhuongXa The current object (for fluent API support)
      */
-    public function setTensanpham($v)
+    public function setTenpX($v)
     {
         if ($v !== null) {
             $v = (string) $v;
         }
 
-        if ($this->tensanpham !== $v) {
-            $this->tensanpham = $v;
-            $this->modifiedColumns[SanphamTableMap::COL_TENSANPHAM] = true;
+        if ($this->tenp_x !== $v) {
+            $this->tenp_x = $v;
+            $this->modifiedColumns[PhuongXaTableMap::COL_TENP_X] = true;
         }
 
         return $this;
-    } // setTensanpham()
+    } // setTenpX()
 
     /**
-     * Set the value of [hinhanh] column.
-     *
-     * @param string $v new value
-     * @return $this|\Model\Sanpham The current object (for fluent API support)
-     */
-    public function setHinhanh($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->hinhanh !== $v) {
-            $this->hinhanh = $v;
-            $this->modifiedColumns[SanphamTableMap::COL_HINHANH] = true;
-        }
-
-        return $this;
-    } // setHinhanh()
-
-    /**
-     * Set the value of [giasp] column.
-     *
-     * @param string $v new value
-     * @return $this|\Model\Sanpham The current object (for fluent API support)
-     */
-    public function setGiasp($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->giasp !== $v) {
-            $this->giasp = $v;
-            $this->modifiedColumns[SanphamTableMap::COL_GIASP] = true;
-        }
-
-        return $this;
-    } // setGiasp()
-
-    /**
-     * Set the value of [donvitinh] column.
-     *
-     * @param string $v new value
-     * @return $this|\Model\Sanpham The current object (for fluent API support)
-     */
-    public function setDonvitinh($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->donvitinh !== $v) {
-            $this->donvitinh = $v;
-            $this->modifiedColumns[SanphamTableMap::COL_DONVITINH] = true;
-        }
-
-        return $this;
-    } // setDonvitinh()
-
-    /**
-     * Set the value of [thongtin] column.
-     *
-     * @param string $v new value
-     * @return $this|\Model\Sanpham The current object (for fluent API support)
-     */
-    public function setThongtin($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->thongtin !== $v) {
-            $this->thongtin = $v;
-            $this->modifiedColumns[SanphamTableMap::COL_THONGTIN] = true;
-        }
-
-        return $this;
-    } // setThongtin()
-
-    /**
-     * Set the value of [loaisp_maloaisp] column.
+     * Set the value of [quan_huyen_maquan_huyen] column.
      *
      * @param int $v new value
-     * @return $this|\Model\Sanpham The current object (for fluent API support)
+     * @return $this|\Model\PhuongXa The current object (for fluent API support)
      */
-    public function setLoaispMaloaisp($v)
+    public function setQuanHuyenMaquanHuyen($v)
     {
         if ($v !== null) {
             $v = (int) $v;
         }
 
-        if ($this->loaisp_maloaisp !== $v) {
-            $this->loaisp_maloaisp = $v;
-            $this->modifiedColumns[SanphamTableMap::COL_LOAISP_MALOAISP] = true;
+        if ($this->quan_huyen_maquan_huyen !== $v) {
+            $this->quan_huyen_maquan_huyen = $v;
+            $this->modifiedColumns[PhuongXaTableMap::COL_QUAN_HUYEN_MAQUAN_HUYEN] = true;
         }
 
-        if ($this->aLoaisp !== null && $this->aLoaisp->getMaloaisp() !== $v) {
-            $this->aLoaisp = null;
-        }
-
-        return $this;
-    } // setLoaispMaloaisp()
-
-    /**
-     * Set the value of [gianhap] column.
-     *
-     * @param string $v new value
-     * @return $this|\Model\Sanpham The current object (for fluent API support)
-     */
-    public function setGianhap($v)
-    {
-        if ($v !== null) {
-            $v = (string) $v;
-        }
-
-        if ($this->gianhap !== $v) {
-            $this->gianhap = $v;
-            $this->modifiedColumns[SanphamTableMap::COL_GIANHAP] = true;
+        if ($this->aQuanHuyen !== null && $this->aQuanHuyen->getMaquanHuyen() !== $v) {
+            $this->aQuanHuyen = null;
         }
 
         return $this;
-    } // setGianhap()
-
-    /**
-     * Set the value of [luotxem] column.
-     *
-     * @param int $v new value
-     * @return $this|\Model\Sanpham The current object (for fluent API support)
-     */
-    public function setLuotxem($v)
-    {
-        if ($v !== null) {
-            $v = (int) $v;
-        }
-
-        if ($this->luotxem !== $v) {
-            $this->luotxem = $v;
-            $this->modifiedColumns[SanphamTableMap::COL_LUOTXEM] = true;
-        }
-
-        return $this;
-    } // setLuotxem()
+    } // setQuanHuyenMaquanHuyen()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -689,32 +450,14 @@ abstract class Sanpham implements ActiveRecordInterface
     {
         try {
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : SanphamTableMap::translateFieldName('Masanpham', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->masanpham = (null !== $col) ? (int) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 0 + $startcol : PhuongXaTableMap::translateFieldName('MapX', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->map_x = (null !== $col) ? (int) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : SanphamTableMap::translateFieldName('Tensanpham', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->tensanpham = (null !== $col) ? (string) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : PhuongXaTableMap::translateFieldName('TenpX', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->tenp_x = (null !== $col) ? (string) $col : null;
 
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : SanphamTableMap::translateFieldName('Hinhanh', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->hinhanh = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 3 + $startcol : SanphamTableMap::translateFieldName('Giasp', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->giasp = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 4 + $startcol : SanphamTableMap::translateFieldName('Donvitinh', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->donvitinh = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 5 + $startcol : SanphamTableMap::translateFieldName('Thongtin', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->thongtin = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 6 + $startcol : SanphamTableMap::translateFieldName('LoaispMaloaisp', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->loaisp_maloaisp = (null !== $col) ? (int) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 7 + $startcol : SanphamTableMap::translateFieldName('Gianhap', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->gianhap = (null !== $col) ? (string) $col : null;
-
-            $col = $row[TableMap::TYPE_NUM == $indexType ? 8 + $startcol : SanphamTableMap::translateFieldName('Luotxem', TableMap::TYPE_PHPNAME, $indexType)];
-            $this->luotxem = (null !== $col) ? (int) $col : null;
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : PhuongXaTableMap::translateFieldName('QuanHuyenMaquanHuyen', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->quan_huyen_maquan_huyen = (null !== $col) ? (int) $col : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -723,10 +466,10 @@ abstract class Sanpham implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 9; // 9 = SanphamTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 3; // 3 = PhuongXaTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
-            throw new PropelException(sprintf('Error populating %s object', '\\Model\\Sanpham'), 0, $e);
+            throw new PropelException(sprintf('Error populating %s object', '\\Model\\PhuongXa'), 0, $e);
         }
     }
 
@@ -745,8 +488,8 @@ abstract class Sanpham implements ActiveRecordInterface
      */
     public function ensureConsistency()
     {
-        if ($this->aLoaisp !== null && $this->loaisp_maloaisp !== $this->aLoaisp->getMaloaisp()) {
-            $this->aLoaisp = null;
+        if ($this->aQuanHuyen !== null && $this->quan_huyen_maquan_huyen !== $this->aQuanHuyen->getMaquanHuyen()) {
+            $this->aQuanHuyen = null;
         }
     } // ensureConsistency
 
@@ -771,13 +514,13 @@ abstract class Sanpham implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getReadConnection(SanphamTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getReadConnection(PhuongXaTableMap::DATABASE_NAME);
         }
 
         // We don't need to alter the object instance pool; we're just modifying this instance
         // already in the pool.
 
-        $dataFetcher = ChildSanphamQuery::create(null, $this->buildPkeyCriteria())->setFormatter(ModelCriteria::FORMAT_STATEMENT)->find($con);
+        $dataFetcher = ChildPhuongXaQuery::create(null, $this->buildPkeyCriteria())->setFormatter(ModelCriteria::FORMAT_STATEMENT)->find($con);
         $row = $dataFetcher->fetch();
         $dataFetcher->close();
         if (!$row) {
@@ -787,9 +530,7 @@ abstract class Sanpham implements ActiveRecordInterface
 
         if ($deep) {  // also de-associate any related objects?
 
-            $this->aLoaisp = null;
-            $this->collCtpdhs = null;
-
+            $this->aQuanHuyen = null;
         } // if (deep)
     }
 
@@ -799,8 +540,8 @@ abstract class Sanpham implements ActiveRecordInterface
      * @param      ConnectionInterface $con
      * @return void
      * @throws PropelException
-     * @see Sanpham::setDeleted()
-     * @see Sanpham::isDeleted()
+     * @see PhuongXa::setDeleted()
+     * @see PhuongXa::isDeleted()
      */
     public function delete(ConnectionInterface $con = null)
     {
@@ -809,11 +550,11 @@ abstract class Sanpham implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getWriteConnection(SanphamTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(PhuongXaTableMap::DATABASE_NAME);
         }
 
         $con->transaction(function () use ($con) {
-            $deleteQuery = ChildSanphamQuery::create()
+            $deleteQuery = ChildPhuongXaQuery::create()
                 ->filterByPrimaryKey($this->getPrimaryKey());
             $ret = $this->preDelete($con);
             if ($ret) {
@@ -844,7 +585,7 @@ abstract class Sanpham implements ActiveRecordInterface
         }
 
         if ($con === null) {
-            $con = Propel::getServiceContainer()->getWriteConnection(SanphamTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(PhuongXaTableMap::DATABASE_NAME);
         }
 
         return $con->transaction(function () use ($con) {
@@ -863,7 +604,7 @@ abstract class Sanpham implements ActiveRecordInterface
                     $this->postUpdate($con);
                 }
                 $this->postSave($con);
-                SanphamTableMap::addInstanceToPool($this);
+                PhuongXaTableMap::addInstanceToPool($this);
             } else {
                 $affectedRows = 0;
             }
@@ -894,11 +635,11 @@ abstract class Sanpham implements ActiveRecordInterface
             // method.  This object relates to these object(s) by a
             // foreign key reference.
 
-            if ($this->aLoaisp !== null) {
-                if ($this->aLoaisp->isModified() || $this->aLoaisp->isNew()) {
-                    $affectedRows += $this->aLoaisp->save($con);
+            if ($this->aQuanHuyen !== null) {
+                if ($this->aQuanHuyen->isModified() || $this->aQuanHuyen->isNew()) {
+                    $affectedRows += $this->aQuanHuyen->save($con);
                 }
-                $this->setLoaisp($this->aLoaisp);
+                $this->setQuanHuyen($this->aQuanHuyen);
             }
 
             if ($this->isNew() || $this->isModified()) {
@@ -910,23 +651,6 @@ abstract class Sanpham implements ActiveRecordInterface
                     $affectedRows += $this->doUpdate($con);
                 }
                 $this->resetModified();
-            }
-
-            if ($this->ctpdhsScheduledForDeletion !== null) {
-                if (!$this->ctpdhsScheduledForDeletion->isEmpty()) {
-                    \Model\CtpdhQuery::create()
-                        ->filterByPrimaryKeys($this->ctpdhsScheduledForDeletion->getPrimaryKeys(false))
-                        ->delete($con);
-                    $this->ctpdhsScheduledForDeletion = null;
-                }
-            }
-
-            if ($this->collCtpdhs !== null) {
-                foreach ($this->collCtpdhs as $referrerFK) {
-                    if (!$referrerFK->isDeleted() && ($referrerFK->isNew() || $referrerFK->isModified())) {
-                        $affectedRows += $referrerFK->save($con);
-                    }
-                }
             }
 
             $this->alreadyInSave = false;
@@ -949,42 +673,24 @@ abstract class Sanpham implements ActiveRecordInterface
         $modifiedColumns = array();
         $index = 0;
 
-        $this->modifiedColumns[SanphamTableMap::COL_MASANPHAM] = true;
-        if (null !== $this->masanpham) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key (' . SanphamTableMap::COL_MASANPHAM . ')');
+        $this->modifiedColumns[PhuongXaTableMap::COL_MAP_X] = true;
+        if (null !== $this->map_x) {
+            throw new PropelException('Cannot insert a value for auto-increment primary key (' . PhuongXaTableMap::COL_MAP_X . ')');
         }
 
          // check the columns in natural order for more readable SQL queries
-        if ($this->isColumnModified(SanphamTableMap::COL_MASANPHAM)) {
-            $modifiedColumns[':p' . $index++]  = 'MaSanpham';
+        if ($this->isColumnModified(PhuongXaTableMap::COL_MAP_X)) {
+            $modifiedColumns[':p' . $index++]  = 'MaP_X';
         }
-        if ($this->isColumnModified(SanphamTableMap::COL_TENSANPHAM)) {
-            $modifiedColumns[':p' . $index++]  = 'TenSanpham';
+        if ($this->isColumnModified(PhuongXaTableMap::COL_TENP_X)) {
+            $modifiedColumns[':p' . $index++]  = 'TenP_X';
         }
-        if ($this->isColumnModified(SanphamTableMap::COL_HINHANH)) {
-            $modifiedColumns[':p' . $index++]  = 'HInhAnh';
-        }
-        if ($this->isColumnModified(SanphamTableMap::COL_GIASP)) {
-            $modifiedColumns[':p' . $index++]  = 'GiaSP';
-        }
-        if ($this->isColumnModified(SanphamTableMap::COL_DONVITINH)) {
-            $modifiedColumns[':p' . $index++]  = 'DonViTinh';
-        }
-        if ($this->isColumnModified(SanphamTableMap::COL_THONGTIN)) {
-            $modifiedColumns[':p' . $index++]  = 'ThongTin';
-        }
-        if ($this->isColumnModified(SanphamTableMap::COL_LOAISP_MALOAISP)) {
-            $modifiedColumns[':p' . $index++]  = 'LoaiSP_MaLoaiSP';
-        }
-        if ($this->isColumnModified(SanphamTableMap::COL_GIANHAP)) {
-            $modifiedColumns[':p' . $index++]  = 'GiaNhap';
-        }
-        if ($this->isColumnModified(SanphamTableMap::COL_LUOTXEM)) {
-            $modifiedColumns[':p' . $index++]  = 'LuotXem';
+        if ($this->isColumnModified(PhuongXaTableMap::COL_QUAN_HUYEN_MAQUAN_HUYEN)) {
+            $modifiedColumns[':p' . $index++]  = 'Quan_Huyen_MaQuan_Huyen';
         }
 
         $sql = sprintf(
-            'INSERT INTO Sanpham (%s) VALUES (%s)',
+            'INSERT INTO Phuong_Xa (%s) VALUES (%s)',
             implode(', ', $modifiedColumns),
             implode(', ', array_keys($modifiedColumns))
         );
@@ -993,32 +699,14 @@ abstract class Sanpham implements ActiveRecordInterface
             $stmt = $con->prepare($sql);
             foreach ($modifiedColumns as $identifier => $columnName) {
                 switch ($columnName) {
-                    case 'MaSanpham':
-                        $stmt->bindValue($identifier, $this->masanpham, PDO::PARAM_INT);
+                    case 'MaP_X':
+                        $stmt->bindValue($identifier, $this->map_x, PDO::PARAM_INT);
                         break;
-                    case 'TenSanpham':
-                        $stmt->bindValue($identifier, $this->tensanpham, PDO::PARAM_STR);
+                    case 'TenP_X':
+                        $stmt->bindValue($identifier, $this->tenp_x, PDO::PARAM_STR);
                         break;
-                    case 'HInhAnh':
-                        $stmt->bindValue($identifier, $this->hinhanh, PDO::PARAM_STR);
-                        break;
-                    case 'GiaSP':
-                        $stmt->bindValue($identifier, $this->giasp, PDO::PARAM_STR);
-                        break;
-                    case 'DonViTinh':
-                        $stmt->bindValue($identifier, $this->donvitinh, PDO::PARAM_STR);
-                        break;
-                    case 'ThongTin':
-                        $stmt->bindValue($identifier, $this->thongtin, PDO::PARAM_STR);
-                        break;
-                    case 'LoaiSP_MaLoaiSP':
-                        $stmt->bindValue($identifier, $this->loaisp_maloaisp, PDO::PARAM_INT);
-                        break;
-                    case 'GiaNhap':
-                        $stmt->bindValue($identifier, $this->gianhap, PDO::PARAM_STR);
-                        break;
-                    case 'LuotXem':
-                        $stmt->bindValue($identifier, $this->luotxem, PDO::PARAM_INT);
+                    case 'Quan_Huyen_MaQuan_Huyen':
+                        $stmt->bindValue($identifier, $this->quan_huyen_maquan_huyen, PDO::PARAM_INT);
                         break;
                 }
             }
@@ -1033,7 +721,7 @@ abstract class Sanpham implements ActiveRecordInterface
         } catch (Exception $e) {
             throw new PropelException('Unable to get autoincrement id.', 0, $e);
         }
-        $this->setMasanpham($pk);
+        $this->setMapX($pk);
 
         $this->setNew(false);
     }
@@ -1066,7 +754,7 @@ abstract class Sanpham implements ActiveRecordInterface
      */
     public function getByName($name, $type = TableMap::TYPE_PHPNAME)
     {
-        $pos = SanphamTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
+        $pos = PhuongXaTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
         $field = $this->getByPosition($pos);
 
         return $field;
@@ -1083,31 +771,13 @@ abstract class Sanpham implements ActiveRecordInterface
     {
         switch ($pos) {
             case 0:
-                return $this->getMasanpham();
+                return $this->getMapX();
                 break;
             case 1:
-                return $this->getTensanpham();
+                return $this->getTenpX();
                 break;
             case 2:
-                return $this->getHinhanh();
-                break;
-            case 3:
-                return $this->getGiasp();
-                break;
-            case 4:
-                return $this->getDonvitinh();
-                break;
-            case 5:
-                return $this->getThongtin();
-                break;
-            case 6:
-                return $this->getLoaispMaloaisp();
-                break;
-            case 7:
-                return $this->getGianhap();
-                break;
-            case 8:
-                return $this->getLuotxem();
+                return $this->getQuanHuyenMaquanHuyen();
                 break;
             default:
                 return null;
@@ -1133,21 +803,15 @@ abstract class Sanpham implements ActiveRecordInterface
     public function toArray($keyType = TableMap::TYPE_PHPNAME, $includeLazyLoadColumns = true, $alreadyDumpedObjects = array(), $includeForeignObjects = false)
     {
 
-        if (isset($alreadyDumpedObjects['Sanpham'][$this->hashCode()])) {
+        if (isset($alreadyDumpedObjects['PhuongXa'][$this->hashCode()])) {
             return '*RECURSION*';
         }
-        $alreadyDumpedObjects['Sanpham'][$this->hashCode()] = true;
-        $keys = SanphamTableMap::getFieldNames($keyType);
+        $alreadyDumpedObjects['PhuongXa'][$this->hashCode()] = true;
+        $keys = PhuongXaTableMap::getFieldNames($keyType);
         $result = array(
-            $keys[0] => $this->getMasanpham(),
-            $keys[1] => $this->getTensanpham(),
-            $keys[2] => $this->getHinhanh(),
-            $keys[3] => $this->getGiasp(),
-            $keys[4] => $this->getDonvitinh(),
-            $keys[5] => $this->getThongtin(),
-            $keys[6] => $this->getLoaispMaloaisp(),
-            $keys[7] => $this->getGianhap(),
-            $keys[8] => $this->getLuotxem(),
+            $keys[0] => $this->getMapX(),
+            $keys[1] => $this->getTenpX(),
+            $keys[2] => $this->getQuanHuyenMaquanHuyen(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -1155,35 +819,20 @@ abstract class Sanpham implements ActiveRecordInterface
         }
 
         if ($includeForeignObjects) {
-            if (null !== $this->aLoaisp) {
+            if (null !== $this->aQuanHuyen) {
 
                 switch ($keyType) {
                     case TableMap::TYPE_CAMELNAME:
-                        $key = 'loaisp';
+                        $key = 'quanHuyen';
                         break;
                     case TableMap::TYPE_FIELDNAME:
-                        $key = 'LoaiSP';
+                        $key = 'Quan_Huyen';
                         break;
                     default:
-                        $key = 'Loaisp';
+                        $key = 'QuanHuyen';
                 }
 
-                $result[$key] = $this->aLoaisp->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
-            }
-            if (null !== $this->collCtpdhs) {
-
-                switch ($keyType) {
-                    case TableMap::TYPE_CAMELNAME:
-                        $key = 'ctpdhs';
-                        break;
-                    case TableMap::TYPE_FIELDNAME:
-                        $key = 'CTPDHs';
-                        break;
-                    default:
-                        $key = 'Ctpdhs';
-                }
-
-                $result[$key] = $this->collCtpdhs->toArray(null, false, $keyType, $includeLazyLoadColumns, $alreadyDumpedObjects);
+                $result[$key] = $this->aQuanHuyen->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
             }
         }
 
@@ -1199,11 +848,11 @@ abstract class Sanpham implements ActiveRecordInterface
      *                one of the class type constants TableMap::TYPE_PHPNAME, TableMap::TYPE_CAMELNAME
      *                TableMap::TYPE_COLNAME, TableMap::TYPE_FIELDNAME, TableMap::TYPE_NUM.
      *                Defaults to TableMap::TYPE_PHPNAME.
-     * @return $this|\Model\Sanpham
+     * @return $this|\Model\PhuongXa
      */
     public function setByName($name, $value, $type = TableMap::TYPE_PHPNAME)
     {
-        $pos = SanphamTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
+        $pos = PhuongXaTableMap::translateFieldName($name, $type, TableMap::TYPE_NUM);
 
         return $this->setByPosition($pos, $value);
     }
@@ -1214,37 +863,19 @@ abstract class Sanpham implements ActiveRecordInterface
      *
      * @param  int $pos position in xml schema
      * @param  mixed $value field value
-     * @return $this|\Model\Sanpham
+     * @return $this|\Model\PhuongXa
      */
     public function setByPosition($pos, $value)
     {
         switch ($pos) {
             case 0:
-                $this->setMasanpham($value);
+                $this->setMapX($value);
                 break;
             case 1:
-                $this->setTensanpham($value);
+                $this->setTenpX($value);
                 break;
             case 2:
-                $this->setHinhanh($value);
-                break;
-            case 3:
-                $this->setGiasp($value);
-                break;
-            case 4:
-                $this->setDonvitinh($value);
-                break;
-            case 5:
-                $this->setThongtin($value);
-                break;
-            case 6:
-                $this->setLoaispMaloaisp($value);
-                break;
-            case 7:
-                $this->setGianhap($value);
-                break;
-            case 8:
-                $this->setLuotxem($value);
+                $this->setQuanHuyenMaquanHuyen($value);
                 break;
         } // switch()
 
@@ -1270,34 +901,16 @@ abstract class Sanpham implements ActiveRecordInterface
      */
     public function fromArray($arr, $keyType = TableMap::TYPE_PHPNAME)
     {
-        $keys = SanphamTableMap::getFieldNames($keyType);
+        $keys = PhuongXaTableMap::getFieldNames($keyType);
 
         if (array_key_exists($keys[0], $arr)) {
-            $this->setMasanpham($arr[$keys[0]]);
+            $this->setMapX($arr[$keys[0]]);
         }
         if (array_key_exists($keys[1], $arr)) {
-            $this->setTensanpham($arr[$keys[1]]);
+            $this->setTenpX($arr[$keys[1]]);
         }
         if (array_key_exists($keys[2], $arr)) {
-            $this->setHinhanh($arr[$keys[2]]);
-        }
-        if (array_key_exists($keys[3], $arr)) {
-            $this->setGiasp($arr[$keys[3]]);
-        }
-        if (array_key_exists($keys[4], $arr)) {
-            $this->setDonvitinh($arr[$keys[4]]);
-        }
-        if (array_key_exists($keys[5], $arr)) {
-            $this->setThongtin($arr[$keys[5]]);
-        }
-        if (array_key_exists($keys[6], $arr)) {
-            $this->setLoaispMaloaisp($arr[$keys[6]]);
-        }
-        if (array_key_exists($keys[7], $arr)) {
-            $this->setGianhap($arr[$keys[7]]);
-        }
-        if (array_key_exists($keys[8], $arr)) {
-            $this->setLuotxem($arr[$keys[8]]);
+            $this->setQuanHuyenMaquanHuyen($arr[$keys[2]]);
         }
     }
 
@@ -1318,7 +931,7 @@ abstract class Sanpham implements ActiveRecordInterface
      * @param string $data The source data to import from
      * @param string $keyType The type of keys the array uses.
      *
-     * @return $this|\Model\Sanpham The current object, for fluid interface
+     * @return $this|\Model\PhuongXa The current object, for fluid interface
      */
     public function importFrom($parser, $data, $keyType = TableMap::TYPE_PHPNAME)
     {
@@ -1338,34 +951,16 @@ abstract class Sanpham implements ActiveRecordInterface
      */
     public function buildCriteria()
     {
-        $criteria = new Criteria(SanphamTableMap::DATABASE_NAME);
+        $criteria = new Criteria(PhuongXaTableMap::DATABASE_NAME);
 
-        if ($this->isColumnModified(SanphamTableMap::COL_MASANPHAM)) {
-            $criteria->add(SanphamTableMap::COL_MASANPHAM, $this->masanpham);
+        if ($this->isColumnModified(PhuongXaTableMap::COL_MAP_X)) {
+            $criteria->add(PhuongXaTableMap::COL_MAP_X, $this->map_x);
         }
-        if ($this->isColumnModified(SanphamTableMap::COL_TENSANPHAM)) {
-            $criteria->add(SanphamTableMap::COL_TENSANPHAM, $this->tensanpham);
+        if ($this->isColumnModified(PhuongXaTableMap::COL_TENP_X)) {
+            $criteria->add(PhuongXaTableMap::COL_TENP_X, $this->tenp_x);
         }
-        if ($this->isColumnModified(SanphamTableMap::COL_HINHANH)) {
-            $criteria->add(SanphamTableMap::COL_HINHANH, $this->hinhanh);
-        }
-        if ($this->isColumnModified(SanphamTableMap::COL_GIASP)) {
-            $criteria->add(SanphamTableMap::COL_GIASP, $this->giasp);
-        }
-        if ($this->isColumnModified(SanphamTableMap::COL_DONVITINH)) {
-            $criteria->add(SanphamTableMap::COL_DONVITINH, $this->donvitinh);
-        }
-        if ($this->isColumnModified(SanphamTableMap::COL_THONGTIN)) {
-            $criteria->add(SanphamTableMap::COL_THONGTIN, $this->thongtin);
-        }
-        if ($this->isColumnModified(SanphamTableMap::COL_LOAISP_MALOAISP)) {
-            $criteria->add(SanphamTableMap::COL_LOAISP_MALOAISP, $this->loaisp_maloaisp);
-        }
-        if ($this->isColumnModified(SanphamTableMap::COL_GIANHAP)) {
-            $criteria->add(SanphamTableMap::COL_GIANHAP, $this->gianhap);
-        }
-        if ($this->isColumnModified(SanphamTableMap::COL_LUOTXEM)) {
-            $criteria->add(SanphamTableMap::COL_LUOTXEM, $this->luotxem);
+        if ($this->isColumnModified(PhuongXaTableMap::COL_QUAN_HUYEN_MAQUAN_HUYEN)) {
+            $criteria->add(PhuongXaTableMap::COL_QUAN_HUYEN_MAQUAN_HUYEN, $this->quan_huyen_maquan_huyen);
         }
 
         return $criteria;
@@ -1383,8 +978,8 @@ abstract class Sanpham implements ActiveRecordInterface
      */
     public function buildPkeyCriteria()
     {
-        $criteria = ChildSanphamQuery::create();
-        $criteria->add(SanphamTableMap::COL_MASANPHAM, $this->masanpham);
+        $criteria = ChildPhuongXaQuery::create();
+        $criteria->add(PhuongXaTableMap::COL_MAP_X, $this->map_x);
 
         return $criteria;
     }
@@ -1397,7 +992,7 @@ abstract class Sanpham implements ActiveRecordInterface
      */
     public function hashCode()
     {
-        $validPk = null !== $this->getMasanpham();
+        $validPk = null !== $this->getMapX();
 
         $validPrimaryKeyFKs = 0;
         $primaryKeyFKs = [];
@@ -1417,18 +1012,18 @@ abstract class Sanpham implements ActiveRecordInterface
      */
     public function getPrimaryKey()
     {
-        return $this->getMasanpham();
+        return $this->getMapX();
     }
 
     /**
-     * Generic method to set the primary key (masanpham column).
+     * Generic method to set the primary key (map_x column).
      *
      * @param       int $key Primary key.
      * @return void
      */
     public function setPrimaryKey($key)
     {
-        $this->setMasanpham($key);
+        $this->setMapX($key);
     }
 
     /**
@@ -1437,7 +1032,7 @@ abstract class Sanpham implements ActiveRecordInterface
      */
     public function isPrimaryKeyNull()
     {
-        return null === $this->getMasanpham();
+        return null === $this->getMapX();
     }
 
     /**
@@ -1446,38 +1041,18 @@ abstract class Sanpham implements ActiveRecordInterface
      * If desired, this method can also make copies of all associated (fkey referrers)
      * objects.
      *
-     * @param      object $copyObj An object of \Model\Sanpham (or compatible) type.
+     * @param      object $copyObj An object of \Model\PhuongXa (or compatible) type.
      * @param      boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
      * @param      boolean $makeNew Whether to reset autoincrement PKs and make the object new.
      * @throws PropelException
      */
     public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
     {
-        $copyObj->setTensanpham($this->getTensanpham());
-        $copyObj->setHinhanh($this->getHinhanh());
-        $copyObj->setGiasp($this->getGiasp());
-        $copyObj->setDonvitinh($this->getDonvitinh());
-        $copyObj->setThongtin($this->getThongtin());
-        $copyObj->setLoaispMaloaisp($this->getLoaispMaloaisp());
-        $copyObj->setGianhap($this->getGianhap());
-        $copyObj->setLuotxem($this->getLuotxem());
-
-        if ($deepCopy) {
-            // important: temporarily setNew(false) because this affects the behavior of
-            // the getter/setter methods for fkey referrer objects.
-            $copyObj->setNew(false);
-
-            foreach ($this->getCtpdhs() as $relObj) {
-                if ($relObj !== $this) {  // ensure that we don't try to copy a reference to ourselves
-                    $copyObj->addCtpdh($relObj->copy($deepCopy));
-                }
-            }
-
-        } // if ($deepCopy)
-
+        $copyObj->setTenpX($this->getTenpX());
+        $copyObj->setQuanHuyenMaquanHuyen($this->getQuanHuyenMaquanHuyen());
         if ($makeNew) {
             $copyObj->setNew(true);
-            $copyObj->setMasanpham(NULL); // this is a auto-increment column, so set to default value
+            $copyObj->setMapX(NULL); // this is a auto-increment column, so set to default value
         }
     }
 
@@ -1490,7 +1065,7 @@ abstract class Sanpham implements ActiveRecordInterface
      * objects.
      *
      * @param  boolean $deepCopy Whether to also copy all rows that refer (by fkey) to the current row.
-     * @return \Model\Sanpham Clone of current object.
+     * @return \Model\PhuongXa Clone of current object.
      * @throws PropelException
      */
     public function copy($deepCopy = false)
@@ -1504,26 +1079,26 @@ abstract class Sanpham implements ActiveRecordInterface
     }
 
     /**
-     * Declares an association between this object and a ChildLoaisp object.
+     * Declares an association between this object and a ChildQuanHuyen object.
      *
-     * @param  ChildLoaisp $v
-     * @return $this|\Model\Sanpham The current object (for fluent API support)
+     * @param  ChildQuanHuyen $v
+     * @return $this|\Model\PhuongXa The current object (for fluent API support)
      * @throws PropelException
      */
-    public function setLoaisp(ChildLoaisp $v = null)
+    public function setQuanHuyen(ChildQuanHuyen $v = null)
     {
         if ($v === null) {
-            $this->setLoaispMaloaisp(NULL);
+            $this->setQuanHuyenMaquanHuyen(NULL);
         } else {
-            $this->setLoaispMaloaisp($v->getMaloaisp());
+            $this->setQuanHuyenMaquanHuyen($v->getMaquanHuyen());
         }
 
-        $this->aLoaisp = $v;
+        $this->aQuanHuyen = $v;
 
         // Add binding for other direction of this n:n relationship.
-        // If this object has already been added to the ChildLoaisp object, it will not be re-added.
+        // If this object has already been added to the ChildQuanHuyen object, it will not be re-added.
         if ($v !== null) {
-            $v->addSanpham($this);
+            $v->addPhuongXa($this);
         }
 
 
@@ -1532,295 +1107,26 @@ abstract class Sanpham implements ActiveRecordInterface
 
 
     /**
-     * Get the associated ChildLoaisp object
+     * Get the associated ChildQuanHuyen object
      *
      * @param  ConnectionInterface $con Optional Connection object.
-     * @return ChildLoaisp The associated ChildLoaisp object.
+     * @return ChildQuanHuyen The associated ChildQuanHuyen object.
      * @throws PropelException
      */
-    public function getLoaisp(ConnectionInterface $con = null)
+    public function getQuanHuyen(ConnectionInterface $con = null)
     {
-        if ($this->aLoaisp === null && ($this->loaisp_maloaisp !== null)) {
-            $this->aLoaisp = ChildLoaispQuery::create()->findPk($this->loaisp_maloaisp, $con);
+        if ($this->aQuanHuyen === null && ($this->quan_huyen_maquan_huyen !== null)) {
+            $this->aQuanHuyen = ChildQuanHuyenQuery::create()->findPk($this->quan_huyen_maquan_huyen, $con);
             /* The following can be used additionally to
                 guarantee the related object contains a reference
                 to this object.  This level of coupling may, however, be
                 undesirable since it could result in an only partially populated collection
                 in the referenced object.
-                $this->aLoaisp->addSanphams($this);
+                $this->aQuanHuyen->addPhuongXas($this);
              */
         }
 
-        return $this->aLoaisp;
-    }
-
-
-    /**
-     * Initializes a collection based on the name of a relation.
-     * Avoids crafting an 'init[$relationName]s' method name
-     * that wouldn't work when StandardEnglishPluralizer is used.
-     *
-     * @param      string $relationName The name of the relation to initialize
-     * @return void
-     */
-    public function initRelation($relationName)
-    {
-        if ('Ctpdh' == $relationName) {
-            return $this->initCtpdhs();
-        }
-    }
-
-    /**
-     * Clears out the collCtpdhs collection
-     *
-     * This does not modify the database; however, it will remove any associated objects, causing
-     * them to be refetched by subsequent calls to accessor method.
-     *
-     * @return void
-     * @see        addCtpdhs()
-     */
-    public function clearCtpdhs()
-    {
-        $this->collCtpdhs = null; // important to set this to NULL since that means it is uninitialized
-    }
-
-    /**
-     * Reset is the collCtpdhs collection loaded partially.
-     */
-    public function resetPartialCtpdhs($v = true)
-    {
-        $this->collCtpdhsPartial = $v;
-    }
-
-    /**
-     * Initializes the collCtpdhs collection.
-     *
-     * By default this just sets the collCtpdhs collection to an empty array (like clearcollCtpdhs());
-     * however, you may wish to override this method in your stub class to provide setting appropriate
-     * to your application -- for example, setting the initial array to the values stored in database.
-     *
-     * @param      boolean $overrideExisting If set to true, the method call initializes
-     *                                        the collection even if it is not empty
-     *
-     * @return void
-     */
-    public function initCtpdhs($overrideExisting = true)
-    {
-        if (null !== $this->collCtpdhs && !$overrideExisting) {
-            return;
-        }
-
-        $collectionClassName = CtpdhTableMap::getTableMap()->getCollectionClassName();
-
-        $this->collCtpdhs = new $collectionClassName;
-        $this->collCtpdhs->setModel('\Model\Ctpdh');
-    }
-
-    /**
-     * Gets an array of ChildCtpdh objects which contain a foreign key that references this object.
-     *
-     * If the $criteria is not null, it is used to always fetch the results from the database.
-     * Otherwise the results are fetched from the database the first time, then cached.
-     * Next time the same method is called without $criteria, the cached collection is returned.
-     * If this ChildSanpham is new, it will return
-     * an empty collection or the current collection; the criteria is ignored on a new object.
-     *
-     * @param      Criteria $criteria optional Criteria object to narrow the query
-     * @param      ConnectionInterface $con optional connection object
-     * @return ObjectCollection|ChildCtpdh[] List of ChildCtpdh objects
-     * @throws PropelException
-     */
-    public function getCtpdhs(Criteria $criteria = null, ConnectionInterface $con = null)
-    {
-        $partial = $this->collCtpdhsPartial && !$this->isNew();
-        if (null === $this->collCtpdhs || null !== $criteria  || $partial) {
-            if ($this->isNew() && null === $this->collCtpdhs) {
-                // return empty collection
-                $this->initCtpdhs();
-            } else {
-                $collCtpdhs = ChildCtpdhQuery::create(null, $criteria)
-                    ->filterBySanpham($this)
-                    ->find($con);
-
-                if (null !== $criteria) {
-                    if (false !== $this->collCtpdhsPartial && count($collCtpdhs)) {
-                        $this->initCtpdhs(false);
-
-                        foreach ($collCtpdhs as $obj) {
-                            if (false == $this->collCtpdhs->contains($obj)) {
-                                $this->collCtpdhs->append($obj);
-                            }
-                        }
-
-                        $this->collCtpdhsPartial = true;
-                    }
-
-                    return $collCtpdhs;
-                }
-
-                if ($partial && $this->collCtpdhs) {
-                    foreach ($this->collCtpdhs as $obj) {
-                        if ($obj->isNew()) {
-                            $collCtpdhs[] = $obj;
-                        }
-                    }
-                }
-
-                $this->collCtpdhs = $collCtpdhs;
-                $this->collCtpdhsPartial = false;
-            }
-        }
-
-        return $this->collCtpdhs;
-    }
-
-    /**
-     * Sets a collection of ChildCtpdh objects related by a one-to-many relationship
-     * to the current object.
-     * It will also schedule objects for deletion based on a diff between old objects (aka persisted)
-     * and new objects from the given Propel collection.
-     *
-     * @param      Collection $ctpdhs A Propel collection.
-     * @param      ConnectionInterface $con Optional connection object
-     * @return $this|ChildSanpham The current object (for fluent API support)
-     */
-    public function setCtpdhs(Collection $ctpdhs, ConnectionInterface $con = null)
-    {
-        /** @var ChildCtpdh[] $ctpdhsToDelete */
-        $ctpdhsToDelete = $this->getCtpdhs(new Criteria(), $con)->diff($ctpdhs);
-
-
-        //since at least one column in the foreign key is at the same time a PK
-        //we can not just set a PK to NULL in the lines below. We have to store
-        //a backup of all values, so we are able to manipulate these items based on the onDelete value later.
-        $this->ctpdhsScheduledForDeletion = clone $ctpdhsToDelete;
-
-        foreach ($ctpdhsToDelete as $ctpdhRemoved) {
-            $ctpdhRemoved->setSanpham(null);
-        }
-
-        $this->collCtpdhs = null;
-        foreach ($ctpdhs as $ctpdh) {
-            $this->addCtpdh($ctpdh);
-        }
-
-        $this->collCtpdhs = $ctpdhs;
-        $this->collCtpdhsPartial = false;
-
-        return $this;
-    }
-
-    /**
-     * Returns the number of related Ctpdh objects.
-     *
-     * @param      Criteria $criteria
-     * @param      boolean $distinct
-     * @param      ConnectionInterface $con
-     * @return int             Count of related Ctpdh objects.
-     * @throws PropelException
-     */
-    public function countCtpdhs(Criteria $criteria = null, $distinct = false, ConnectionInterface $con = null)
-    {
-        $partial = $this->collCtpdhsPartial && !$this->isNew();
-        if (null === $this->collCtpdhs || null !== $criteria || $partial) {
-            if ($this->isNew() && null === $this->collCtpdhs) {
-                return 0;
-            }
-
-            if ($partial && !$criteria) {
-                return count($this->getCtpdhs());
-            }
-
-            $query = ChildCtpdhQuery::create(null, $criteria);
-            if ($distinct) {
-                $query->distinct();
-            }
-
-            return $query
-                ->filterBySanpham($this)
-                ->count($con);
-        }
-
-        return count($this->collCtpdhs);
-    }
-
-    /**
-     * Method called to associate a ChildCtpdh object to this object
-     * through the ChildCtpdh foreign key attribute.
-     *
-     * @param  ChildCtpdh $l ChildCtpdh
-     * @return $this|\Model\Sanpham The current object (for fluent API support)
-     */
-    public function addCtpdh(ChildCtpdh $l)
-    {
-        if ($this->collCtpdhs === null) {
-            $this->initCtpdhs();
-            $this->collCtpdhsPartial = true;
-        }
-
-        if (!$this->collCtpdhs->contains($l)) {
-            $this->doAddCtpdh($l);
-
-            if ($this->ctpdhsScheduledForDeletion and $this->ctpdhsScheduledForDeletion->contains($l)) {
-                $this->ctpdhsScheduledForDeletion->remove($this->ctpdhsScheduledForDeletion->search($l));
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param ChildCtpdh $ctpdh The ChildCtpdh object to add.
-     */
-    protected function doAddCtpdh(ChildCtpdh $ctpdh)
-    {
-        $this->collCtpdhs[]= $ctpdh;
-        $ctpdh->setSanpham($this);
-    }
-
-    /**
-     * @param  ChildCtpdh $ctpdh The ChildCtpdh object to remove.
-     * @return $this|ChildSanpham The current object (for fluent API support)
-     */
-    public function removeCtpdh(ChildCtpdh $ctpdh)
-    {
-        if ($this->getCtpdhs()->contains($ctpdh)) {
-            $pos = $this->collCtpdhs->search($ctpdh);
-            $this->collCtpdhs->remove($pos);
-            if (null === $this->ctpdhsScheduledForDeletion) {
-                $this->ctpdhsScheduledForDeletion = clone $this->collCtpdhs;
-                $this->ctpdhsScheduledForDeletion->clear();
-            }
-            $this->ctpdhsScheduledForDeletion[]= clone $ctpdh;
-            $ctpdh->setSanpham(null);
-        }
-
-        return $this;
-    }
-
-
-    /**
-     * If this collection has already been initialized with
-     * an identical criteria, it returns the collection.
-     * Otherwise if this Sanpham is new, it will return
-     * an empty collection; or if this Sanpham has previously
-     * been saved, it will retrieve related Ctpdhs from storage.
-     *
-     * This method is protected by default in order to keep the public
-     * api reasonable.  You can provide public methods for those you
-     * actually need in Sanpham.
-     *
-     * @param      Criteria $criteria optional Criteria object to narrow the query
-     * @param      ConnectionInterface $con optional connection object
-     * @param      string $joinBehavior optional join type to use (defaults to Criteria::LEFT_JOIN)
-     * @return ObjectCollection|ChildCtpdh[] List of ChildCtpdh objects
-     */
-    public function getCtpdhsJoinPhieudathang(Criteria $criteria = null, ConnectionInterface $con = null, $joinBehavior = Criteria::LEFT_JOIN)
-    {
-        $query = ChildCtpdhQuery::create(null, $criteria);
-        $query->joinWith('Phieudathang', $joinBehavior);
-
-        return $this->getCtpdhs($query, $con);
+        return $this->aQuanHuyen;
     }
 
     /**
@@ -1830,18 +1136,12 @@ abstract class Sanpham implements ActiveRecordInterface
      */
     public function clear()
     {
-        if (null !== $this->aLoaisp) {
-            $this->aLoaisp->removeSanpham($this);
+        if (null !== $this->aQuanHuyen) {
+            $this->aQuanHuyen->removePhuongXa($this);
         }
-        $this->masanpham = null;
-        $this->tensanpham = null;
-        $this->hinhanh = null;
-        $this->giasp = null;
-        $this->donvitinh = null;
-        $this->thongtin = null;
-        $this->loaisp_maloaisp = null;
-        $this->gianhap = null;
-        $this->luotxem = null;
+        $this->map_x = null;
+        $this->tenp_x = null;
+        $this->quan_huyen_maquan_huyen = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->resetModified();
@@ -1860,15 +1160,9 @@ abstract class Sanpham implements ActiveRecordInterface
     public function clearAllReferences($deep = false)
     {
         if ($deep) {
-            if ($this->collCtpdhs) {
-                foreach ($this->collCtpdhs as $o) {
-                    $o->clearAllReferences($deep);
-                }
-            }
         } // if ($deep)
 
-        $this->collCtpdhs = null;
-        $this->aLoaisp = null;
+        $this->aQuanHuyen = null;
     }
 
     /**
@@ -1878,7 +1172,7 @@ abstract class Sanpham implements ActiveRecordInterface
      */
     public function __toString()
     {
-        return (string) $this->exportTo(SanphamTableMap::DEFAULT_STRING_FORMAT);
+        return (string) $this->exportTo(PhuongXaTableMap::DEFAULT_STRING_FORMAT);
     }
 
     /**

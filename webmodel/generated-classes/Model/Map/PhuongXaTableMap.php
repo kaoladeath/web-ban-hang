@@ -2,8 +2,8 @@
 
 namespace Model\Map;
 
-use Model\Loaisp;
-use Model\LoaispQuery;
+use Model\PhuongXa;
+use Model\PhuongXaQuery;
 use Propel\Runtime\Propel;
 use Propel\Runtime\ActiveQuery\Criteria;
 use Propel\Runtime\ActiveQuery\InstancePoolTrait;
@@ -16,7 +16,7 @@ use Propel\Runtime\Map\TableMapTrait;
 
 
 /**
- * This class defines the structure of the 'LoaiSP' table.
+ * This class defines the structure of the 'Phuong_Xa' table.
  *
  *
  *
@@ -26,7 +26,7 @@ use Propel\Runtime\Map\TableMapTrait;
  * (i.e. if it's a text column type).
  *
  */
-class LoaispTableMap extends TableMap
+class PhuongXaTableMap extends TableMap
 {
     use InstancePoolTrait;
     use TableMapTrait;
@@ -34,7 +34,7 @@ class LoaispTableMap extends TableMap
     /**
      * The (dot-path) name of this class
      */
-    const CLASS_NAME = 'Model.Map.LoaispTableMap';
+    const CLASS_NAME = 'Model.Map.PhuongXaTableMap';
 
     /**
      * The default database name for this class
@@ -44,17 +44,17 @@ class LoaispTableMap extends TableMap
     /**
      * The table name for this class
      */
-    const TABLE_NAME = 'LoaiSP';
+    const TABLE_NAME = 'Phuong_Xa';
 
     /**
      * The related Propel class for this table
      */
-    const OM_CLASS = '\\Model\\Loaisp';
+    const OM_CLASS = '\\Model\\PhuongXa';
 
     /**
      * A class that can be returned by this tableMap
      */
-    const CLASS_DEFAULT = 'Model.Loaisp';
+    const CLASS_DEFAULT = 'Model.PhuongXa';
 
     /**
      * The total number of columns
@@ -72,19 +72,19 @@ class LoaispTableMap extends TableMap
     const NUM_HYDRATE_COLUMNS = 3;
 
     /**
-     * the column name for the MaLoaiSP field
+     * the column name for the MaP_X field
      */
-    const COL_MALOAISP = 'LoaiSP.MaLoaiSP';
+    const COL_MAP_X = 'Phuong_Xa.MaP_X';
 
     /**
-     * the column name for the TenLoaiSP field
+     * the column name for the TenP_X field
      */
-    const COL_TENLOAISP = 'LoaiSP.TenLoaiSP';
+    const COL_TENP_X = 'Phuong_Xa.TenP_X';
 
     /**
-     * the column name for the DanhMuc_MaDM field
+     * the column name for the Quan_Huyen_MaQuan_Huyen field
      */
-    const COL_DANHMUC_MADM = 'LoaiSP.DanhMuc_MaDM';
+    const COL_QUAN_HUYEN_MAQUAN_HUYEN = 'Phuong_Xa.Quan_Huyen_MaQuan_Huyen';
 
     /**
      * The default string format for model objects of the related table
@@ -98,10 +98,10 @@ class LoaispTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('Maloaisp', 'Tenloaisp', 'DanhmucMadm', ),
-        self::TYPE_CAMELNAME     => array('maloaisp', 'tenloaisp', 'danhmucMadm', ),
-        self::TYPE_COLNAME       => array(LoaispTableMap::COL_MALOAISP, LoaispTableMap::COL_TENLOAISP, LoaispTableMap::COL_DANHMUC_MADM, ),
-        self::TYPE_FIELDNAME     => array('MaLoaiSP', 'TenLoaiSP', 'DanhMuc_MaDM', ),
+        self::TYPE_PHPNAME       => array('MapX', 'TenpX', 'QuanHuyenMaquanHuyen', ),
+        self::TYPE_CAMELNAME     => array('mapX', 'tenpX', 'quanHuyenMaquanHuyen', ),
+        self::TYPE_COLNAME       => array(PhuongXaTableMap::COL_MAP_X, PhuongXaTableMap::COL_TENP_X, PhuongXaTableMap::COL_QUAN_HUYEN_MAQUAN_HUYEN, ),
+        self::TYPE_FIELDNAME     => array('MaP_X', 'TenP_X', 'Quan_Huyen_MaQuan_Huyen', ),
         self::TYPE_NUM           => array(0, 1, 2, )
     );
 
@@ -112,10 +112,10 @@ class LoaispTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('Maloaisp' => 0, 'Tenloaisp' => 1, 'DanhmucMadm' => 2, ),
-        self::TYPE_CAMELNAME     => array('maloaisp' => 0, 'tenloaisp' => 1, 'danhmucMadm' => 2, ),
-        self::TYPE_COLNAME       => array(LoaispTableMap::COL_MALOAISP => 0, LoaispTableMap::COL_TENLOAISP => 1, LoaispTableMap::COL_DANHMUC_MADM => 2, ),
-        self::TYPE_FIELDNAME     => array('MaLoaiSP' => 0, 'TenLoaiSP' => 1, 'DanhMuc_MaDM' => 2, ),
+        self::TYPE_PHPNAME       => array('MapX' => 0, 'TenpX' => 1, 'QuanHuyenMaquanHuyen' => 2, ),
+        self::TYPE_CAMELNAME     => array('mapX' => 0, 'tenpX' => 1, 'quanHuyenMaquanHuyen' => 2, ),
+        self::TYPE_COLNAME       => array(PhuongXaTableMap::COL_MAP_X => 0, PhuongXaTableMap::COL_TENP_X => 1, PhuongXaTableMap::COL_QUAN_HUYEN_MAQUAN_HUYEN => 2, ),
+        self::TYPE_FIELDNAME     => array('MaP_X' => 0, 'TenP_X' => 1, 'Quan_Huyen_MaQuan_Huyen' => 2, ),
         self::TYPE_NUM           => array(0, 1, 2, )
     );
 
@@ -129,16 +129,16 @@ class LoaispTableMap extends TableMap
     public function initialize()
     {
         // attributes
-        $this->setName('LoaiSP');
-        $this->setPhpName('Loaisp');
+        $this->setName('Phuong_Xa');
+        $this->setPhpName('PhuongXa');
         $this->setIdentifierQuoting(false);
-        $this->setClassName('\\Model\\Loaisp');
+        $this->setClassName('\\Model\\PhuongXa');
         $this->setPackage('Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('MaLoaiSP', 'Maloaisp', 'INTEGER', true, null, null);
-        $this->addColumn('TenLoaiSP', 'Tenloaisp', 'VARCHAR', true, 20, null);
-        $this->addForeignKey('DanhMuc_MaDM', 'DanhmucMadm', 'INTEGER', 'DanhMuc', 'MaDM', true, null, null);
+        $this->addPrimaryKey('MaP_X', 'MapX', 'INTEGER', true, null, null);
+        $this->addColumn('TenP_X', 'TenpX', 'VARCHAR', true, 45, null);
+        $this->addForeignKey('Quan_Huyen_MaQuan_Huyen', 'QuanHuyenMaquanHuyen', 'INTEGER', 'Quan_Huyen', 'MaQuan_Huyen', true, null, null);
     } // initialize()
 
     /**
@@ -146,20 +146,13 @@ class LoaispTableMap extends TableMap
      */
     public function buildRelations()
     {
-        $this->addRelation('Danhmuc', '\\Model\\Danhmuc', RelationMap::MANY_TO_ONE, array (
+        $this->addRelation('QuanHuyen', '\\Model\\QuanHuyen', RelationMap::MANY_TO_ONE, array (
   0 =>
   array (
-    0 => ':DanhMuc_MaDM',
-    1 => ':MaDM',
+    0 => ':Quan_Huyen_MaQuan_Huyen',
+    1 => ':MaQuan_Huyen',
   ),
 ), null, null, null, false);
-        $this->addRelation('Sanpham', '\\Model\\Sanpham', RelationMap::ONE_TO_MANY, array (
-  0 =>
-  array (
-    0 => ':LoaiSP_MaLoaiSP',
-    1 => ':MaLoaiSP',
-  ),
-), null, null, 'Sanphams', false);
     } // buildRelations()
 
     /**
@@ -178,11 +171,11 @@ class LoaispTableMap extends TableMap
     public static function getPrimaryKeyHashFromRow($row, $offset = 0, $indexType = TableMap::TYPE_NUM)
     {
         // If the PK cannot be derived from the row, return NULL.
-        if ($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaisp', TableMap::TYPE_PHPNAME, $indexType)] === null) {
+        if ($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('MapX', TableMap::TYPE_PHPNAME, $indexType)] === null) {
             return null;
         }
 
-        return null === $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaisp', TableMap::TYPE_PHPNAME, $indexType)] || is_scalar($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaisp', TableMap::TYPE_PHPNAME, $indexType)]) || is_callable([$row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaisp', TableMap::TYPE_PHPNAME, $indexType)], '__toString']) ? (string) $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaisp', TableMap::TYPE_PHPNAME, $indexType)] : $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaisp', TableMap::TYPE_PHPNAME, $indexType)];
+        return null === $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('MapX', TableMap::TYPE_PHPNAME, $indexType)] || is_scalar($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('MapX', TableMap::TYPE_PHPNAME, $indexType)]) || is_callable([$row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('MapX', TableMap::TYPE_PHPNAME, $indexType)], '__toString']) ? (string) $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('MapX', TableMap::TYPE_PHPNAME, $indexType)] : $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('MapX', TableMap::TYPE_PHPNAME, $indexType)];
     }
 
     /**
@@ -202,7 +195,7 @@ class LoaispTableMap extends TableMap
         return (int) $row[
             $indexType == TableMap::TYPE_NUM
                 ? 0 + $offset
-                : self::translateFieldName('Maloaisp', TableMap::TYPE_PHPNAME, $indexType)
+                : self::translateFieldName('MapX', TableMap::TYPE_PHPNAME, $indexType)
         ];
     }
 
@@ -219,7 +212,7 @@ class LoaispTableMap extends TableMap
      */
     public static function getOMClass($withPrefix = true)
     {
-        return $withPrefix ? LoaispTableMap::CLASS_DEFAULT : LoaispTableMap::OM_CLASS;
+        return $withPrefix ? PhuongXaTableMap::CLASS_DEFAULT : PhuongXaTableMap::OM_CLASS;
     }
 
     /**
@@ -233,22 +226,22 @@ class LoaispTableMap extends TableMap
      *
      * @throws PropelException Any exceptions caught during processing will be
      *                         rethrown wrapped into a PropelException.
-     * @return array           (Loaisp object, last column rank)
+     * @return array           (PhuongXa object, last column rank)
      */
     public static function populateObject($row, $offset = 0, $indexType = TableMap::TYPE_NUM)
     {
-        $key = LoaispTableMap::getPrimaryKeyHashFromRow($row, $offset, $indexType);
-        if (null !== ($obj = LoaispTableMap::getInstanceFromPool($key))) {
+        $key = PhuongXaTableMap::getPrimaryKeyHashFromRow($row, $offset, $indexType);
+        if (null !== ($obj = PhuongXaTableMap::getInstanceFromPool($key))) {
             // We no longer rehydrate the object, since this can cause data loss.
             // See http://www.propelorm.org/ticket/509
             // $obj->hydrate($row, $offset, true); // rehydrate
-            $col = $offset + LoaispTableMap::NUM_HYDRATE_COLUMNS;
+            $col = $offset + PhuongXaTableMap::NUM_HYDRATE_COLUMNS;
         } else {
-            $cls = LoaispTableMap::OM_CLASS;
-            /** @var Loaisp $obj */
+            $cls = PhuongXaTableMap::OM_CLASS;
+            /** @var PhuongXa $obj */
             $obj = new $cls();
             $col = $obj->hydrate($row, $offset, false, $indexType);
-            LoaispTableMap::addInstanceToPool($obj, $key);
+            PhuongXaTableMap::addInstanceToPool($obj, $key);
         }
 
         return array($obj, $col);
@@ -271,18 +264,18 @@ class LoaispTableMap extends TableMap
         $cls = static::getOMClass(false);
         // populate the object(s)
         while ($row = $dataFetcher->fetch()) {
-            $key = LoaispTableMap::getPrimaryKeyHashFromRow($row, 0, $dataFetcher->getIndexType());
-            if (null !== ($obj = LoaispTableMap::getInstanceFromPool($key))) {
+            $key = PhuongXaTableMap::getPrimaryKeyHashFromRow($row, 0, $dataFetcher->getIndexType());
+            if (null !== ($obj = PhuongXaTableMap::getInstanceFromPool($key))) {
                 // We no longer rehydrate the object, since this can cause data loss.
                 // See http://www.propelorm.org/ticket/509
                 // $obj->hydrate($row, 0, true); // rehydrate
                 $results[] = $obj;
             } else {
-                /** @var Loaisp $obj */
+                /** @var PhuongXa $obj */
                 $obj = new $cls();
                 $obj->hydrate($row);
                 $results[] = $obj;
-                LoaispTableMap::addInstanceToPool($obj, $key);
+                PhuongXaTableMap::addInstanceToPool($obj, $key);
             } // if key exists
         }
 
@@ -303,13 +296,13 @@ class LoaispTableMap extends TableMap
     public static function addSelectColumns(Criteria $criteria, $alias = null)
     {
         if (null === $alias) {
-            $criteria->addSelectColumn(LoaispTableMap::COL_MALOAISP);
-            $criteria->addSelectColumn(LoaispTableMap::COL_TENLOAISP);
-            $criteria->addSelectColumn(LoaispTableMap::COL_DANHMUC_MADM);
+            $criteria->addSelectColumn(PhuongXaTableMap::COL_MAP_X);
+            $criteria->addSelectColumn(PhuongXaTableMap::COL_TENP_X);
+            $criteria->addSelectColumn(PhuongXaTableMap::COL_QUAN_HUYEN_MAQUAN_HUYEN);
         } else {
-            $criteria->addSelectColumn($alias . '.MaLoaiSP');
-            $criteria->addSelectColumn($alias . '.TenLoaiSP');
-            $criteria->addSelectColumn($alias . '.DanhMuc_MaDM');
+            $criteria->addSelectColumn($alias . '.MaP_X');
+            $criteria->addSelectColumn($alias . '.TenP_X');
+            $criteria->addSelectColumn($alias . '.Quan_Huyen_MaQuan_Huyen');
         }
     }
 
@@ -322,7 +315,7 @@ class LoaispTableMap extends TableMap
      */
     public static function getTableMap()
     {
-        return Propel::getServiceContainer()->getDatabaseMap(LoaispTableMap::DATABASE_NAME)->getTable(LoaispTableMap::TABLE_NAME);
+        return Propel::getServiceContainer()->getDatabaseMap(PhuongXaTableMap::DATABASE_NAME)->getTable(PhuongXaTableMap::TABLE_NAME);
     }
 
     /**
@@ -330,16 +323,16 @@ class LoaispTableMap extends TableMap
      */
     public static function buildTableMap()
     {
-        $dbMap = Propel::getServiceContainer()->getDatabaseMap(LoaispTableMap::DATABASE_NAME);
-        if (!$dbMap->hasTable(LoaispTableMap::TABLE_NAME)) {
-            $dbMap->addTableObject(new LoaispTableMap());
+        $dbMap = Propel::getServiceContainer()->getDatabaseMap(PhuongXaTableMap::DATABASE_NAME);
+        if (!$dbMap->hasTable(PhuongXaTableMap::TABLE_NAME)) {
+            $dbMap->addTableObject(new PhuongXaTableMap());
         }
     }
 
     /**
-     * Performs a DELETE on the database, given a Loaisp or Criteria object OR a primary key value.
+     * Performs a DELETE on the database, given a PhuongXa or Criteria object OR a primary key value.
      *
-     * @param mixed               $values Criteria or Loaisp object or primary key or array of primary keys
+     * @param mixed               $values Criteria or PhuongXa object or primary key or array of primary keys
      *              which is used to create the DELETE statement
      * @param  ConnectionInterface $con the connection to use
      * @return int             The number of affected rows (if supported by underlying database driver).  This includes CASCADE-related rows
@@ -350,27 +343,27 @@ class LoaispTableMap extends TableMap
      public static function doDelete($values, ConnectionInterface $con = null)
      {
         if (null === $con) {
-            $con = Propel::getServiceContainer()->getWriteConnection(LoaispTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(PhuongXaTableMap::DATABASE_NAME);
         }
 
         if ($values instanceof Criteria) {
             // rename for clarity
             $criteria = $values;
-        } elseif ($values instanceof \Model\Loaisp) { // it's a model object
+        } elseif ($values instanceof \Model\PhuongXa) { // it's a model object
             // create criteria based on pk values
             $criteria = $values->buildPkeyCriteria();
         } else { // it's a primary key, or an array of pks
-            $criteria = new Criteria(LoaispTableMap::DATABASE_NAME);
-            $criteria->add(LoaispTableMap::COL_MALOAISP, (array) $values, Criteria::IN);
+            $criteria = new Criteria(PhuongXaTableMap::DATABASE_NAME);
+            $criteria->add(PhuongXaTableMap::COL_MAP_X, (array) $values, Criteria::IN);
         }
 
-        $query = LoaispQuery::create()->mergeWith($criteria);
+        $query = PhuongXaQuery::create()->mergeWith($criteria);
 
         if ($values instanceof Criteria) {
-            LoaispTableMap::clearInstancePool();
+            PhuongXaTableMap::clearInstancePool();
         } elseif (!is_object($values)) { // it's a primary key, or an array of pks
             foreach ((array) $values as $singleval) {
-                LoaispTableMap::removeInstanceFromPool($singleval);
+                PhuongXaTableMap::removeInstanceFromPool($singleval);
             }
         }
 
@@ -378,20 +371,20 @@ class LoaispTableMap extends TableMap
     }
 
     /**
-     * Deletes all rows from the LoaiSP table.
+     * Deletes all rows from the Phuong_Xa table.
      *
      * @param ConnectionInterface $con the connection to use
      * @return int The number of affected rows (if supported by underlying database driver).
      */
     public static function doDeleteAll(ConnectionInterface $con = null)
     {
-        return LoaispQuery::create()->doDeleteAll($con);
+        return PhuongXaQuery::create()->doDeleteAll($con);
     }
 
     /**
-     * Performs an INSERT on the database, given a Loaisp or Criteria object.
+     * Performs an INSERT on the database, given a PhuongXa or Criteria object.
      *
-     * @param mixed               $criteria Criteria or Loaisp object containing data that is used to create the INSERT statement.
+     * @param mixed               $criteria Criteria or PhuongXa object containing data that is used to create the INSERT statement.
      * @param ConnectionInterface $con the ConnectionInterface connection to use
      * @return mixed           The new primary key.
      * @throws PropelException Any exceptions caught during processing will be
@@ -400,22 +393,22 @@ class LoaispTableMap extends TableMap
     public static function doInsert($criteria, ConnectionInterface $con = null)
     {
         if (null === $con) {
-            $con = Propel::getServiceContainer()->getWriteConnection(LoaispTableMap::DATABASE_NAME);
+            $con = Propel::getServiceContainer()->getWriteConnection(PhuongXaTableMap::DATABASE_NAME);
         }
 
         if ($criteria instanceof Criteria) {
             $criteria = clone $criteria; // rename for clarity
         } else {
-            $criteria = $criteria->buildCriteria(); // build Criteria from Loaisp object
+            $criteria = $criteria->buildCriteria(); // build Criteria from PhuongXa object
         }
 
-        if ($criteria->containsKey(LoaispTableMap::COL_MALOAISP) && $criteria->keyContainsValue(LoaispTableMap::COL_MALOAISP) ) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key ('.LoaispTableMap::COL_MALOAISP.')');
+        if ($criteria->containsKey(PhuongXaTableMap::COL_MAP_X) && $criteria->keyContainsValue(PhuongXaTableMap::COL_MAP_X) ) {
+            throw new PropelException('Cannot insert a value for auto-increment primary key ('.PhuongXaTableMap::COL_MAP_X.')');
         }
 
 
         // Set the correct dbName
-        $query = LoaispQuery::create()->mergeWith($criteria);
+        $query = PhuongXaQuery::create()->mergeWith($criteria);
 
         // use transaction because $criteria could contain info
         // for more than one table (I guess, conceivably)
@@ -424,7 +417,7 @@ class LoaispTableMap extends TableMap
         });
     }
 
-} // LoaispTableMap
+} // PhuongXaTableMap
 // This is the static code needed to register the TableMap for this table with the main Propel class.
 //
-LoaispTableMap::buildTableMap();
+PhuongXaTableMap::buildTableMap();

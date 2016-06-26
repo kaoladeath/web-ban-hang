@@ -180,7 +180,7 @@ class KhachhangTableMap extends TableMap
         $this->addColumn('Quan_Huyen', 'QuanHuyen', 'VARCHAR', false, 20, null);
         $this->addColumn('Phuong_Xa', 'PhuongXa', 'VARCHAR', false, 45, null);
         $this->addColumn('UserName', 'Username', 'VARCHAR', false, 45, null);
-        $this->addColumn('Password', 'Password', 'VARCHAR', false, 45, null);
+        $this->addColumn('Password', 'Password', 'VARCHAR', false, 100, null);
     } // initialize()
 
     /**

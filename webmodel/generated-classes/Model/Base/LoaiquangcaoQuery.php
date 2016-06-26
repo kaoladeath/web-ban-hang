@@ -20,11 +20,11 @@ use Propel\Runtime\Exception\PropelException;
  *
  *
  *
- * @method     ChildLoaiquangcaoQuery orderByMaloaiquangcao($order = Criteria::ASC) Order by the MaLoaiQuangCao column
- * @method     ChildLoaiquangcaoQuery orderByTenloaiquangcao($order = Criteria::ASC) Order by the TenLoaiQuangCao column
+ * @method     ChildLoaiquangcaoQuery orderByMalqc($order = Criteria::ASC) Order by the MaLQC column
+ * @method     ChildLoaiquangcaoQuery orderByTenlqc($order = Criteria::ASC) Order by the TenLQC column
  *
- * @method     ChildLoaiquangcaoQuery groupByMaloaiquangcao() Group by the MaLoaiQuangCao column
- * @method     ChildLoaiquangcaoQuery groupByTenloaiquangcao() Group by the TenLoaiQuangCao column
+ * @method     ChildLoaiquangcaoQuery groupByMalqc() Group by the MaLQC column
+ * @method     ChildLoaiquangcaoQuery groupByTenlqc() Group by the TenLQC column
  *
  * @method     ChildLoaiquangcaoQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     ChildLoaiquangcaoQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -49,18 +49,18 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildLoaiquangcao findOne(ConnectionInterface $con = null) Return the first ChildLoaiquangcao matching the query
  * @method     ChildLoaiquangcao findOneOrCreate(ConnectionInterface $con = null) Return the first ChildLoaiquangcao matching the query, or a new ChildLoaiquangcao object populated from the query conditions when no match is found
  *
- * @method     ChildLoaiquangcao findOneByMaloaiquangcao(int $MaLoaiQuangCao) Return the first ChildLoaiquangcao filtered by the MaLoaiQuangCao column
- * @method     ChildLoaiquangcao findOneByTenloaiquangcao(string $TenLoaiQuangCao) Return the first ChildLoaiquangcao filtered by the TenLoaiQuangCao column *
+ * @method     ChildLoaiquangcao findOneByMalqc(int $MaLQC) Return the first ChildLoaiquangcao filtered by the MaLQC column
+ * @method     ChildLoaiquangcao findOneByTenlqc(string $TenLQC) Return the first ChildLoaiquangcao filtered by the TenLQC column *
 
  * @method     ChildLoaiquangcao requirePk($key, ConnectionInterface $con = null) Return the ChildLoaiquangcao by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildLoaiquangcao requireOne(ConnectionInterface $con = null) Return the first ChildLoaiquangcao matching the query and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
- * @method     ChildLoaiquangcao requireOneByMaloaiquangcao(int $MaLoaiQuangCao) Return the first ChildLoaiquangcao filtered by the MaLoaiQuangCao column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildLoaiquangcao requireOneByTenloaiquangcao(string $TenLoaiQuangCao) Return the first ChildLoaiquangcao filtered by the TenLoaiQuangCao column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildLoaiquangcao requireOneByMalqc(int $MaLQC) Return the first ChildLoaiquangcao filtered by the MaLQC column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildLoaiquangcao requireOneByTenlqc(string $TenLQC) Return the first ChildLoaiquangcao filtered by the TenLQC column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildLoaiquangcao[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildLoaiquangcao objects based on current ModelCriteria
- * @method     ChildLoaiquangcao[]|ObjectCollection findByMaloaiquangcao(int $MaLoaiQuangCao) Return ChildLoaiquangcao objects filtered by the MaLoaiQuangCao column
- * @method     ChildLoaiquangcao[]|ObjectCollection findByTenloaiquangcao(string $TenLoaiQuangCao) Return ChildLoaiquangcao objects filtered by the TenLoaiQuangCao column
+ * @method     ChildLoaiquangcao[]|ObjectCollection findByMalqc(int $MaLQC) Return ChildLoaiquangcao objects filtered by the MaLQC column
+ * @method     ChildLoaiquangcao[]|ObjectCollection findByTenlqc(string $TenLQC) Return ChildLoaiquangcao objects filtered by the TenLQC column
  * @method     ChildLoaiquangcao[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *
  */
@@ -159,7 +159,7 @@ abstract class LoaiquangcaoQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT MaLoaiQuangCao, TenLoaiQuangCao FROM LoaiQuangCao WHERE MaLoaiQuangCao = :p0';
+        $sql = 'SELECT MaLQC, TenLQC FROM LoaiQuangCao WHERE MaLQC = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -233,7 +233,7 @@ abstract class LoaiquangcaoQuery extends ModelCriteria
     public function filterByPrimaryKey($key)
     {
 
-        return $this->addUsingAlias(LoaiquangcaoTableMap::COL_MALOAIQUANGCAO, $key, Criteria::EQUAL);
+        return $this->addUsingAlias(LoaiquangcaoTableMap::COL_MALQC, $key, Criteria::EQUAL);
     }
 
     /**
@@ -246,20 +246,20 @@ abstract class LoaiquangcaoQuery extends ModelCriteria
     public function filterByPrimaryKeys($keys)
     {
 
-        return $this->addUsingAlias(LoaiquangcaoTableMap::COL_MALOAIQUANGCAO, $keys, Criteria::IN);
+        return $this->addUsingAlias(LoaiquangcaoTableMap::COL_MALQC, $keys, Criteria::IN);
     }
 
     /**
-     * Filter the query on the MaLoaiQuangCao column
+     * Filter the query on the MaLQC column
      *
      * Example usage:
      * <code>
-     * $query->filterByMaloaiquangcao(1234); // WHERE MaLoaiQuangCao = 1234
-     * $query->filterByMaloaiquangcao(array(12, 34)); // WHERE MaLoaiQuangCao IN (12, 34)
-     * $query->filterByMaloaiquangcao(array('min' => 12)); // WHERE MaLoaiQuangCao > 12
+     * $query->filterByMalqc(1234); // WHERE MaLQC = 1234
+     * $query->filterByMalqc(array(12, 34)); // WHERE MaLQC IN (12, 34)
+     * $query->filterByMalqc(array('min' => 12)); // WHERE MaLQC > 12
      * </code>
      *
-     * @param     mixed $maloaiquangcao The value to use as filter.
+     * @param     mixed $malqc The value to use as filter.
      *              Use scalar values for equality.
      *              Use array values for in_array() equivalent.
      *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
@@ -267,16 +267,16 @@ abstract class LoaiquangcaoQuery extends ModelCriteria
      *
      * @return $this|ChildLoaiquangcaoQuery The current query, for fluid interface
      */
-    public function filterByMaloaiquangcao($maloaiquangcao = null, $comparison = null)
+    public function filterByMalqc($malqc = null, $comparison = null)
     {
-        if (is_array($maloaiquangcao)) {
+        if (is_array($malqc)) {
             $useMinMax = false;
-            if (isset($maloaiquangcao['min'])) {
-                $this->addUsingAlias(LoaiquangcaoTableMap::COL_MALOAIQUANGCAO, $maloaiquangcao['min'], Criteria::GREATER_EQUAL);
+            if (isset($malqc['min'])) {
+                $this->addUsingAlias(LoaiquangcaoTableMap::COL_MALQC, $malqc['min'], Criteria::GREATER_EQUAL);
                 $useMinMax = true;
             }
-            if (isset($maloaiquangcao['max'])) {
-                $this->addUsingAlias(LoaiquangcaoTableMap::COL_MALOAIQUANGCAO, $maloaiquangcao['max'], Criteria::LESS_EQUAL);
+            if (isset($malqc['max'])) {
+                $this->addUsingAlias(LoaiquangcaoTableMap::COL_MALQC, $malqc['max'], Criteria::LESS_EQUAL);
                 $useMinMax = true;
             }
             if ($useMinMax) {
@@ -287,36 +287,36 @@ abstract class LoaiquangcaoQuery extends ModelCriteria
             }
         }
 
-        return $this->addUsingAlias(LoaiquangcaoTableMap::COL_MALOAIQUANGCAO, $maloaiquangcao, $comparison);
+        return $this->addUsingAlias(LoaiquangcaoTableMap::COL_MALQC, $malqc, $comparison);
     }
 
     /**
-     * Filter the query on the TenLoaiQuangCao column
+     * Filter the query on the TenLQC column
      *
      * Example usage:
      * <code>
-     * $query->filterByTenloaiquangcao('fooValue');   // WHERE TenLoaiQuangCao = 'fooValue'
-     * $query->filterByTenloaiquangcao('%fooValue%'); // WHERE TenLoaiQuangCao LIKE '%fooValue%'
+     * $query->filterByTenlqc('fooValue');   // WHERE TenLQC = 'fooValue'
+     * $query->filterByTenlqc('%fooValue%'); // WHERE TenLQC LIKE '%fooValue%'
      * </code>
      *
-     * @param     string $tenloaiquangcao The value to use as filter.
+     * @param     string $tenlqc The value to use as filter.
      *              Accepts wildcards (* and % trigger a LIKE)
      * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
      *
      * @return $this|ChildLoaiquangcaoQuery The current query, for fluid interface
      */
-    public function filterByTenloaiquangcao($tenloaiquangcao = null, $comparison = null)
+    public function filterByTenlqc($tenlqc = null, $comparison = null)
     {
         if (null === $comparison) {
-            if (is_array($tenloaiquangcao)) {
+            if (is_array($tenlqc)) {
                 $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $tenloaiquangcao)) {
-                $tenloaiquangcao = str_replace('*', '%', $tenloaiquangcao);
+            } elseif (preg_match('/[\%\*]/', $tenlqc)) {
+                $tenlqc = str_replace('*', '%', $tenlqc);
                 $comparison = Criteria::LIKE;
             }
         }
 
-        return $this->addUsingAlias(LoaiquangcaoTableMap::COL_TENLOAIQUANGCAO, $tenloaiquangcao, $comparison);
+        return $this->addUsingAlias(LoaiquangcaoTableMap::COL_TENLQC, $tenlqc, $comparison);
     }
 
     /**
@@ -331,7 +331,7 @@ abstract class LoaiquangcaoQuery extends ModelCriteria
     {
         if ($quangcao instanceof \Model\Quangcao) {
             return $this
-                ->addUsingAlias(LoaiquangcaoTableMap::COL_MALOAIQUANGCAO, $quangcao->getLoaiquangcaoMaloaiquangcao(), $comparison);
+                ->addUsingAlias(LoaiquangcaoTableMap::COL_MALQC, $quangcao->getLoaiquangcaoMalqc(), $comparison);
         } elseif ($quangcao instanceof ObjectCollection) {
             return $this
                 ->useQuangcaoQuery()
@@ -402,7 +402,7 @@ abstract class LoaiquangcaoQuery extends ModelCriteria
     public function prune($loaiquangcao = null)
     {
         if ($loaiquangcao) {
-            $this->addUsingAlias(LoaiquangcaoTableMap::COL_MALOAIQUANGCAO, $loaiquangcao->getMaloaiquangcao(), Criteria::NOT_EQUAL);
+            $this->addUsingAlias(LoaiquangcaoTableMap::COL_MALQC, $loaiquangcao->getMalqc(), Criteria::NOT_EQUAL);
         }
 
         return $this;

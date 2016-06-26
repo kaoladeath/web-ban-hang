@@ -59,7 +59,7 @@ class SanphamTableMap extends TableMap
     /**
      * The total number of columns
      */
-    const NUM_COLUMNS = 7;
+    const NUM_COLUMNS = 9;
 
     /**
      * The number of lazy-loaded columns
@@ -69,7 +69,7 @@ class SanphamTableMap extends TableMap
     /**
      * The number of columns to hydrate (NUM_COLUMNS - NUM_LAZY_LOAD_COLUMNS)
      */
-    const NUM_HYDRATE_COLUMNS = 7;
+    const NUM_HYDRATE_COLUMNS = 9;
 
     /**
      * the column name for the MaSanpham field
@@ -107,6 +107,16 @@ class SanphamTableMap extends TableMap
     const COL_LOAISP_MALOAISP = 'Sanpham.LoaiSP_MaLoaiSP';
 
     /**
+     * the column name for the GiaNhap field
+     */
+    const COL_GIANHAP = 'Sanpham.GiaNhap';
+
+    /**
+     * the column name for the LuotXem field
+     */
+    const COL_LUOTXEM = 'Sanpham.LuotXem';
+
+    /**
      * The default string format for model objects of the related table
      */
     const DEFAULT_STRING_FORMAT = 'YAML';
@@ -118,11 +128,11 @@ class SanphamTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('Masanpham', 'Tensanpham', 'Hinhanh', 'Giasp', 'Donvitinh', 'Thongtin', 'LoaispMaloaisp', ),
-        self::TYPE_CAMELNAME     => array('masanpham', 'tensanpham', 'hinhanh', 'giasp', 'donvitinh', 'thongtin', 'loaispMaloaisp', ),
-        self::TYPE_COLNAME       => array(SanphamTableMap::COL_MASANPHAM, SanphamTableMap::COL_TENSANPHAM, SanphamTableMap::COL_HINHANH, SanphamTableMap::COL_GIASP, SanphamTableMap::COL_DONVITINH, SanphamTableMap::COL_THONGTIN, SanphamTableMap::COL_LOAISP_MALOAISP, ),
-        self::TYPE_FIELDNAME     => array('MaSanpham', 'TenSanpham', 'HInhAnh', 'GiaSP', 'DonViTinh', 'ThongTin', 'LoaiSP_MaLoaiSP', ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, )
+        self::TYPE_PHPNAME       => array('Masanpham', 'Tensanpham', 'Hinhanh', 'Giasp', 'Donvitinh', 'Thongtin', 'LoaispMaloaisp', 'Gianhap', 'Luotxem', ),
+        self::TYPE_CAMELNAME     => array('masanpham', 'tensanpham', 'hinhanh', 'giasp', 'donvitinh', 'thongtin', 'loaispMaloaisp', 'gianhap', 'luotxem', ),
+        self::TYPE_COLNAME       => array(SanphamTableMap::COL_MASANPHAM, SanphamTableMap::COL_TENSANPHAM, SanphamTableMap::COL_HINHANH, SanphamTableMap::COL_GIASP, SanphamTableMap::COL_DONVITINH, SanphamTableMap::COL_THONGTIN, SanphamTableMap::COL_LOAISP_MALOAISP, SanphamTableMap::COL_GIANHAP, SanphamTableMap::COL_LUOTXEM, ),
+        self::TYPE_FIELDNAME     => array('MaSanpham', 'TenSanpham', 'HInhAnh', 'GiaSP', 'DonViTinh', 'ThongTin', 'LoaiSP_MaLoaiSP', 'GiaNhap', 'LuotXem', ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, )
     );
 
     /**
@@ -132,11 +142,11 @@ class SanphamTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('Masanpham' => 0, 'Tensanpham' => 1, 'Hinhanh' => 2, 'Giasp' => 3, 'Donvitinh' => 4, 'Thongtin' => 5, 'LoaispMaloaisp' => 6, ),
-        self::TYPE_CAMELNAME     => array('masanpham' => 0, 'tensanpham' => 1, 'hinhanh' => 2, 'giasp' => 3, 'donvitinh' => 4, 'thongtin' => 5, 'loaispMaloaisp' => 6, ),
-        self::TYPE_COLNAME       => array(SanphamTableMap::COL_MASANPHAM => 0, SanphamTableMap::COL_TENSANPHAM => 1, SanphamTableMap::COL_HINHANH => 2, SanphamTableMap::COL_GIASP => 3, SanphamTableMap::COL_DONVITINH => 4, SanphamTableMap::COL_THONGTIN => 5, SanphamTableMap::COL_LOAISP_MALOAISP => 6, ),
-        self::TYPE_FIELDNAME     => array('MaSanpham' => 0, 'TenSanpham' => 1, 'HInhAnh' => 2, 'GiaSP' => 3, 'DonViTinh' => 4, 'ThongTin' => 5, 'LoaiSP_MaLoaiSP' => 6, ),
-        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, )
+        self::TYPE_PHPNAME       => array('Masanpham' => 0, 'Tensanpham' => 1, 'Hinhanh' => 2, 'Giasp' => 3, 'Donvitinh' => 4, 'Thongtin' => 5, 'LoaispMaloaisp' => 6, 'Gianhap' => 7, 'Luotxem' => 8, ),
+        self::TYPE_CAMELNAME     => array('masanpham' => 0, 'tensanpham' => 1, 'hinhanh' => 2, 'giasp' => 3, 'donvitinh' => 4, 'thongtin' => 5, 'loaispMaloaisp' => 6, 'gianhap' => 7, 'luotxem' => 8, ),
+        self::TYPE_COLNAME       => array(SanphamTableMap::COL_MASANPHAM => 0, SanphamTableMap::COL_TENSANPHAM => 1, SanphamTableMap::COL_HINHANH => 2, SanphamTableMap::COL_GIASP => 3, SanphamTableMap::COL_DONVITINH => 4, SanphamTableMap::COL_THONGTIN => 5, SanphamTableMap::COL_LOAISP_MALOAISP => 6, SanphamTableMap::COL_GIANHAP => 7, SanphamTableMap::COL_LUOTXEM => 8, ),
+        self::TYPE_FIELDNAME     => array('MaSanpham' => 0, 'TenSanpham' => 1, 'HInhAnh' => 2, 'GiaSP' => 3, 'DonViTinh' => 4, 'ThongTin' => 5, 'LoaiSP_MaLoaiSP' => 6, 'GiaNhap' => 7, 'LuotXem' => 8, ),
+        self::TYPE_NUM           => array(0, 1, 2, 3, 4, 5, 6, 7, 8, )
     );
 
     /**
@@ -163,6 +173,8 @@ class SanphamTableMap extends TableMap
         $this->addColumn('DonViTinh', 'Donvitinh', 'CHAR', true, 5, null);
         $this->addColumn('ThongTin', 'Thongtin', 'LONGVARCHAR', false, null, null);
         $this->addForeignKey('LoaiSP_MaLoaiSP', 'LoaispMaloaisp', 'INTEGER', 'LoaiSP', 'MaLoaiSP', true, null, null);
+        $this->addColumn('GiaNhap', 'Gianhap', 'DECIMAL', false, 15, null);
+        $this->addColumn('LuotXem', 'Luotxem', 'INTEGER', false, null, null);
     } // initialize()
 
     /**
@@ -334,6 +346,8 @@ class SanphamTableMap extends TableMap
             $criteria->addSelectColumn(SanphamTableMap::COL_DONVITINH);
             $criteria->addSelectColumn(SanphamTableMap::COL_THONGTIN);
             $criteria->addSelectColumn(SanphamTableMap::COL_LOAISP_MALOAISP);
+            $criteria->addSelectColumn(SanphamTableMap::COL_GIANHAP);
+            $criteria->addSelectColumn(SanphamTableMap::COL_LUOTXEM);
         } else {
             $criteria->addSelectColumn($alias . '.MaSanpham');
             $criteria->addSelectColumn($alias . '.TenSanpham');
@@ -342,6 +356,8 @@ class SanphamTableMap extends TableMap
             $criteria->addSelectColumn($alias . '.DonViTinh');
             $criteria->addSelectColumn($alias . '.ThongTin');
             $criteria->addSelectColumn($alias . '.LoaiSP_MaLoaiSP');
+            $criteria->addSelectColumn($alias . '.GiaNhap');
+            $criteria->addSelectColumn($alias . '.LuotXem');
         }
     }
 

@@ -27,6 +27,8 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildSanphamQuery orderByDonvitinh($order = Criteria::ASC) Order by the DonViTinh column
  * @method     ChildSanphamQuery orderByThongtin($order = Criteria::ASC) Order by the ThongTin column
  * @method     ChildSanphamQuery orderByLoaispMaloaisp($order = Criteria::ASC) Order by the LoaiSP_MaLoaiSP column
+ * @method     ChildSanphamQuery orderByGianhap($order = Criteria::ASC) Order by the GiaNhap column
+ * @method     ChildSanphamQuery orderByLuotxem($order = Criteria::ASC) Order by the LuotXem column
  *
  * @method     ChildSanphamQuery groupByMasanpham() Group by the MaSanpham column
  * @method     ChildSanphamQuery groupByTensanpham() Group by the TenSanpham column
@@ -35,6 +37,8 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildSanphamQuery groupByDonvitinh() Group by the DonViTinh column
  * @method     ChildSanphamQuery groupByThongtin() Group by the ThongTin column
  * @method     ChildSanphamQuery groupByLoaispMaloaisp() Group by the LoaiSP_MaLoaiSP column
+ * @method     ChildSanphamQuery groupByGianhap() Group by the GiaNhap column
+ * @method     ChildSanphamQuery groupByLuotxem() Group by the LuotXem column
  *
  * @method     ChildSanphamQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     ChildSanphamQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -75,7 +79,9 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildSanpham findOneByGiasp(string $GiaSP) Return the first ChildSanpham filtered by the GiaSP column
  * @method     ChildSanpham findOneByDonvitinh(string $DonViTinh) Return the first ChildSanpham filtered by the DonViTinh column
  * @method     ChildSanpham findOneByThongtin(string $ThongTin) Return the first ChildSanpham filtered by the ThongTin column
- * @method     ChildSanpham findOneByLoaispMaloaisp(int $LoaiSP_MaLoaiSP) Return the first ChildSanpham filtered by the LoaiSP_MaLoaiSP column *
+ * @method     ChildSanpham findOneByLoaispMaloaisp(int $LoaiSP_MaLoaiSP) Return the first ChildSanpham filtered by the LoaiSP_MaLoaiSP column
+ * @method     ChildSanpham findOneByGianhap(string $GiaNhap) Return the first ChildSanpham filtered by the GiaNhap column
+ * @method     ChildSanpham findOneByLuotxem(int $LuotXem) Return the first ChildSanpham filtered by the LuotXem column *
 
  * @method     ChildSanpham requirePk($key, ConnectionInterface $con = null) Return the ChildSanpham by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildSanpham requireOne(ConnectionInterface $con = null) Return the first ChildSanpham matching the query and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -87,6 +93,8 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildSanpham requireOneByDonvitinh(string $DonViTinh) Return the first ChildSanpham filtered by the DonViTinh column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildSanpham requireOneByThongtin(string $ThongTin) Return the first ChildSanpham filtered by the ThongTin column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildSanpham requireOneByLoaispMaloaisp(int $LoaiSP_MaLoaiSP) Return the first ChildSanpham filtered by the LoaiSP_MaLoaiSP column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildSanpham requireOneByGianhap(string $GiaNhap) Return the first ChildSanpham filtered by the GiaNhap column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildSanpham requireOneByLuotxem(int $LuotXem) Return the first ChildSanpham filtered by the LuotXem column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildSanpham[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildSanpham objects based on current ModelCriteria
  * @method     ChildSanpham[]|ObjectCollection findByMasanpham(int $MaSanpham) Return ChildSanpham objects filtered by the MaSanpham column
@@ -96,6 +104,8 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildSanpham[]|ObjectCollection findByDonvitinh(string $DonViTinh) Return ChildSanpham objects filtered by the DonViTinh column
  * @method     ChildSanpham[]|ObjectCollection findByThongtin(string $ThongTin) Return ChildSanpham objects filtered by the ThongTin column
  * @method     ChildSanpham[]|ObjectCollection findByLoaispMaloaisp(int $LoaiSP_MaLoaiSP) Return ChildSanpham objects filtered by the LoaiSP_MaLoaiSP column
+ * @method     ChildSanpham[]|ObjectCollection findByGianhap(string $GiaNhap) Return ChildSanpham objects filtered by the GiaNhap column
+ * @method     ChildSanpham[]|ObjectCollection findByLuotxem(int $LuotXem) Return ChildSanpham objects filtered by the LuotXem column
  * @method     ChildSanpham[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *
  */
@@ -194,7 +204,7 @@ abstract class SanphamQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT MaSanpham, TenSanpham, HInhAnh, GiaSP, DonViTinh, ThongTin, LoaiSP_MaLoaiSP FROM Sanpham WHERE MaSanpham = :p0';
+        $sql = 'SELECT MaSanpham, TenSanpham, HInhAnh, GiaSP, DonViTinh, ThongTin, LoaiSP_MaLoaiSP, GiaNhap, LuotXem FROM Sanpham WHERE MaSanpham = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -523,6 +533,88 @@ abstract class SanphamQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(SanphamTableMap::COL_LOAISP_MALOAISP, $loaispMaloaisp, $comparison);
+    }
+
+    /**
+     * Filter the query on the GiaNhap column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByGianhap(1234); // WHERE GiaNhap = 1234
+     * $query->filterByGianhap(array(12, 34)); // WHERE GiaNhap IN (12, 34)
+     * $query->filterByGianhap(array('min' => 12)); // WHERE GiaNhap > 12
+     * </code>
+     *
+     * @param     mixed $gianhap The value to use as filter.
+     *              Use scalar values for equality.
+     *              Use array values for in_array() equivalent.
+     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return $this|ChildSanphamQuery The current query, for fluid interface
+     */
+    public function filterByGianhap($gianhap = null, $comparison = null)
+    {
+        if (is_array($gianhap)) {
+            $useMinMax = false;
+            if (isset($gianhap['min'])) {
+                $this->addUsingAlias(SanphamTableMap::COL_GIANHAP, $gianhap['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($gianhap['max'])) {
+                $this->addUsingAlias(SanphamTableMap::COL_GIANHAP, $gianhap['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+        }
+
+        return $this->addUsingAlias(SanphamTableMap::COL_GIANHAP, $gianhap, $comparison);
+    }
+
+    /**
+     * Filter the query on the LuotXem column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByLuotxem(1234); // WHERE LuotXem = 1234
+     * $query->filterByLuotxem(array(12, 34)); // WHERE LuotXem IN (12, 34)
+     * $query->filterByLuotxem(array('min' => 12)); // WHERE LuotXem > 12
+     * </code>
+     *
+     * @param     mixed $luotxem The value to use as filter.
+     *              Use scalar values for equality.
+     *              Use array values for in_array() equivalent.
+     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return $this|ChildSanphamQuery The current query, for fluid interface
+     */
+    public function filterByLuotxem($luotxem = null, $comparison = null)
+    {
+        if (is_array($luotxem)) {
+            $useMinMax = false;
+            if (isset($luotxem['min'])) {
+                $this->addUsingAlias(SanphamTableMap::COL_LUOTXEM, $luotxem['min'], Criteria::GREATER_EQUAL);
+                $useMinMax = true;
+            }
+            if (isset($luotxem['max'])) {
+                $this->addUsingAlias(SanphamTableMap::COL_LUOTXEM, $luotxem['max'], Criteria::LESS_EQUAL);
+                $useMinMax = true;
+            }
+            if ($useMinMax) {
+                return $this;
+            }
+            if (null === $comparison) {
+                $comparison = Criteria::IN;
+            }
+        }
+
+        return $this->addUsingAlias(SanphamTableMap::COL_LUOTXEM, $luotxem, $comparison);
     }
 
     /**

@@ -72,14 +72,14 @@ class LoaiquangcaoTableMap extends TableMap
     const NUM_HYDRATE_COLUMNS = 2;
 
     /**
-     * the column name for the MaLoaiQuangCao field
+     * the column name for the MaLQC field
      */
-    const COL_MALOAIQUANGCAO = 'LoaiQuangCao.MaLoaiQuangCao';
+    const COL_MALQC = 'LoaiQuangCao.MaLQC';
 
     /**
-     * the column name for the TenLoaiQuangCao field
+     * the column name for the TenLQC field
      */
-    const COL_TENLOAIQUANGCAO = 'LoaiQuangCao.TenLoaiQuangCao';
+    const COL_TENLQC = 'LoaiQuangCao.TenLQC';
 
     /**
      * The default string format for model objects of the related table
@@ -93,10 +93,10 @@ class LoaiquangcaoTableMap extends TableMap
      * e.g. self::$fieldNames[self::TYPE_PHPNAME][0] = 'Id'
      */
     protected static $fieldNames = array (
-        self::TYPE_PHPNAME       => array('Maloaiquangcao', 'Tenloaiquangcao', ),
-        self::TYPE_CAMELNAME     => array('maloaiquangcao', 'tenloaiquangcao', ),
-        self::TYPE_COLNAME       => array(LoaiquangcaoTableMap::COL_MALOAIQUANGCAO, LoaiquangcaoTableMap::COL_TENLOAIQUANGCAO, ),
-        self::TYPE_FIELDNAME     => array('MaLoaiQuangCao', 'TenLoaiQuangCao', ),
+        self::TYPE_PHPNAME       => array('Malqc', 'Tenlqc', ),
+        self::TYPE_CAMELNAME     => array('malqc', 'tenlqc', ),
+        self::TYPE_COLNAME       => array(LoaiquangcaoTableMap::COL_MALQC, LoaiquangcaoTableMap::COL_TENLQC, ),
+        self::TYPE_FIELDNAME     => array('MaLQC', 'TenLQC', ),
         self::TYPE_NUM           => array(0, 1, )
     );
 
@@ -107,10 +107,10 @@ class LoaiquangcaoTableMap extends TableMap
      * e.g. self::$fieldKeys[self::TYPE_PHPNAME]['Id'] = 0
      */
     protected static $fieldKeys = array (
-        self::TYPE_PHPNAME       => array('Maloaiquangcao' => 0, 'Tenloaiquangcao' => 1, ),
-        self::TYPE_CAMELNAME     => array('maloaiquangcao' => 0, 'tenloaiquangcao' => 1, ),
-        self::TYPE_COLNAME       => array(LoaiquangcaoTableMap::COL_MALOAIQUANGCAO => 0, LoaiquangcaoTableMap::COL_TENLOAIQUANGCAO => 1, ),
-        self::TYPE_FIELDNAME     => array('MaLoaiQuangCao' => 0, 'TenLoaiQuangCao' => 1, ),
+        self::TYPE_PHPNAME       => array('Malqc' => 0, 'Tenlqc' => 1, ),
+        self::TYPE_CAMELNAME     => array('malqc' => 0, 'tenlqc' => 1, ),
+        self::TYPE_COLNAME       => array(LoaiquangcaoTableMap::COL_MALQC => 0, LoaiquangcaoTableMap::COL_TENLQC => 1, ),
+        self::TYPE_FIELDNAME     => array('MaLQC' => 0, 'TenLQC' => 1, ),
         self::TYPE_NUM           => array(0, 1, )
     );
 
@@ -131,8 +131,8 @@ class LoaiquangcaoTableMap extends TableMap
         $this->setPackage('Model');
         $this->setUseIdGenerator(true);
         // columns
-        $this->addPrimaryKey('MaLoaiQuangCao', 'Maloaiquangcao', 'INTEGER', true, null, null);
-        $this->addColumn('TenLoaiQuangCao', 'Tenloaiquangcao', 'VARCHAR', true, 45, null);
+        $this->addPrimaryKey('MaLQC', 'Malqc', 'INTEGER', true, null, null);
+        $this->addColumn('TenLQC', 'Tenlqc', 'VARCHAR', true, 45, null);
     } // initialize()
 
     /**
@@ -143,8 +143,8 @@ class LoaiquangcaoTableMap extends TableMap
         $this->addRelation('Quangcao', '\\Model\\Quangcao', RelationMap::ONE_TO_MANY, array (
   0 =>
   array (
-    0 => ':LoaiQuangCao_MaLoaiQuangCao',
-    1 => ':MaLoaiQuangCao',
+    0 => ':LoaiQuangCao_MaLQC',
+    1 => ':MaLQC',
   ),
 ), null, null, 'Quangcaos', false);
     } // buildRelations()
@@ -165,11 +165,11 @@ class LoaiquangcaoTableMap extends TableMap
     public static function getPrimaryKeyHashFromRow($row, $offset = 0, $indexType = TableMap::TYPE_NUM)
     {
         // If the PK cannot be derived from the row, return NULL.
-        if ($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)] === null) {
+        if ($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Malqc', TableMap::TYPE_PHPNAME, $indexType)] === null) {
             return null;
         }
 
-        return null === $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)] || is_scalar($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)]) || is_callable([$row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)], '__toString']) ? (string) $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)] : $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Maloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)];
+        return null === $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Malqc', TableMap::TYPE_PHPNAME, $indexType)] || is_scalar($row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Malqc', TableMap::TYPE_PHPNAME, $indexType)]) || is_callable([$row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Malqc', TableMap::TYPE_PHPNAME, $indexType)], '__toString']) ? (string) $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Malqc', TableMap::TYPE_PHPNAME, $indexType)] : $row[TableMap::TYPE_NUM == $indexType ? 0 + $offset : static::translateFieldName('Malqc', TableMap::TYPE_PHPNAME, $indexType)];
     }
 
     /**
@@ -189,7 +189,7 @@ class LoaiquangcaoTableMap extends TableMap
         return (int) $row[
             $indexType == TableMap::TYPE_NUM
                 ? 0 + $offset
-                : self::translateFieldName('Maloaiquangcao', TableMap::TYPE_PHPNAME, $indexType)
+                : self::translateFieldName('Malqc', TableMap::TYPE_PHPNAME, $indexType)
         ];
     }
 
@@ -290,11 +290,11 @@ class LoaiquangcaoTableMap extends TableMap
     public static function addSelectColumns(Criteria $criteria, $alias = null)
     {
         if (null === $alias) {
-            $criteria->addSelectColumn(LoaiquangcaoTableMap::COL_MALOAIQUANGCAO);
-            $criteria->addSelectColumn(LoaiquangcaoTableMap::COL_TENLOAIQUANGCAO);
+            $criteria->addSelectColumn(LoaiquangcaoTableMap::COL_MALQC);
+            $criteria->addSelectColumn(LoaiquangcaoTableMap::COL_TENLQC);
         } else {
-            $criteria->addSelectColumn($alias . '.MaLoaiQuangCao');
-            $criteria->addSelectColumn($alias . '.TenLoaiQuangCao');
+            $criteria->addSelectColumn($alias . '.MaLQC');
+            $criteria->addSelectColumn($alias . '.TenLQC');
         }
     }
 
@@ -346,7 +346,7 @@ class LoaiquangcaoTableMap extends TableMap
             $criteria = $values->buildPkeyCriteria();
         } else { // it's a primary key, or an array of pks
             $criteria = new Criteria(LoaiquangcaoTableMap::DATABASE_NAME);
-            $criteria->add(LoaiquangcaoTableMap::COL_MALOAIQUANGCAO, (array) $values, Criteria::IN);
+            $criteria->add(LoaiquangcaoTableMap::COL_MALQC, (array) $values, Criteria::IN);
         }
 
         $query = LoaiquangcaoQuery::create()->mergeWith($criteria);
@@ -394,8 +394,8 @@ class LoaiquangcaoTableMap extends TableMap
             $criteria = $criteria->buildCriteria(); // build Criteria from Loaiquangcao object
         }
 
-        if ($criteria->containsKey(LoaiquangcaoTableMap::COL_MALOAIQUANGCAO) && $criteria->keyContainsValue(LoaiquangcaoTableMap::COL_MALOAIQUANGCAO) ) {
-            throw new PropelException('Cannot insert a value for auto-increment primary key ('.LoaiquangcaoTableMap::COL_MALOAIQUANGCAO.')');
+        if ($criteria->containsKey(LoaiquangcaoTableMap::COL_MALQC) && $criteria->keyContainsValue(LoaiquangcaoTableMap::COL_MALQC) ) {
+            throw new PropelException('Cannot insert a value for auto-increment primary key ('.LoaiquangcaoTableMap::COL_MALQC.')');
         }
 
 

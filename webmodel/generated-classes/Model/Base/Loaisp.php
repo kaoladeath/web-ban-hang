@@ -4,6 +4,8 @@ namespace Model\Base;
 
 use \Exception;
 use \PDO;
+use Model\Danhmuc as ChildDanhmuc;
+use Model\DanhmucQuery as ChildDanhmucQuery;
 use Model\Loaisp as ChildLoaisp;
 use Model\LoaispQuery as ChildLoaispQuery;
 use Model\Sanpham as ChildSanpham;
@@ -77,6 +79,18 @@ abstract class Loaisp implements ActiveRecordInterface
      * @var        string
      */
     protected $tenloaisp;
+
+    /**
+     * The value for the danhmuc_madm field.
+     *
+     * @var        int
+     */
+    protected $danhmuc_madm;
+
+    /**
+     * @var        ChildDanhmuc
+     */
+    protected $aDanhmuc;
 
     /**
      * @var        ObjectCollection|ChildSanpham[] Collection to store aggregation of ChildSanpham objects.
@@ -344,6 +358,16 @@ abstract class Loaisp implements ActiveRecordInterface
     }
 
     /**
+     * Get the [danhmuc_madm] column value.
+     *
+     * @return int
+     */
+    public function getDanhmucMadm()
+    {
+        return $this->danhmuc_madm;
+    }
+
+    /**
      * Set the value of [maloaisp] column.
      *
      * @param int $v new value
@@ -382,6 +406,30 @@ abstract class Loaisp implements ActiveRecordInterface
 
         return $this;
     } // setTenloaisp()
+
+    /**
+     * Set the value of [danhmuc_madm] column.
+     *
+     * @param int $v new value
+     * @return $this|\Model\Loaisp The current object (for fluent API support)
+     */
+    public function setDanhmucMadm($v)
+    {
+        if ($v !== null) {
+            $v = (int) $v;
+        }
+
+        if ($this->danhmuc_madm !== $v) {
+            $this->danhmuc_madm = $v;
+            $this->modifiedColumns[LoaispTableMap::COL_DANHMUC_MADM] = true;
+        }
+
+        if ($this->aDanhmuc !== null && $this->aDanhmuc->getMadm() !== $v) {
+            $this->aDanhmuc = null;
+        }
+
+        return $this;
+    } // setDanhmucMadm()
 
     /**
      * Indicates whether the columns in this object are only set to default values.
@@ -424,6 +472,9 @@ abstract class Loaisp implements ActiveRecordInterface
 
             $col = $row[TableMap::TYPE_NUM == $indexType ? 1 + $startcol : LoaispTableMap::translateFieldName('Tenloaisp', TableMap::TYPE_PHPNAME, $indexType)];
             $this->tenloaisp = (null !== $col) ? (string) $col : null;
+
+            $col = $row[TableMap::TYPE_NUM == $indexType ? 2 + $startcol : LoaispTableMap::translateFieldName('DanhmucMadm', TableMap::TYPE_PHPNAME, $indexType)];
+            $this->danhmuc_madm = (null !== $col) ? (int) $col : null;
             $this->resetModified();
 
             $this->setNew(false);
@@ -432,7 +483,7 @@ abstract class Loaisp implements ActiveRecordInterface
                 $this->ensureConsistency();
             }
 
-            return $startcol + 2; // 2 = LoaispTableMap::NUM_HYDRATE_COLUMNS.
+            return $startcol + 3; // 3 = LoaispTableMap::NUM_HYDRATE_COLUMNS.
 
         } catch (Exception $e) {
             throw new PropelException(sprintf('Error populating %s object', '\\Model\\Loaisp'), 0, $e);
@@ -454,6 +505,9 @@ abstract class Loaisp implements ActiveRecordInterface
      */
     public function ensureConsistency()
     {
+        if ($this->aDanhmuc !== null && $this->danhmuc_madm !== $this->aDanhmuc->getMadm()) {
+            $this->aDanhmuc = null;
+        }
     } // ensureConsistency
 
     /**
@@ -493,6 +547,7 @@ abstract class Loaisp implements ActiveRecordInterface
 
         if ($deep) {  // also de-associate any related objects?
 
+            $this->aDanhmuc = null;
             $this->collSanphams = null;
 
         } // if (deep)
@@ -594,6 +649,18 @@ abstract class Loaisp implements ActiveRecordInterface
         if (!$this->alreadyInSave) {
             $this->alreadyInSave = true;
 
+            // We call the save method on the following object(s) if they
+            // were passed to this object by their corresponding set
+            // method.  This object relates to these object(s) by a
+            // foreign key reference.
+
+            if ($this->aDanhmuc !== null) {
+                if ($this->aDanhmuc->isModified() || $this->aDanhmuc->isNew()) {
+                    $affectedRows += $this->aDanhmuc->save($con);
+                }
+                $this->setDanhmuc($this->aDanhmuc);
+            }
+
             if ($this->isNew() || $this->isModified()) {
                 // persist changes
                 if ($this->isNew()) {
@@ -654,6 +721,9 @@ abstract class Loaisp implements ActiveRecordInterface
         if ($this->isColumnModified(LoaispTableMap::COL_TENLOAISP)) {
             $modifiedColumns[':p' . $index++]  = 'TenLoaiSP';
         }
+        if ($this->isColumnModified(LoaispTableMap::COL_DANHMUC_MADM)) {
+            $modifiedColumns[':p' . $index++]  = 'DanhMuc_MaDM';
+        }
 
         $sql = sprintf(
             'INSERT INTO LoaiSP (%s) VALUES (%s)',
@@ -670,6 +740,9 @@ abstract class Loaisp implements ActiveRecordInterface
                         break;
                     case 'TenLoaiSP':
                         $stmt->bindValue($identifier, $this->tenloaisp, PDO::PARAM_STR);
+                        break;
+                    case 'DanhMuc_MaDM':
+                        $stmt->bindValue($identifier, $this->danhmuc_madm, PDO::PARAM_INT);
                         break;
                 }
             }
@@ -739,6 +812,9 @@ abstract class Loaisp implements ActiveRecordInterface
             case 1:
                 return $this->getTenloaisp();
                 break;
+            case 2:
+                return $this->getDanhmucMadm();
+                break;
             default:
                 return null;
                 break;
@@ -771,6 +847,7 @@ abstract class Loaisp implements ActiveRecordInterface
         $result = array(
             $keys[0] => $this->getMaloaisp(),
             $keys[1] => $this->getTenloaisp(),
+            $keys[2] => $this->getDanhmucMadm(),
         );
         $virtualColumns = $this->virtualColumns;
         foreach ($virtualColumns as $key => $virtualColumn) {
@@ -778,6 +855,21 @@ abstract class Loaisp implements ActiveRecordInterface
         }
 
         if ($includeForeignObjects) {
+            if (null !== $this->aDanhmuc) {
+
+                switch ($keyType) {
+                    case TableMap::TYPE_CAMELNAME:
+                        $key = 'danhmuc';
+                        break;
+                    case TableMap::TYPE_FIELDNAME:
+                        $key = 'DanhMuc';
+                        break;
+                    default:
+                        $key = 'Danhmuc';
+                }
+
+                $result[$key] = $this->aDanhmuc->toArray($keyType, $includeLazyLoadColumns,  $alreadyDumpedObjects, true);
+            }
             if (null !== $this->collSanphams) {
 
                 switch ($keyType) {
@@ -833,6 +925,9 @@ abstract class Loaisp implements ActiveRecordInterface
             case 1:
                 $this->setTenloaisp($value);
                 break;
+            case 2:
+                $this->setDanhmucMadm($value);
+                break;
         } // switch()
 
         return $this;
@@ -864,6 +959,9 @@ abstract class Loaisp implements ActiveRecordInterface
         }
         if (array_key_exists($keys[1], $arr)) {
             $this->setTenloaisp($arr[$keys[1]]);
+        }
+        if (array_key_exists($keys[2], $arr)) {
+            $this->setDanhmucMadm($arr[$keys[2]]);
         }
     }
 
@@ -911,6 +1009,9 @@ abstract class Loaisp implements ActiveRecordInterface
         }
         if ($this->isColumnModified(LoaispTableMap::COL_TENLOAISP)) {
             $criteria->add(LoaispTableMap::COL_TENLOAISP, $this->tenloaisp);
+        }
+        if ($this->isColumnModified(LoaispTableMap::COL_DANHMUC_MADM)) {
+            $criteria->add(LoaispTableMap::COL_DANHMUC_MADM, $this->danhmuc_madm);
         }
 
         return $criteria;
@@ -999,6 +1100,7 @@ abstract class Loaisp implements ActiveRecordInterface
     public function copyInto($copyObj, $deepCopy = false, $makeNew = true)
     {
         $copyObj->setTenloaisp($this->getTenloaisp());
+        $copyObj->setDanhmucMadm($this->getDanhmucMadm());
 
         if ($deepCopy) {
             // important: temporarily setNew(false) because this affects the behavior of
@@ -1039,6 +1141,57 @@ abstract class Loaisp implements ActiveRecordInterface
         $this->copyInto($copyObj, $deepCopy);
 
         return $copyObj;
+    }
+
+    /**
+     * Declares an association between this object and a ChildDanhmuc object.
+     *
+     * @param  ChildDanhmuc $v
+     * @return $this|\Model\Loaisp The current object (for fluent API support)
+     * @throws PropelException
+     */
+    public function setDanhmuc(ChildDanhmuc $v = null)
+    {
+        if ($v === null) {
+            $this->setDanhmucMadm(NULL);
+        } else {
+            $this->setDanhmucMadm($v->getMadm());
+        }
+
+        $this->aDanhmuc = $v;
+
+        // Add binding for other direction of this n:n relationship.
+        // If this object has already been added to the ChildDanhmuc object, it will not be re-added.
+        if ($v !== null) {
+            $v->addLoaisp($this);
+        }
+
+
+        return $this;
+    }
+
+
+    /**
+     * Get the associated ChildDanhmuc object
+     *
+     * @param  ConnectionInterface $con Optional Connection object.
+     * @return ChildDanhmuc The associated ChildDanhmuc object.
+     * @throws PropelException
+     */
+    public function getDanhmuc(ConnectionInterface $con = null)
+    {
+        if ($this->aDanhmuc === null && ($this->danhmuc_madm !== null)) {
+            $this->aDanhmuc = ChildDanhmucQuery::create()->findPk($this->danhmuc_madm, $con);
+            /* The following can be used additionally to
+                guarantee the related object contains a reference
+                to this object.  This level of coupling may, however, be
+                undesirable since it could result in an only partially populated collection
+                in the referenced object.
+                $this->aDanhmuc->addLoaisps($this);
+             */
+        }
+
+        return $this->aDanhmuc;
     }
 
 
@@ -1289,8 +1442,12 @@ abstract class Loaisp implements ActiveRecordInterface
      */
     public function clear()
     {
+        if (null !== $this->aDanhmuc) {
+            $this->aDanhmuc->removeLoaisp($this);
+        }
         $this->maloaisp = null;
         $this->tenloaisp = null;
+        $this->danhmuc_madm = null;
         $this->alreadyInSave = false;
         $this->clearAllReferences();
         $this->resetModified();
@@ -1317,6 +1474,7 @@ abstract class Loaisp implements ActiveRecordInterface
         } // if ($deep)
 
         $this->collSanphams = null;
+        $this->aDanhmuc = null;
     }
 
     /**

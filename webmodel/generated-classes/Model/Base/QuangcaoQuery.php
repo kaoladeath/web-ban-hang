@@ -20,19 +20,17 @@ use Propel\Runtime\Exception\PropelException;
  *
  *
  *
- * @method     ChildQuangcaoQuery orderByMaquangcao($order = Criteria::ASC) Order by the MaQuangCao column
+ * @method     ChildQuangcaoQuery orderByMaqc($order = Criteria::ASC) Order by the MaQC column
+ * @method     ChildQuangcaoQuery orderByTenqc($order = Criteria::ASC) Order by the TenQC column
  * @method     ChildQuangcaoQuery orderByNoidung($order = Criteria::ASC) Order by the NoiDung column
- * @method     ChildQuangcaoQuery orderByNgaydang($order = Criteria::ASC) Order by the NgayDang column
- * @method     ChildQuangcaoQuery orderByLink($order = Criteria::ASC) Order by the Link column
- * @method     ChildQuangcaoQuery orderByHinhanh($order = Criteria::ASC) Order by the HInhAnh column
- * @method     ChildQuangcaoQuery orderByLoaiquangcaoMaloaiquangcao($order = Criteria::ASC) Order by the LoaiQuangCao_MaLoaiQuangCao column
+ * @method     ChildQuangcaoQuery orderByHinhanh($order = Criteria::ASC) Order by the HinhAnh column
+ * @method     ChildQuangcaoQuery orderByLoaiquangcaoMalqc($order = Criteria::ASC) Order by the LoaiQuangCao_MaLQC column
  *
- * @method     ChildQuangcaoQuery groupByMaquangcao() Group by the MaQuangCao column
+ * @method     ChildQuangcaoQuery groupByMaqc() Group by the MaQC column
+ * @method     ChildQuangcaoQuery groupByTenqc() Group by the TenQC column
  * @method     ChildQuangcaoQuery groupByNoidung() Group by the NoiDung column
- * @method     ChildQuangcaoQuery groupByNgaydang() Group by the NgayDang column
- * @method     ChildQuangcaoQuery groupByLink() Group by the Link column
- * @method     ChildQuangcaoQuery groupByHinhanh() Group by the HInhAnh column
- * @method     ChildQuangcaoQuery groupByLoaiquangcaoMaloaiquangcao() Group by the LoaiQuangCao_MaLoaiQuangCao column
+ * @method     ChildQuangcaoQuery groupByHinhanh() Group by the HinhAnh column
+ * @method     ChildQuangcaoQuery groupByLoaiquangcaoMalqc() Group by the LoaiQuangCao_MaLQC column
  *
  * @method     ChildQuangcaoQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     ChildQuangcaoQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -57,30 +55,27 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildQuangcao findOne(ConnectionInterface $con = null) Return the first ChildQuangcao matching the query
  * @method     ChildQuangcao findOneOrCreate(ConnectionInterface $con = null) Return the first ChildQuangcao matching the query, or a new ChildQuangcao object populated from the query conditions when no match is found
  *
- * @method     ChildQuangcao findOneByMaquangcao(int $MaQuangCao) Return the first ChildQuangcao filtered by the MaQuangCao column
+ * @method     ChildQuangcao findOneByMaqc(int $MaQC) Return the first ChildQuangcao filtered by the MaQC column
+ * @method     ChildQuangcao findOneByTenqc(string $TenQC) Return the first ChildQuangcao filtered by the TenQC column
  * @method     ChildQuangcao findOneByNoidung(string $NoiDung) Return the first ChildQuangcao filtered by the NoiDung column
- * @method     ChildQuangcao findOneByNgaydang(string $NgayDang) Return the first ChildQuangcao filtered by the NgayDang column
- * @method     ChildQuangcao findOneByLink(string $Link) Return the first ChildQuangcao filtered by the Link column
- * @method     ChildQuangcao findOneByHinhanh(string $HInhAnh) Return the first ChildQuangcao filtered by the HInhAnh column
- * @method     ChildQuangcao findOneByLoaiquangcaoMaloaiquangcao(int $LoaiQuangCao_MaLoaiQuangCao) Return the first ChildQuangcao filtered by the LoaiQuangCao_MaLoaiQuangCao column *
+ * @method     ChildQuangcao findOneByHinhanh(string $HinhAnh) Return the first ChildQuangcao filtered by the HinhAnh column
+ * @method     ChildQuangcao findOneByLoaiquangcaoMalqc(int $LoaiQuangCao_MaLQC) Return the first ChildQuangcao filtered by the LoaiQuangCao_MaLQC column *
 
  * @method     ChildQuangcao requirePk($key, ConnectionInterface $con = null) Return the ChildQuangcao by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildQuangcao requireOne(ConnectionInterface $con = null) Return the first ChildQuangcao matching the query and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
- * @method     ChildQuangcao requireOneByMaquangcao(int $MaQuangCao) Return the first ChildQuangcao filtered by the MaQuangCao column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildQuangcao requireOneByMaqc(int $MaQC) Return the first ChildQuangcao filtered by the MaQC column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildQuangcao requireOneByTenqc(string $TenQC) Return the first ChildQuangcao filtered by the TenQC column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildQuangcao requireOneByNoidung(string $NoiDung) Return the first ChildQuangcao filtered by the NoiDung column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildQuangcao requireOneByNgaydang(string $NgayDang) Return the first ChildQuangcao filtered by the NgayDang column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildQuangcao requireOneByLink(string $Link) Return the first ChildQuangcao filtered by the Link column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildQuangcao requireOneByHinhanh(string $HInhAnh) Return the first ChildQuangcao filtered by the HInhAnh column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
- * @method     ChildQuangcao requireOneByLoaiquangcaoMaloaiquangcao(int $LoaiQuangCao_MaLoaiQuangCao) Return the first ChildQuangcao filtered by the LoaiQuangCao_MaLoaiQuangCao column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildQuangcao requireOneByHinhanh(string $HinhAnh) Return the first ChildQuangcao filtered by the HinhAnh column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildQuangcao requireOneByLoaiquangcaoMalqc(int $LoaiQuangCao_MaLQC) Return the first ChildQuangcao filtered by the LoaiQuangCao_MaLQC column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildQuangcao[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildQuangcao objects based on current ModelCriteria
- * @method     ChildQuangcao[]|ObjectCollection findByMaquangcao(int $MaQuangCao) Return ChildQuangcao objects filtered by the MaQuangCao column
+ * @method     ChildQuangcao[]|ObjectCollection findByMaqc(int $MaQC) Return ChildQuangcao objects filtered by the MaQC column
+ * @method     ChildQuangcao[]|ObjectCollection findByTenqc(string $TenQC) Return ChildQuangcao objects filtered by the TenQC column
  * @method     ChildQuangcao[]|ObjectCollection findByNoidung(string $NoiDung) Return ChildQuangcao objects filtered by the NoiDung column
- * @method     ChildQuangcao[]|ObjectCollection findByNgaydang(string $NgayDang) Return ChildQuangcao objects filtered by the NgayDang column
- * @method     ChildQuangcao[]|ObjectCollection findByLink(string $Link) Return ChildQuangcao objects filtered by the Link column
- * @method     ChildQuangcao[]|ObjectCollection findByHinhanh(string $HInhAnh) Return ChildQuangcao objects filtered by the HInhAnh column
- * @method     ChildQuangcao[]|ObjectCollection findByLoaiquangcaoMaloaiquangcao(int $LoaiQuangCao_MaLoaiQuangCao) Return ChildQuangcao objects filtered by the LoaiQuangCao_MaLoaiQuangCao column
+ * @method     ChildQuangcao[]|ObjectCollection findByHinhanh(string $HinhAnh) Return ChildQuangcao objects filtered by the HinhAnh column
+ * @method     ChildQuangcao[]|ObjectCollection findByLoaiquangcaoMalqc(int $LoaiQuangCao_MaLQC) Return ChildQuangcao objects filtered by the LoaiQuangCao_MaLQC column
  * @method     ChildQuangcao[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *
  */
@@ -130,10 +125,10 @@ abstract class QuangcaoQuery extends ModelCriteria
      * Go fast if the query is untouched.
      *
      * <code>
-     * $obj = $c->findPk(array(12, 34), $con);
+     * $obj  = $c->findPk(12, $con);
      * </code>
      *
-     * @param array[$MaQuangCao, $LoaiQuangCao_MaLoaiQuangCao] $key Primary key to use for the query
+     * @param mixed $key Primary key to use for the query
      * @param ConnectionInterface $con an optional connection object
      *
      * @return ChildQuangcao|array|mixed the result, formatted by the current formatter
@@ -158,7 +153,7 @@ abstract class QuangcaoQuery extends ModelCriteria
             return $this->findPkComplex($key, $con);
         }
 
-        if ((null !== ($obj = QuangcaoTableMap::getInstanceFromPool(serialize([(null === $key[0] || is_scalar($key[0]) || is_callable([$key[0], '__toString']) ? (string) $key[0] : $key[0]), (null === $key[1] || is_scalar($key[1]) || is_callable([$key[1], '__toString']) ? (string) $key[1] : $key[1])]))))) {
+        if ((null !== ($obj = QuangcaoTableMap::getInstanceFromPool(null === $key || is_scalar($key) || is_callable([$key, '__toString']) ? (string) $key : $key)))) {
             // the object is already in the instance pool
             return $obj;
         }
@@ -179,11 +174,10 @@ abstract class QuangcaoQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT MaQuangCao, NoiDung, NgayDang, Link, HInhAnh, LoaiQuangCao_MaLoaiQuangCao FROM QuangCao WHERE MaQuangCao = :p0 AND LoaiQuangCao_MaLoaiQuangCao = :p1';
+        $sql = 'SELECT MaQC, TenQC, NoiDung, HinhAnh, LoaiQuangCao_MaLQC FROM QuangCao WHERE MaQC = :p0';
         try {
             $stmt = $con->prepare($sql);
-            $stmt->bindValue(':p0', $key[0], PDO::PARAM_INT);
-            $stmt->bindValue(':p1', $key[1], PDO::PARAM_INT);
+            $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
             $stmt->execute();
         } catch (Exception $e) {
             Propel::log($e->getMessage(), Propel::LOG_ERR);
@@ -194,7 +188,7 @@ abstract class QuangcaoQuery extends ModelCriteria
             /** @var ChildQuangcao $obj */
             $obj = new ChildQuangcao();
             $obj->hydrate($row);
-            QuangcaoTableMap::addInstanceToPool($obj, serialize([(null === $key[0] || is_scalar($key[0]) || is_callable([$key[0], '__toString']) ? (string) $key[0] : $key[0]), (null === $key[1] || is_scalar($key[1]) || is_callable([$key[1], '__toString']) ? (string) $key[1] : $key[1])]));
+            QuangcaoTableMap::addInstanceToPool($obj, null === $key || is_scalar($key) || is_callable([$key, '__toString']) ? (string) $key : $key);
         }
         $stmt->closeCursor();
 
@@ -223,7 +217,7 @@ abstract class QuangcaoQuery extends ModelCriteria
     /**
      * Find objects by primary key
      * <code>
-     * $objs = $c->findPks(array(array(12, 56), array(832, 123), array(123, 456)), $con);
+     * $objs = $c->findPks(array(12, 56, 832), $con);
      * </code>
      * @param     array $keys Primary keys to use for the query
      * @param     ConnectionInterface $con an optional connection object
@@ -253,10 +247,8 @@ abstract class QuangcaoQuery extends ModelCriteria
      */
     public function filterByPrimaryKey($key)
     {
-        $this->addUsingAlias(QuangcaoTableMap::COL_MAQUANGCAO, $key[0], Criteria::EQUAL);
-        $this->addUsingAlias(QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO, $key[1], Criteria::EQUAL);
 
-        return $this;
+        return $this->addUsingAlias(QuangcaoTableMap::COL_MAQC, $key, Criteria::EQUAL);
     }
 
     /**
@@ -268,30 +260,21 @@ abstract class QuangcaoQuery extends ModelCriteria
      */
     public function filterByPrimaryKeys($keys)
     {
-        if (empty($keys)) {
-            return $this->add(null, '1<>1', Criteria::CUSTOM);
-        }
-        foreach ($keys as $key) {
-            $cton0 = $this->getNewCriterion(QuangcaoTableMap::COL_MAQUANGCAO, $key[0], Criteria::EQUAL);
-            $cton1 = $this->getNewCriterion(QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO, $key[1], Criteria::EQUAL);
-            $cton0->addAnd($cton1);
-            $this->addOr($cton0);
-        }
 
-        return $this;
+        return $this->addUsingAlias(QuangcaoTableMap::COL_MAQC, $keys, Criteria::IN);
     }
 
     /**
-     * Filter the query on the MaQuangCao column
+     * Filter the query on the MaQC column
      *
      * Example usage:
      * <code>
-     * $query->filterByMaquangcao(1234); // WHERE MaQuangCao = 1234
-     * $query->filterByMaquangcao(array(12, 34)); // WHERE MaQuangCao IN (12, 34)
-     * $query->filterByMaquangcao(array('min' => 12)); // WHERE MaQuangCao > 12
+     * $query->filterByMaqc(1234); // WHERE MaQC = 1234
+     * $query->filterByMaqc(array(12, 34)); // WHERE MaQC IN (12, 34)
+     * $query->filterByMaqc(array('min' => 12)); // WHERE MaQC > 12
      * </code>
      *
-     * @param     mixed $maquangcao The value to use as filter.
+     * @param     mixed $maqc The value to use as filter.
      *              Use scalar values for equality.
      *              Use array values for in_array() equivalent.
      *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
@@ -299,16 +282,16 @@ abstract class QuangcaoQuery extends ModelCriteria
      *
      * @return $this|ChildQuangcaoQuery The current query, for fluid interface
      */
-    public function filterByMaquangcao($maquangcao = null, $comparison = null)
+    public function filterByMaqc($maqc = null, $comparison = null)
     {
-        if (is_array($maquangcao)) {
+        if (is_array($maqc)) {
             $useMinMax = false;
-            if (isset($maquangcao['min'])) {
-                $this->addUsingAlias(QuangcaoTableMap::COL_MAQUANGCAO, $maquangcao['min'], Criteria::GREATER_EQUAL);
+            if (isset($maqc['min'])) {
+                $this->addUsingAlias(QuangcaoTableMap::COL_MAQC, $maqc['min'], Criteria::GREATER_EQUAL);
                 $useMinMax = true;
             }
-            if (isset($maquangcao['max'])) {
-                $this->addUsingAlias(QuangcaoTableMap::COL_MAQUANGCAO, $maquangcao['max'], Criteria::LESS_EQUAL);
+            if (isset($maqc['max'])) {
+                $this->addUsingAlias(QuangcaoTableMap::COL_MAQC, $maqc['max'], Criteria::LESS_EQUAL);
                 $useMinMax = true;
             }
             if ($useMinMax) {
@@ -319,7 +302,36 @@ abstract class QuangcaoQuery extends ModelCriteria
             }
         }
 
-        return $this->addUsingAlias(QuangcaoTableMap::COL_MAQUANGCAO, $maquangcao, $comparison);
+        return $this->addUsingAlias(QuangcaoTableMap::COL_MAQC, $maqc, $comparison);
+    }
+
+    /**
+     * Filter the query on the TenQC column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByTenqc('fooValue');   // WHERE TenQC = 'fooValue'
+     * $query->filterByTenqc('%fooValue%'); // WHERE TenQC LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $tenqc The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return $this|ChildQuangcaoQuery The current query, for fluid interface
+     */
+    public function filterByTenqc($tenqc = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($tenqc)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $tenqc)) {
+                $tenqc = str_replace('*', '%', $tenqc);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(QuangcaoTableMap::COL_TENQC, $tenqc, $comparison);
     }
 
     /**
@@ -352,84 +364,12 @@ abstract class QuangcaoQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query on the NgayDang column
+     * Filter the query on the HinhAnh column
      *
      * Example usage:
      * <code>
-     * $query->filterByNgaydang('2011-03-14'); // WHERE NgayDang = '2011-03-14'
-     * $query->filterByNgaydang('now'); // WHERE NgayDang = '2011-03-14'
-     * $query->filterByNgaydang(array('max' => 'yesterday')); // WHERE NgayDang > '2011-03-13'
-     * </code>
-     *
-     * @param     mixed $ngaydang The value to use as filter.
-     *              Values can be integers (unix timestamps), DateTime objects, or strings.
-     *              Empty strings are treated as NULL.
-     *              Use scalar values for equality.
-     *              Use array values for in_array() equivalent.
-     *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return $this|ChildQuangcaoQuery The current query, for fluid interface
-     */
-    public function filterByNgaydang($ngaydang = null, $comparison = null)
-    {
-        if (is_array($ngaydang)) {
-            $useMinMax = false;
-            if (isset($ngaydang['min'])) {
-                $this->addUsingAlias(QuangcaoTableMap::COL_NGAYDANG, $ngaydang['min'], Criteria::GREATER_EQUAL);
-                $useMinMax = true;
-            }
-            if (isset($ngaydang['max'])) {
-                $this->addUsingAlias(QuangcaoTableMap::COL_NGAYDANG, $ngaydang['max'], Criteria::LESS_EQUAL);
-                $useMinMax = true;
-            }
-            if ($useMinMax) {
-                return $this;
-            }
-            if (null === $comparison) {
-                $comparison = Criteria::IN;
-            }
-        }
-
-        return $this->addUsingAlias(QuangcaoTableMap::COL_NGAYDANG, $ngaydang, $comparison);
-    }
-
-    /**
-     * Filter the query on the Link column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByLink('fooValue');   // WHERE Link = 'fooValue'
-     * $query->filterByLink('%fooValue%'); // WHERE Link LIKE '%fooValue%'
-     * </code>
-     *
-     * @param     string $link The value to use as filter.
-     *              Accepts wildcards (* and % trigger a LIKE)
-     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
-     *
-     * @return $this|ChildQuangcaoQuery The current query, for fluid interface
-     */
-    public function filterByLink($link = null, $comparison = null)
-    {
-        if (null === $comparison) {
-            if (is_array($link)) {
-                $comparison = Criteria::IN;
-            } elseif (preg_match('/[\%\*]/', $link)) {
-                $link = str_replace('*', '%', $link);
-                $comparison = Criteria::LIKE;
-            }
-        }
-
-        return $this->addUsingAlias(QuangcaoTableMap::COL_LINK, $link, $comparison);
-    }
-
-    /**
-     * Filter the query on the HInhAnh column
-     *
-     * Example usage:
-     * <code>
-     * $query->filterByHinhanh('fooValue');   // WHERE HInhAnh = 'fooValue'
-     * $query->filterByHinhanh('%fooValue%'); // WHERE HInhAnh LIKE '%fooValue%'
+     * $query->filterByHinhanh('fooValue');   // WHERE HinhAnh = 'fooValue'
+     * $query->filterByHinhanh('%fooValue%'); // WHERE HinhAnh LIKE '%fooValue%'
      * </code>
      *
      * @param     string $hinhanh The value to use as filter.
@@ -453,18 +393,18 @@ abstract class QuangcaoQuery extends ModelCriteria
     }
 
     /**
-     * Filter the query on the LoaiQuangCao_MaLoaiQuangCao column
+     * Filter the query on the LoaiQuangCao_MaLQC column
      *
      * Example usage:
      * <code>
-     * $query->filterByLoaiquangcaoMaloaiquangcao(1234); // WHERE LoaiQuangCao_MaLoaiQuangCao = 1234
-     * $query->filterByLoaiquangcaoMaloaiquangcao(array(12, 34)); // WHERE LoaiQuangCao_MaLoaiQuangCao IN (12, 34)
-     * $query->filterByLoaiquangcaoMaloaiquangcao(array('min' => 12)); // WHERE LoaiQuangCao_MaLoaiQuangCao > 12
+     * $query->filterByLoaiquangcaoMalqc(1234); // WHERE LoaiQuangCao_MaLQC = 1234
+     * $query->filterByLoaiquangcaoMalqc(array(12, 34)); // WHERE LoaiQuangCao_MaLQC IN (12, 34)
+     * $query->filterByLoaiquangcaoMalqc(array('min' => 12)); // WHERE LoaiQuangCao_MaLQC > 12
      * </code>
      *
      * @see       filterByLoaiquangcao()
      *
-     * @param     mixed $loaiquangcaoMaloaiquangcao The value to use as filter.
+     * @param     mixed $loaiquangcaoMalqc The value to use as filter.
      *              Use scalar values for equality.
      *              Use array values for in_array() equivalent.
      *              Use associative array('min' => $minValue, 'max' => $maxValue) for intervals.
@@ -472,16 +412,16 @@ abstract class QuangcaoQuery extends ModelCriteria
      *
      * @return $this|ChildQuangcaoQuery The current query, for fluid interface
      */
-    public function filterByLoaiquangcaoMaloaiquangcao($loaiquangcaoMaloaiquangcao = null, $comparison = null)
+    public function filterByLoaiquangcaoMalqc($loaiquangcaoMalqc = null, $comparison = null)
     {
-        if (is_array($loaiquangcaoMaloaiquangcao)) {
+        if (is_array($loaiquangcaoMalqc)) {
             $useMinMax = false;
-            if (isset($loaiquangcaoMaloaiquangcao['min'])) {
-                $this->addUsingAlias(QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO, $loaiquangcaoMaloaiquangcao['min'], Criteria::GREATER_EQUAL);
+            if (isset($loaiquangcaoMalqc['min'])) {
+                $this->addUsingAlias(QuangcaoTableMap::COL_LOAIQUANGCAO_MALQC, $loaiquangcaoMalqc['min'], Criteria::GREATER_EQUAL);
                 $useMinMax = true;
             }
-            if (isset($loaiquangcaoMaloaiquangcao['max'])) {
-                $this->addUsingAlias(QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO, $loaiquangcaoMaloaiquangcao['max'], Criteria::LESS_EQUAL);
+            if (isset($loaiquangcaoMalqc['max'])) {
+                $this->addUsingAlias(QuangcaoTableMap::COL_LOAIQUANGCAO_MALQC, $loaiquangcaoMalqc['max'], Criteria::LESS_EQUAL);
                 $useMinMax = true;
             }
             if ($useMinMax) {
@@ -492,7 +432,7 @@ abstract class QuangcaoQuery extends ModelCriteria
             }
         }
 
-        return $this->addUsingAlias(QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO, $loaiquangcaoMaloaiquangcao, $comparison);
+        return $this->addUsingAlias(QuangcaoTableMap::COL_LOAIQUANGCAO_MALQC, $loaiquangcaoMalqc, $comparison);
     }
 
     /**
@@ -509,14 +449,14 @@ abstract class QuangcaoQuery extends ModelCriteria
     {
         if ($loaiquangcao instanceof \Model\Loaiquangcao) {
             return $this
-                ->addUsingAlias(QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO, $loaiquangcao->getMaloaiquangcao(), $comparison);
+                ->addUsingAlias(QuangcaoTableMap::COL_LOAIQUANGCAO_MALQC, $loaiquangcao->getMalqc(), $comparison);
         } elseif ($loaiquangcao instanceof ObjectCollection) {
             if (null === $comparison) {
                 $comparison = Criteria::IN;
             }
 
             return $this
-                ->addUsingAlias(QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO, $loaiquangcao->toKeyValue('PrimaryKey', 'Maloaiquangcao'), $comparison);
+                ->addUsingAlias(QuangcaoTableMap::COL_LOAIQUANGCAO_MALQC, $loaiquangcao->toKeyValue('PrimaryKey', 'Malqc'), $comparison);
         } else {
             throw new PropelException('filterByLoaiquangcao() only accepts arguments of type \Model\Loaiquangcao or Collection');
         }
@@ -582,9 +522,7 @@ abstract class QuangcaoQuery extends ModelCriteria
     public function prune($quangcao = null)
     {
         if ($quangcao) {
-            $this->addCond('pruneCond0', $this->getAliasedColName(QuangcaoTableMap::COL_MAQUANGCAO), $quangcao->getMaquangcao(), Criteria::NOT_EQUAL);
-            $this->addCond('pruneCond1', $this->getAliasedColName(QuangcaoTableMap::COL_LOAIQUANGCAO_MALOAIQUANGCAO), $quangcao->getLoaiquangcaoMaloaiquangcao(), Criteria::NOT_EQUAL);
-            $this->combine(array('pruneCond0', 'pruneCond1'), Criteria::LOGICAL_OR);
+            $this->addUsingAlias(QuangcaoTableMap::COL_MAQC, $quangcao->getMaqc(), Criteria::NOT_EQUAL);
         }
 
         return $this;

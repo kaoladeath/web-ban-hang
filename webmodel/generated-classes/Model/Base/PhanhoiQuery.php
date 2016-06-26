@@ -22,10 +22,12 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildPhanhoiQuery orderByMaph($order = Criteria::ASC) Order by the MaPH column
  * @method     ChildPhanhoiQuery orderByTennguoiph($order = Criteria::ASC) Order by the TenNguoiPH column
  * @method     ChildPhanhoiQuery orderByEmail($order = Criteria::ASC) Order by the Email column
+ * @method     ChildPhanhoiQuery orderByNoidung($order = Criteria::ASC) Order by the NoiDung column
  *
  * @method     ChildPhanhoiQuery groupByMaph() Group by the MaPH column
  * @method     ChildPhanhoiQuery groupByTennguoiph() Group by the TenNguoiPH column
  * @method     ChildPhanhoiQuery groupByEmail() Group by the Email column
+ * @method     ChildPhanhoiQuery groupByNoidung() Group by the NoiDung column
  *
  * @method     ChildPhanhoiQuery leftJoin($relation) Adds a LEFT JOIN clause to the query
  * @method     ChildPhanhoiQuery rightJoin($relation) Adds a RIGHT JOIN clause to the query
@@ -40,7 +42,8 @@ use Propel\Runtime\Exception\PropelException;
  *
  * @method     ChildPhanhoi findOneByMaph(int $MaPH) Return the first ChildPhanhoi filtered by the MaPH column
  * @method     ChildPhanhoi findOneByTennguoiph(string $TenNguoiPH) Return the first ChildPhanhoi filtered by the TenNguoiPH column
- * @method     ChildPhanhoi findOneByEmail(string $Email) Return the first ChildPhanhoi filtered by the Email column *
+ * @method     ChildPhanhoi findOneByEmail(string $Email) Return the first ChildPhanhoi filtered by the Email column
+ * @method     ChildPhanhoi findOneByNoidung(string $NoiDung) Return the first ChildPhanhoi filtered by the NoiDung column *
 
  * @method     ChildPhanhoi requirePk($key, ConnectionInterface $con = null) Return the ChildPhanhoi by primary key and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildPhanhoi requireOne(ConnectionInterface $con = null) Return the first ChildPhanhoi matching the query and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
@@ -48,11 +51,13 @@ use Propel\Runtime\Exception\PropelException;
  * @method     ChildPhanhoi requireOneByMaph(int $MaPH) Return the first ChildPhanhoi filtered by the MaPH column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildPhanhoi requireOneByTennguoiph(string $TenNguoiPH) Return the first ChildPhanhoi filtered by the TenNguoiPH column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  * @method     ChildPhanhoi requireOneByEmail(string $Email) Return the first ChildPhanhoi filtered by the Email column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
+ * @method     ChildPhanhoi requireOneByNoidung(string $NoiDung) Return the first ChildPhanhoi filtered by the NoiDung column and throws \Propel\Runtime\Exception\EntityNotFoundException when not found
  *
  * @method     ChildPhanhoi[]|ObjectCollection find(ConnectionInterface $con = null) Return ChildPhanhoi objects based on current ModelCriteria
  * @method     ChildPhanhoi[]|ObjectCollection findByMaph(int $MaPH) Return ChildPhanhoi objects filtered by the MaPH column
  * @method     ChildPhanhoi[]|ObjectCollection findByTennguoiph(string $TenNguoiPH) Return ChildPhanhoi objects filtered by the TenNguoiPH column
  * @method     ChildPhanhoi[]|ObjectCollection findByEmail(string $Email) Return ChildPhanhoi objects filtered by the Email column
+ * @method     ChildPhanhoi[]|ObjectCollection findByNoidung(string $NoiDung) Return ChildPhanhoi objects filtered by the NoiDung column
  * @method     ChildPhanhoi[]|\Propel\Runtime\Util\PropelModelPager paginate($page = 1, $maxPerPage = 10, ConnectionInterface $con = null) Issue a SELECT query based on the current ModelCriteria and uses a page and a maximum number of results per page to compute an offset and a limit
  *
  */
@@ -151,7 +156,7 @@ abstract class PhanhoiQuery extends ModelCriteria
      */
     protected function findPkSimple($key, ConnectionInterface $con)
     {
-        $sql = 'SELECT MaPH, TenNguoiPH, Email FROM PhanHoi WHERE MaPH = :p0';
+        $sql = 'SELECT MaPH, TenNguoiPH, Email, NoiDung FROM PhanHoi WHERE MaPH = :p0';
         try {
             $stmt = $con->prepare($sql);
             $stmt->bindValue(':p0', $key, PDO::PARAM_INT);
@@ -338,6 +343,35 @@ abstract class PhanhoiQuery extends ModelCriteria
         }
 
         return $this->addUsingAlias(PhanhoiTableMap::COL_EMAIL, $email, $comparison);
+    }
+
+    /**
+     * Filter the query on the NoiDung column
+     *
+     * Example usage:
+     * <code>
+     * $query->filterByNoidung('fooValue');   // WHERE NoiDung = 'fooValue'
+     * $query->filterByNoidung('%fooValue%'); // WHERE NoiDung LIKE '%fooValue%'
+     * </code>
+     *
+     * @param     string $noidung The value to use as filter.
+     *              Accepts wildcards (* and % trigger a LIKE)
+     * @param     string $comparison Operator to use for the column comparison, defaults to Criteria::EQUAL
+     *
+     * @return $this|ChildPhanhoiQuery The current query, for fluid interface
+     */
+    public function filterByNoidung($noidung = null, $comparison = null)
+    {
+        if (null === $comparison) {
+            if (is_array($noidung)) {
+                $comparison = Criteria::IN;
+            } elseif (preg_match('/[\%\*]/', $noidung)) {
+                $noidung = str_replace('*', '%', $noidung);
+                $comparison = Criteria::LIKE;
+            }
+        }
+
+        return $this->addUsingAlias(PhanhoiTableMap::COL_NOIDUNG, $noidung, $comparison);
     }
 
     /**

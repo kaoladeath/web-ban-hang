@@ -138,7 +138,7 @@ class AdminTableMap extends TableMap
         // columns
         $this->addPrimaryKey('MaAdmin', 'Maadmin', 'INTEGER', true, null, null);
         $this->addColumn('UserName', 'Username', 'VARCHAR', true, 30, null);
-        $this->addColumn('Password', 'Password', 'VARCHAR', true, 45, null);
+        $this->addColumn('Password', 'Password', 'VARCHAR', true, 100, null);
     } // initialize()
 
     /**
