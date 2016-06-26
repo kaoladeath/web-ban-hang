@@ -25,9 +25,11 @@ and open the template in the editor.
         echo '<br/>';
         echo $dtthoai;
         echo '<br/>';
-        echo $_POST['thanh_toan_khi_nhan_hang'];
+        echo $thanh_toan_khi_nhan_hang;
         echo '<br/>';
-        echo $_POST['thanh_toan_qua_the_ngan_hang'];
+        echo $thanh_toan_qua_the_ngan_hang;
+        echo '<br/>';
+        echo var_dump($success);
         echo '<br/>';
         ?>
     </body>

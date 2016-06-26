@@ -2,7 +2,8 @@
     "name": "duc",
     "require":{
         "propel/propel":"~2.0@dev",
-        "monolog/monolog": "^1.19"
+        "monolog/monolog": "^1.19",
+        "phpmailer/phpmailer": "^5.2"
     },
     "autoload":{
         "classmap": ["webmodel/generated-classes/"]
