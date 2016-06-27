@@ -5,6 +5,7 @@
 require 'classes/setup.php';
 use Model\LoaispQuery;
 use Model\SanphamQuery;
+use Model\DanhmucQuery;
 
 /**
  * Home Controller cho Home View
@@ -25,7 +26,7 @@ class HomeController extends BaseController {
         $trang_hien_tai = 0;
         
         session_start();
-        if (!isset($_SESSION['loaded'])) {
+       if (TRUE) {
             //lấy danh sách loại sản phẩm
             $_SESSION['loai_sp'] = LoaispQuery::create()->find();
             //lấy danh sách sản phẩm
@@ -80,6 +81,18 @@ class HomeController extends BaseController {
     public function sanpham(){
         $sp = SanphamQuery::create()->findPk($this->urlvalues['id']);
         include 'views/Home/Sanpham.php';
+    } 
+    
+    public function danhmuc(){
+        $danhmuc = DanhmucQuery::create()->findPk($this->urlvalues['id']);
+        $loaisp = $danhmuc->getLoaisps();
+        $_SESSION['loai_sp'] = $loaisp;
+        $sanpham = [];
+        foreach($loaisp as $loaisp){
+            $sanpham = array_merge($sanpham, $loaisp->getSanphams()->getArrayCopy());
+        }
+//        $sotrang = $this->so_trang(count($sanpham), self::SO_SP_1_TRANG); 
+//        $trang_sanpham = $this->Tao_sanpham_theo_trang($sotrang, $sanpham);
+        include 'views/Home/non-bao-hiem.php';
     }
-
 }

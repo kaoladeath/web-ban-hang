@@ -18,59 +18,21 @@
                                         <a href="/WebsiteBanHang/Home/" class="level-top"> <span>Trang chủ</span> </a>
                                     </li>
 
-
-
                                     <li class="level0 level-top parent">
-                                        <a href="/gioi-thieu" class="level-top"> <span>Giới thiệu</span> </a>
+                                        <a href="/WebsiteBanHang/Home/Danhmuc/1" class="level-top"> <span>Nón Bảo Hiểm</span> </a>
                                     </li>
-
-
-
+                                    
                                     <li class="level0 level-top parent">
-                                        <a href="/collections/all"> <span>Kinh</span> </a>
-                                        <ul class="level0">
-
-                                            <li class="level1"><a href="/laptop"><span>Máy tính</span></a></li>
-
-
-                                            <li class="level1"><a href="/phu-kien-laptop"><span>Phụ kiện máy tính</span></a></li>
-
-
-                                            <li class="level1"><a href="/dien-thoai-di-dong"><span>Điện thoại di động</span></a></li>
-
-
-                                            <li class="level1"><a href="/phu-kien"><span>Phụ kiện điện thoại</span></a></li>
-
-                                            <ul class="level1">
-
-                                                <li class="level2"><a href="/tai-nghe"><span>Tai nghe điện thoại</span></a></li>
-
-                                                <li class="level2"><a href="/mieng-dan-dien-thoai"><span>Miếng dán điện thoại</span></a></li>
-
-                                                <li class="level2"><a href="/pin-sac-dien-thoai"><span>Pin, sạc điện thoại</span></a></li>
-
-                                            </ul>
-
-
-                                            <li class="level1"><a href="/frontpage"><span>Sản phẩm mới</span></a></li>
-
-
-                                            <li class="level1"><a href="/san-pham-noi-bat"><span>Sản phẩm nổi bật</span></a></li>
-
-
-                                            <li class="level1"><a href="/san-pham-khuyen-mai"><span>Sản phẩm khuyến mãi</span></a></li>
-
-
-                                        </ul>
+                                        <a href="/gioi-thieu" class="level-top"> <span>Kính</span> </a>
                                     </li>
-
-
-
+                                    
                                     <li class="level0 level-top parent">
-                                        <a href="/tin-tuc" class="level-top"> <span>Tin tức</span> </a>
+                                        <a href="/gioi-thieu" class="level-top"> <span>Găng tay</span> </a>
                                     </li>
-
-
+                                    
+                                    <li class="level0 level-top parent">
+                                        <a href="/gioi-thieu" class="level-top"> <span>Khẩu trang/Khăn</span> </a>
+                                    </li>
 
                                     <li class="level0 level-top parent">
                                         <a href="/lien-he" class="level-top"> <span>Liên hệ</span> </a>
@@ -91,68 +53,13 @@
 
                 <li class="level0"><a href="/WebsiteBanHang/Home/"><span>Trang chủ</span> </a>
 
-
-
-                <li class="level0"><a href="/gioi-thieu"><span>Giới thiệu</span> </a>
-
-
-
-                <li class="level0 drop-menu"><a href="/collections/all"><span>Kinh</span> </a>
-                    <ul class="level1">
-
-                        <li class="level1">
-                            <a href="/laptop"> <span>Máy tính</span></a>
-
-                        </li>
-
-                        <li class="level1">
-                            <a href="/phu-kien-laptop"> <span>Phụ kiện máy tính</span></a>
-
-                        </li>
-
-                        <li class="level1">
-                            <a href="/dien-thoai-di-dong"> <span>Điện thoại di động</span></a>
-
-                        </li>
-
-                        <li class="level1">
-                            <a href="/phu-kien"> <span>Phụ kiện điện thoại</span></a>
-
-                            <ul class="level2">
-
-                                <li class="level2"><a href="/tai-nghe"> <span>Tai nghe điện thoại</span></a></li>
-
-                                <li class="level2"><a href="/mieng-dan-dien-thoai"> <span>Miếng dán điện thoại</span></a></li>
-
-                                <li class="level2"><a href="/pin-sac-dien-thoai"> <span>Pin, sạc điện thoại</span></a></li>
-
-                            </ul>
-
-                        </li>
-
-                        <li class="level1">
-                            <a href="/frontpage"> <span>Sản phẩm mới</span></a>
-
-                        </li>
-
-                        <li class="level1">
-                            <a href="/san-pham-noi-bat"> <span>Sản phẩm nổi bật</span></a>
-
-                        </li>
-
-                        <li class="level1">
-                            <a href="/san-pham-khuyen-mai"> <span>Sản phẩm khuyến mãi</span></a>
-
-                        </li>
-
-                    </ul>
-                </li>
-
-
-
-                <li class="level0"><a href="/tin-tuc"><span>Tin tức</span> </a>
-
-
+                <li class="level0"><a href="/WebsiteBanHang/Home/Danhmuc/1"><span>Nón Bảo Hiểm</span> </a>
+                    
+                <li class="level0"><a href="/gioi-thieu"><span>Kính</span> </a>
+                    
+                <li class="level0"><a href="/gioi-thieu"><span>Găng tay</span> </a>
+                    
+                <li class="level0"><a href="/gioi-thieu"><span>Khẩu trang/Khăn</span> </a>
 
                 <li class="level0"><a href="/lien-he"><span>Liên hệ</span> </a>
 

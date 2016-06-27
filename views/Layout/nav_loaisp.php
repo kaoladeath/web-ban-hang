@@ -5,9 +5,9 @@ $loaiSp = $_SESSION['loai_sp'];
 ?>
 
 <div class="col-md-3">
-    <p class="lead">Safety</p>
+    <p class="lead">Nón Bảo Hiểm</p>
     <div class="list-group">
-    <?php if(!empty($loai_sp)){ ?>
+    <?php if(!empty($loaiSp)){ ?>
         <?php foreach ($loaiSp as $loai) { ?>
             <a href="#" class="list-group-item"> <?php echo $loai->getTenloaisp(); ?></a>
         <?php } ?>
